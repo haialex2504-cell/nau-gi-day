@@ -2,7 +2,7 @@ import { createClient } from '@supabase/supabase-js';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
-
+import { cleanIngredient } from './ingredientResolver';
 // Load environment variables
 dotenv.config({ path: '.env.local' });
 
@@ -71,7 +71,7 @@ async function seed() {
 
     // Insert Tags
     if (r.tags && Array.isArray(r.tags)) {
-      const tags = r.tags.map(tag => ({ recipe_id: r.id, tag }));
+      const tags = r.tags.map((tag: string) => ({ recipe_id: r.id, tag }));
       await supabase.from('recipe_tags').upsert(tags);
     } else if (typeof r.tags === 'string') {
       await supabase.from('recipe_tags').upsert({ recipe_id: r.id, tag: r.tags });
@@ -109,11 +109,6 @@ async function seed() {
   console.log("✨ Seeding completed successfully!");
 }
 
-// Utility to clean ingredient string (e.g. "500g thịt bò" -> "thịt bò")
-function cleanIngredient(str: string): string {
-  // Simple regex to remove common amount prefixes (can be improved)
-  return str.replace(/^\d+(\w+)?\s+/, '').replace(/^[\d/,.]+\s+(thìa|quả|miếng|g|kg|lít|tép|cây|lá|bìa|củ|bát|tai)\s+/, '').trim().toLowerCase();
-}
 
 seed().catch(err => {
   console.error("❌ Seeding failed:", err);
