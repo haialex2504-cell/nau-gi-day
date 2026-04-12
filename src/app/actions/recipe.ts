@@ -14,6 +14,7 @@ export interface RecipeSearchResult {
   difficulty?: string;
   is_personal?: boolean;
   match_count?: number;
+  score?: number;
   created_at?: string;
 }
 
