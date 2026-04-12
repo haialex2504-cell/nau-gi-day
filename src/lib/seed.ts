@@ -3,6 +3,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import * as dotenv from 'dotenv';
 import { cleanIngredient } from './ingredientResolver';
+import { normalizeIngredient } from './synonyms';
 // Load environment variables
 dotenv.config({ path: '.env.local' });
 
@@ -22,12 +23,19 @@ async function seed() {
   const dataPath = path.join(process.cwd(), 'src/lib/recipes_data.json');
   const recipes = JSON.parse(fs.readFileSync(dataPath, 'utf8'));
 
+  // 0. Clean old data to prevent duplicates (Ghost records)
+  console.log("🧹 Cleaning old data...");
+  // We delete in reverse order of dependencies
+  await supabase.from('recipe_ingredients').delete().neq('recipe_id', '00000000-0000-0000-0000-000000000000');
+  await supabase.from('recipe_tags').delete().neq('recipe_id', '00000000-0000-0000-0000-000000000000');
+  await supabase.from('ingredients').delete().neq('name', 'PLACEHOLDER_TO_ALLOW_DELETE');
+
   // 1. Extract Unique Ingredients
   console.log("📦 Extracting unique ingredients...");
   const ingredientSet = new Set<string>();
   recipes.forEach((r: any) => {
-    r.ingredients.main?.forEach((i: string) => ingredientSet.add(cleanIngredient(i)));
-    r.ingredients.optional?.forEach((i: string) => ingredientSet.add(cleanIngredient(i)));
+    r.ingredients.main?.forEach((i: string) => ingredientSet.add(normalizeIngredient(cleanIngredient(i))));
+    r.ingredients.optional?.forEach((i: string) => ingredientSet.add(normalizeIngredient(cleanIngredient(i))));
   });
 
   const uniqueIngredients = Array.from(ingredientSet).map(name => ({ name }));
@@ -73,7 +81,7 @@ async function seed() {
 
     const recipeIngsMap = new Map<string, any>();
     r.ingredients.main?.forEach((raw: string) => {
-      const name = cleanIngredient(raw);
+      const name = normalizeIngredient(cleanIngredient(raw));
       const id = ingMap.get(name);
       if (id) {
         recipeIngsMap.set(id, { recipe_id: r.id, ingredient_id: id, is_main: true, amount: raw });
@@ -81,7 +89,7 @@ async function seed() {
     });
 
     r.ingredients.optional?.forEach((raw: string) => {
-      const name = cleanIngredient(raw);
+      const name = normalizeIngredient(cleanIngredient(raw));
       const id = ingMap.get(name);
       if (id && !recipeIngsMap.has(id)) {
         recipeIngsMap.set(id, { recipe_id: r.id, ingredient_id: id, is_main: false, amount: raw });

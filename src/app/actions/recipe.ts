@@ -1,6 +1,7 @@
 'use server';
 
 import { supabase } from '@/lib/supabase';
+import { resolveIngredients } from '@/lib/synonyms';
 
 export interface RecipeSearchResult {
   id: string;
@@ -32,76 +33,151 @@ export interface RecipeInput {
 export async function searchRecipes(queryIngredients: string[]): Promise<RecipeSearchResult[]> {
   if (!queryIngredients || queryIngredients.length === 0) return [];
 
-  // 1. Normalize query ingredients (lowercase and trim)
-  const normalizedQuery = queryIngredients.map(i => i.toLowerCase().trim());
-  console.log('[searchRecipes] Normalized query:', normalizedQuery);
+  // ── BƯỚC 1: Resolve đồng nghĩa + bao hàm ─────────────────────────────
+  // "thịt lợn" → "thịt heo"
+  // "nấm"      → ["nấm hương", "nấm đông cô", "nấm đùi gà", ...]
+  const resolvedTerms = resolveIngredients(queryIngredients);
+  console.log('[searchRecipes] Input:', queryIngredients, '→ Resolved:', resolvedTerms);
 
-  // 2. Find Ingredient IDs for the query
-  const { data: ingredientsData, error: ingError } = await supabase
-    .from('ingredients')
-    .select('id, name')
-    .in('name', normalizedQuery);
+  // ── BƯỚC 2: Tìm ingredient IDs ────────────────────────────────────────
+  // Với mỗi term: exact match trước, ilike fallback nếu không có
+  const allIngredientIds = new Set<string>();
 
-  if (ingError || !ingredientsData || ingredientsData.length === 0) {
-    console.error('[searchRecipes] Error fetching ingredient IDs or none found:', ingError);
+  for (const term of resolvedTerms) {
+    const q = term.toLowerCase().trim();
+
+    // Exact match
+    const { data: exactData } = await supabase
+      .from('ingredients')
+      .select('id, name')
+      .eq('name', q);
+
+    if (exactData && exactData.length > 0) {
+      exactData.forEach(i => allIngredientIds.add(i.id));
+      console.log(`[searchRecipes] ✅ Exact: "${q}" →`, exactData.map(i => i.name));
+    } else {
+      // Fuzzy/partial fallback (ilike)
+      const { data: fuzzyData } = await supabase
+        .from('ingredients')
+        .select('id, name')
+        .ilike('name', `%${q}%`)
+        .limit(8);
+
+      if (fuzzyData && fuzzyData.length > 0) {
+        fuzzyData.forEach(i => allIngredientIds.add(i.id));
+        console.log(`[searchRecipes] 🔍 Fuzzy: "${q}" →`, fuzzyData.map(i => i.name));
+      } else {
+        console.warn(`[searchRecipes] ❌ No match for "${q}"`);
+      }
+    }
+  }
+
+  if (allIngredientIds.size === 0) {
+    console.error('[searchRecipes] No ingredient IDs resolved from any term.');
     return [];
   }
 
-  console.log(`[searchRecipes] Found ${ingredientsData.length}/${normalizedQuery.length} ingredients in DB:`, ingredientsData.map(i => i.name));
-  const ingredientIds = ingredientsData.map(i => i.id);
+  const ingredientIds = Array.from(allIngredientIds);
+  console.log(`[searchRecipes] Total ingredient IDs:`, ingredientIds.length);
 
-  // 3. Find Recipe IDs that match these ingredients
-  // We want to count how many ingredients match for each recipe
+  // ── BƯỚC 3: Tìm các recipe có chứa ít nhất 1 nguyên liệu khớp ────────
   const { data: matchingData, error: matchError } = await supabase
     .from('recipe_ingredients')
     .select('recipe_id')
     .in('ingredient_id', ingredientIds);
 
+
   if (matchError || !matchingData || matchingData.length === 0) {
-    console.error('[searchRecipes] Error finding matching recipes or none matched:', matchError);
+    console.error('[searchRecipes] No matching recipes:', matchError);
     return [];
   }
 
-  // Count matches per recipe
-  const matchCounts: Record<string, number> = {};
+  // Đếm số nguyên liệu khớp cho mỗi recipe
+  const matchedCount: Record<string, number> = {};
   matchingData.forEach(m => {
-    matchCounts[m.recipe_id] = (matchCounts[m.recipe_id] || 0) + 1;
+    matchedCount[m.recipe_id] = (matchedCount[m.recipe_id] || 0) + 1;
+  });
+  const matchedRecipeIds = Object.keys(matchedCount);
+  console.log(`[searchRecipes] Found ${matchedRecipeIds.length} candidate recipe(s).`);
+
+  // ── BƯỚC 4: Lấy tổng nguyên liệu CHÍNH (is_main=true) của mỗi recipe──
+  // Dùng làm mẫu số match_ratio — nguyên liệu phụ (muối, dầu...) không tính
+  const { data: totalData } = await supabase
+    .from('recipe_ingredients')
+    .select('recipe_id')
+    .in('recipe_id', matchedRecipeIds)
+    .eq('is_main', true);
+
+  const totalMainCount: Record<string, number> = {};
+  totalData?.forEach(r => {
+    totalMainCount[r.recipe_id] = (totalMainCount[r.recipe_id] || 0) + 1;
   });
 
-  // Filter recipes based on match count threshold
-  const threshold = queryIngredients.length >= 2 ? 2 : 1;
-  const filteredRecipeIds = Object.keys(matchCounts).filter(id => matchCounts[id] >= threshold);
-  console.log(`[searchRecipes] Threshold: ${threshold}, matched ${filteredRecipeIds.length} unique recipe(s) before limit.`);
+  // ── BƯỚC 5: Tính score có trọng số ────────────────────────────────────
+  //
+  //   match_ratio = matched / recipe_total_main   → recipe "đủ nguyên liệu" bao nhiêu %?
+  //   coverage    = matched / user_total_input    → user "tìm được" bao nhiêu %?
+  //   score       = match_ratio × 0.5 + coverage × 0.5
+  //
+  //   Ngưỡng hiển thị: score >= 0.4
+  //   Nguyên liệu phụ (is_main=false) không tính vào mẫu số recipe
+  //
+  const userTotal = queryIngredients.length;
+  const SCORE_THRESHOLD = 0.4;
 
-  // Sort recipe IDs by match count (descending)
-  const sortedRecipeIds = filteredRecipeIds.sort((a, b) => matchCounts[b] - matchCounts[a]);
+  const scored = matchedRecipeIds
+    .map(id => {
+      const matched    = matchedCount[id] ?? 0;
+      const total      = totalMainCount[id] ?? matched; // fallback nếu thiếu data
+      const matchRatio = matched / Math.max(total, 1);
+      const coverage   = matched / Math.max(userTotal, 1);
+      const score      = matchRatio * 0.5 + coverage * 0.5;
+      return { id, matched, total, score };
+    })
+    .filter(r => r.score >= SCORE_THRESHOLD)
+    .sort((a, b) => b.score - a.score);
 
-  // 4. Fetch full recipe details for the top results (limit to 10 for performance)
-  const topIds = sortedRecipeIds.slice(0, 10);
+  console.log(
+    `[searchRecipes] Scored (threshold=${SCORE_THRESHOLD}):`,
+    scored.slice(0, 5).map(r =>
+      `${r.id} matched=${r.matched}/${r.total} score=${r.score.toFixed(2)}`
+    )
+  );
+
+  // ── BƯỚC 6: Fetch chi tiết top 20 recipe ──────────────────────────────
+  const topIds = scored.slice(0, 20).map(r => r.id);
+  if (topIds.length === 0) return [];
+
   const { data: recipesData, error: recipeError } = await supabase
     .from('recipes')
     .select('id, name, category, sub_category, cooking_time, calories, image_url, difficulty')
     .in('id', topIds);
 
   if (recipeError || !recipesData) {
-    console.error('[searchRecipes] Error fetching recipes data:', recipeError);
+    console.error('[searchRecipes] Error fetching recipe details:', recipeError);
     return [];
   }
 
-  // Map back with match counts and preserve order
-  const finalResults = topIds.map(id => {
-    const r = recipesData.find(recipe => recipe.id === id);
-    return {
-      ...r,
-      match_count: matchCounts[id]
-    } as RecipeSearchResult;
-  }).filter(r => r.id); // Filter out any undefines if IDs didn't match
+  // Map theo thứ tự score đã sắp xếp, đính kèm match_count để UI hiển thị
+  const scoreMap = Object.fromEntries(scored.map(r => [r.id, r]));
+  const finalResults = topIds
+    .map(id => {
+      const r = recipesData.find(recipe => recipe.id === id);
+      const s = scoreMap[id];
+      return {
+        ...r,
+        match_count: s?.matched ?? 0,
+      } as RecipeSearchResult;
+    })
+    .filter(r => r.id);
 
-  console.log(`[searchRecipes] Final result: ${finalResults.length} recipe(s) returned.`);
+  console.log(`[searchRecipes] ✨ Final: ${finalResults.length} recipe(s) returned.`);
   return finalResults;
 }
 
 export async function getRecipeDetail(id: string) {
+
+
   console.log('[getRecipeDetail] Fetching detail for recipe id:', id);
   const { data, error } = await supabase
     .from('recipes')

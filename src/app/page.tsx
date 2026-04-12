@@ -28,60 +28,41 @@ export default function Home() {
   };
 
   return (
-    <main className="pb-32 px-6 max-w-2xl mx-auto space-y-10 selection:bg-secondary-container">
+    <div className="bg-background text-on-background font-body min-h-screen">
       {/* TopAppBar */}
-      <header className="flex justify-between items-center w-full px-6 py-4 fixed top-0 left-0 right-0 z-40 bg-surface-container-low transition-colors shadow-sm">
-        <div className="flex items-center gap-4 max-w-2xl mx-auto w-full justify-between">
-          <div className="flex items-center gap-4">
-            <button className="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
-              <span className="material-symbols-outlined text-primary">menu</span>
-            </button>
-            <h1 className="text-2xl font-black text-primary italic font-headline tracking-tight">Nấu Gì Đây?</h1>
-          </div>
-          <div className="flex items-center gap-2">
-            <button className="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
-              <span className="material-symbols-outlined text-primary">account_circle</span>
-            </button>
-          </div>
+      <header className="flex justify-between items-center w-full px-6 py-4 fixed top-0 z-40 bg-surface-container-low transition-colors shadow-sm">
+        <div className="flex items-center gap-4">
+          <button className="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
+            <span className="material-symbols-outlined text-primary">menu</span>
+          </button>
+          <h1 className="text-2xl font-black text-primary italic font-headline tracking-tight">Nấu Gì Đây?</h1>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
+            <span className="material-symbols-outlined text-primary">account_circle</span>
+          </button>
         </div>
       </header>
 
-      <div className="pt-24 space-y-10">
-        {/* Hero Section */}
-        <section className="relative">
-          <div className="flex flex-col gap-2 mb-8 animate-fade-in">
+      <main className="pt-24 pb-32 px-6 max-w-2xl mx-auto space-y-8">
+        {/* Hero Section Header */}
+        <section>
+          <div className="flex flex-col gap-2">
             <h2 className="font-headline font-extrabold text-4xl tracking-tight leading-tight">
               Trong tủ lạnh bạn <br /> <span className="text-gradient">còn gì hôm nay?</span>
             </h2>
             <p className="text-on-surface-variant font-medium">Nhập nguyên liệu, chúng tôi sẽ gợi ý món ngon cho bạn.</p>
           </div>
-          
-          <div className="relative h-64 w-full mb-12 animate-fade-in" style={{ animationDelay: '0.1s' }}>
-            <div className="absolute right-0 top-0 w-3/4 h-full rounded-lg overflow-hidden transform rotate-2 shadow-sm">
-              <img 
-                className="w-full h-full object-cover" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAQ6f6IXcVRERPSKtFajYDP_sBZhFoqbM0Fntrc_WDBtVmDs7Zzeyr6ZlRrvTzO-Y8C42tlHd09gMjFycHExUrxNeZzPZ_kIkfEBltyfUzAX1bvEGPW_wE1WzjYS3AlYA_5vgVvhPiQKZXTS04JWPFyUSgB0vFObFIIu3I4H113PEaCE7M-gu2xqNFqDOwP6eVOaILu6a2DIZ4d34DDa_PPlFqJ2sDoMaSLQikqeR4M5R-vp9hqCF7hEb_AXmnXJfp-d9B-ry8Xoco"
-                alt="Modern kitchen"
-              />
-            </div>
-            <div className="absolute left-0 bottom-0 w-1/2 h-4/5 rounded-full border-8 border-background overflow-hidden transform -rotate-3 shadow-lg">
-              <img 
-                className="w-full h-full object-cover" 
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAuGZRStVESBMVZkVa-16AMNtWjDl1sv_s2pTYMtuANnimobTBNv6ujt8ClKz-C0Q6JIEIUT-0J8L9L4pKQmmwZftdeuPvFx1-eraONqBC3HDc7OnqOrp2oHuEgondDuUaRYTutNfH_2_Uh54tdg2RsfCaxG8T2c1JbsJXHpuc8LapRgeSeTSo_OABMPvTmkqFnlb3TzNoGwmN6DCf8jhhg-018JvY9ED-_kEuZeZ8VUyNKQH8ryNAYiYC0K1gnlG4EUTEfs0Wzx0E"
-                alt="Fresh salad"
-              />
-            </div>
-          </div>
         </section>
 
-        {/* Search & Ingredients Input */}
-        <section className="space-y-6 animate-fade-in" style={{ animationDelay: '0.2s' }}>
+        {/* Search & Ingredients Input (Top Priority) */}
+        <section className="space-y-6">
           <div className="relative group">
             <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
               <span className="material-symbols-outlined text-outline">search</span>
             </div>
             <input 
-              className="w-full pl-14 pr-6 py-5 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary text-on-surface placeholder:text-outline/60 font-medium transition-all outline-none" 
+              className="w-full pl-14 pr-6 py-5 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary text-on-surface placeholder:text-outline/60 font-medium transition-all shadow-sm outline-none" 
               placeholder="Thêm nguyên liệu (ví dụ: Thịt bò...)" 
               type="text"
               value={inputValue}
@@ -93,7 +74,7 @@ export default function Home() {
           {/* Ingredient Tags Area */}
           <div className="flex flex-wrap gap-3">
             {tags.map((tag, i) => (
-              <div key={i} className="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-outline-variant/15 transition-all hover:scale-105">
+              <div key={i} className="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-outline-variant/15 transition-all">
                 <span className="text-sm font-semibold text-on-surface-variant">{tag}</span>
                 <button 
                   className="hover:text-primary transition-colors"
@@ -103,6 +84,8 @@ export default function Home() {
                 </button>
               </div>
             ))}
+            
+            {/* Action Chip */}
             <button 
               className="flex items-center gap-2 px-4 py-2 rounded-full text-secondary font-bold hover:bg-secondary-container transition-colors"
               onClick={handleAddTag}
@@ -114,9 +97,9 @@ export default function Home() {
         </section>
 
         {/* Primary Call to Action */}
-        <section className="pt-4 animate-fade-in" style={{ animationDelay: '0.3s' }}>
+        <section>
           <button 
-            className="w-full py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-headline font-bold text-lg shadow-[0_12px_24px_-8px_rgba(171,53,0,0.3)] hover:shadow-[0_16px_32px_-8_rgba(171,53,0,0.4)] transition-all active:scale-[0.98] flex justify-center items-center gap-3 disabled:opacity-50"
+            className="w-full py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-headline font-bold text-lg shadow-[0_12px_24px_-8px_rgba(171,53,0,0.3)] hover:shadow-[0_16px_32px_-8px_rgba(171,53,0,0.4)] transition-all active:scale-[0.98] flex justify-center items-center gap-3 disabled:opacity-50"
             onClick={handleSearch}
             disabled={tags.length === 0}
           >
@@ -125,23 +108,44 @@ export default function Home() {
           </button>
         </section>
 
-        {/* Quick Categories */}
-        <section className="pt-8 space-y-4 animate-fade-in" style={{ animationDelay: '0.4s' }}>
+        {/* Quick Categories (Bento Style) */}
+        <section className="pt-4 space-y-4">
           <h3 className="font-headline font-bold text-xl px-2">Tìm theo cảm hứng</h3>
           <div className="grid grid-cols-2 gap-4">
-            <div className="col-span-1 bg-secondary-container/30 p-6 rounded-lg flex flex-col justify-between h-40 group hover:bg-secondary-container/50 transition-colors cursor-pointer">
+            <div 
+              className="col-span-1 bg-secondary-container/30 p-6 rounded-lg flex flex-col justify-between h-40 group hover:bg-secondary-container/50 transition-colors cursor-pointer"
+              onClick={() => router.push('/results?q=quick')}
+            >
               <span className="material-symbols-outlined text-secondary text-3xl">timer</span>
               <span className="font-headline font-bold text-on-secondary-container text-lg leading-tight">Nấu nhanh <br /> 15 phút</span>
             </div>
-            <div className="col-span-1 bg-surface-container-high p-6 rounded-lg flex flex-col justify-between h-40 hover:bg-surface-variant transition-colors cursor-pointer">
+            <div 
+              className="col-span-1 bg-surface-container-high p-6 rounded-lg flex flex-col justify-between h-40 hover:bg-surface-variant transition-colors cursor-pointer"
+              onClick={() => router.push('/results?q=party')}
+            >
               <span className="material-symbols-outlined text-primary text-3xl">local_fire_department</span>
               <span className="font-headline font-bold text-on-surface text-lg leading-tight">Món nhậu <br /> cuối tuần</span>
             </div>
+            <div 
+              className="col-span-2 bg-tertiary-fixed p-6 rounded-lg flex items-center justify-between hover:bg-tertiary-fixed-dim transition-colors overflow-hidden relative cursor-pointer"
+              onClick={() => router.push('/results?q=healthy')}
+            >
+              <div className="z-10">
+                <span className="material-symbols-outlined text-on-tertiary-fixed-variant text-3xl mb-2">eco</span>
+                <h4 className="font-headline font-bold text-on-tertiary-fixed text-lg">Thanh đạm & Healthy</h4>
+              </div>
+              <img 
+                className="absolute -right-4 -bottom-4 w-32 h-32 object-cover rounded-full rotate-12 opacity-80" 
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCosnymvOXUqDzHCdHeDkrnI9U9UfrnpwaLBeTSLFZwI8jn_4C60Qw_th45SK_iX6ysjeeI93R-7J3UPXWkGf0zDrw4vmaJXza7QkAKt2uwDSEXCsZZwUQRnubeQXmOZ7mSD2Zqf8N9TkxSAZy_YXb4ARLVFQJK3f-HB_SvSuyO4KGZcI0lGHcfTB0CFrA5xRQPuhtRe9VSemzrvGCrIxlzjKigC5Kaxo3kKgyLoLL5FlNhuqKnFPPLKQ9tpZy9xAfzL1VEtet-8iQ"
+                alt="Healthy buddha bowl"
+              />
+            </div>
           </div>
         </section>
-      </div>
+      </main>
 
       <BottomNavBar />
-    </main>
+    </div>
   );
 }
+
