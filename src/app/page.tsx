@@ -7,7 +7,7 @@ import BottomNavBar from '@/app/components/BottomNavBar';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
-  const [tags, setTags] = useState<string[]>(['Cà chua', 'Trứng', 'Thịt lợn']);
+  const [tags, setTags] = useState<string[]>(['Trứng', 'Thịt lợn']);
   const router = useRouter();
 
   const handleAddTag = () => {

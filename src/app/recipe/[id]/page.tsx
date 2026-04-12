@@ -2,6 +2,7 @@ import { getRecipeDetail } from "@/app/actions/recipe";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import BackButton from "@/app/components/BackButton";
+import FavoriteButton from "@/app/components/FavoriteButton";
 
 export default async function RecipeDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -29,9 +30,10 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
             <button className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg">
               <span className="material-symbols-outlined text-on-surface">share</span>
             </button>
-            <button className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg">
-              <span className="material-symbols-outlined text-primary" style={{ fontVariationSettings: "'FILL' 1" }}>favorite</span>
-            </button>
+            <FavoriteButton 
+              recipeId={recipe.id} 
+              className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg"
+            />
           </div>
         </div>
       </div>

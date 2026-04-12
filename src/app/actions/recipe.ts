@@ -66,8 +66,12 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
     matchCounts[m.recipe_id] = (matchCounts[m.recipe_id] || 0) + 1;
   });
 
+  // Filter recipes based on match count threshold
+  const threshold = queryIngredients.length >= 2 ? 2 : 1;
+  const filteredRecipeIds = Object.keys(matchCounts).filter(id => matchCounts[id] >= threshold);
+
   // Sort recipe IDs by match count (descending)
-  const sortedRecipeIds = Object.keys(matchCounts).sort((a, b) => matchCounts[b] - matchCounts[a]);
+  const sortedRecipeIds = filteredRecipeIds.sort((a, b) => matchCounts[b] - matchCounts[a]);
 
   // 4. Fetch full recipe details for the top results (limit to 10 for performance)
   const topIds = sortedRecipeIds.slice(0, 10);
@@ -205,4 +209,20 @@ export async function createRecipe(formData: FormData) {
     console.error('Error creating recipe:', error);
     return { success: false, error: error.message };
   }
+}
+
+export async function getRecipesByIds(ids: string[]): Promise<RecipeSearchResult[]> {
+  if (!ids || ids.length === 0) return [];
+  
+  const { data, error } = await supabase
+    .from('recipes')
+    .select('id, name, category, sub_category, cooking_time, calories, image_url, difficulty')
+    .in('id', ids);
+    
+  if (error || !data) {
+    console.error('Error fetching recipes by IDs:', error);
+    return [];
+  }
+  
+  return data as RecipeSearchResult[];
 }

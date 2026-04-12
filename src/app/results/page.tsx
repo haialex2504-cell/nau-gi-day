@@ -6,6 +6,7 @@ import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { searchRecipes, RecipeSearchResult } from "@/app/actions/recipe";
 import BackButton from "@/app/components/BackButton";
+import FavoriteButton from "@/app/components/FavoriteButton";
 
 function ResultsContent() {
   const searchParams = useSearchParams();
@@ -81,6 +82,9 @@ function ResultsContent() {
                   />
                   <div className="absolute top-4 left-4 bg-primary/90 text-on-primary px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md">
                     Khớp {recipe.match_count} vị
+                  </div>
+                  <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-1 rounded-full shadow-md z-10" onClick={(e) => e.preventDefault()}>
+                    <FavoriteButton recipeId={recipe.id} />
                   </div>
                 </div>
                 <div className="p-6">
