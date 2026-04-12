@@ -11,8 +11,15 @@ export default function Home() {
   const router = useRouter();
 
   const handleAddTag = () => {
-    if (inputValue.trim() && !tags.includes(inputValue.trim())) {
-      setTags([...tags, inputValue.trim()]);
+    if (inputValue.trim()) {
+      const newTags = inputValue
+        .split(',')
+        .map(tag => tag.trim())
+        .filter(tag => tag !== '' && !tags.includes(tag));
+      
+      if (newTags.length > 0) {
+        setTags([...tags, ...newTags]);
+      }
       setInputValue('');
     }
   };
@@ -85,14 +92,6 @@ export default function Home() {
               </div>
             ))}
             
-            {/* Action Chip */}
-            <button 
-              className="flex items-center gap-2 px-4 py-2 rounded-full text-secondary font-bold hover:bg-secondary-container transition-colors"
-              onClick={handleAddTag}
-            >
-              <span className="material-symbols-outlined text-[18px]">add</span>
-              <span className="text-sm">Thêm nữa</span>
-            </button>
           </div>
         </section>
 
