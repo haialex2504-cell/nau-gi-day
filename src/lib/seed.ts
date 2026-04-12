@@ -43,44 +43,35 @@ async function seed() {
   // Create a map for quick lookup
   const ingMap = new Map(insertedIngredients?.map(i => [i.name, i.id]));
 
-  // 2. Seed Recipes, Tags, and Junction Table
-  console.log("🍲 Seeding recipes and relationships...");
+  // 2. Prepare Batch Data
+  console.log("🥣 Preparing batch data...");
+  const recipesBatch: any[] = [];
+  const tagsBatch: any[] = [];
+  const associationsBatch: any[] = [];
 
   for (const r of recipes) {
-    // Insert Recipe
-    const { error: recipeError } = await supabase
-      .from('recipes')
-      .upsert({
-        id: r.id,
-        name: r.name,
-        category: r.category,
-        sub_category: r.subCategory,
-        steps: r.steps,
-        cooking_time: r.cookingTime,
-        difficulty: r.difficulty,
-        servings: r.servings,
-        region: r.region,
-        calories: r.calories,
-        tips: r.tips
+    recipesBatch.push({
+      id: r.id,
+      name: r.name,
+      category: r.category,
+      sub_category: r.subCategory,
+      steps: r.steps,
+      cooking_time: r.cookingTime,
+      difficulty: r.difficulty,
+      servings: r.servings,
+      region: r.region,
+      calories: r.calories,
+      tips: r.tips || ''
+    });
+
+    if (r.tags) {
+      const tags = Array.isArray(r.tags) ? r.tags : [r.tags];
+      tags.forEach((tag: string) => {
+        tagsBatch.push({ recipe_id: r.id, tag });
       });
-
-    if (recipeError) {
-      console.error(`Error inserting recipe ${r.name}:`, recipeError);
-      continue;
     }
 
-    // Insert Tags
-    if (r.tags && Array.isArray(r.tags)) {
-      const tags = r.tags.map((tag: string) => ({ recipe_id: r.id, tag }));
-      await supabase.from('recipe_tags').upsert(tags);
-    } else if (typeof r.tags === 'string') {
-      await supabase.from('recipe_tags').upsert({ recipe_id: r.id, tag: r.tags });
-    }
-
-    // Insert Recipe-Ingredients
     const recipeIngsMap = new Map<string, any>();
-    
-    // Process main ingredients
     r.ingredients.main?.forEach((raw: string) => {
       const name = cleanIngredient(raw);
       const id = ingMap.get(name);
@@ -89,7 +80,6 @@ async function seed() {
       }
     });
 
-    // Process optional ingredients (will only add if not already in main)
     r.ingredients.optional?.forEach((raw: string) => {
       const name = cleanIngredient(raw);
       const id = ingMap.get(name);
@@ -98,18 +88,26 @@ async function seed() {
       }
     });
 
-    const recipeIngs = Array.from(recipeIngsMap.values());
-
-    if (recipeIngs.length > 0) {
-      const { error: junctionError } = await supabase.from('recipe_ingredients').upsert(recipeIngs);
-      if (junctionError) console.error(`Error linking ingredients for ${r.name}:`, junctionError);
-    }
+    associationsBatch.push(...Array.from(recipeIngsMap.values()));
   }
+
+  // 3. Batch Upsert to Supabase
+  console.log(`🍲 Upserting ${recipesBatch.length} recipes...`);
+  const { error: rError } = await supabase.from('recipes').upsert(recipesBatch);
+  if (rError) throw rError;
+
+  console.log(`🏷️ Upserting ${tagsBatch.length} tags...`);
+  const { error: tError } = await supabase.from('recipe_tags').upsert(tagsBatch);
+  if (tError) throw tError;
+
+  console.log(`🔗 Upserting ${associationsBatch.length} recipe-ingredient associations...`);
+  const { error: aError } = await supabase.from('recipe_ingredients').upsert(associationsBatch);
+  if (aError) throw aError;
 
   console.log("✨ Seeding completed successfully!");
 }
 
-
 seed().catch(err => {
   console.error("❌ Seeding failed:", err);
 });
+

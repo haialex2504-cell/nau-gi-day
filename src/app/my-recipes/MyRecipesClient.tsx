@@ -18,18 +18,22 @@ export default function MyRecipesClient({ initialRecipes }: MyRecipesClientProps
 
   useEffect(() => {
     async function loadFavorites() {
+      console.log('[MyRecipesClient] loadFavorites() called. Total favorites in localStorage:', favorites.length);
       if (favorites.length > 0) {
         setLoadingExtras(true);
         // Optimize: Only fetch missing favorites (ones not already in personal recipes)
         const missingIds = favorites.filter(id => !initialRecipes.find(r => r.id === id));
+        console.log('[MyRecipesClient] Missing recipe IDs (not in personal):', missingIds);
         if (missingIds.length > 0) {
           const freshFavs = await getRecipesByIds(missingIds);
+          console.log(`[MyRecipesClient] Fetched ${freshFavs.length} extra favorite recipe(s):`, freshFavs.map(r => r.name));
           setFavoriteRecipes(freshFavs);
         }
         setLoadingExtras(false);
       }
     }
     if (isLoaded) {
+      console.log('[MyRecipesClient] useFavorites isLoaded=true, running loadFavorites.');
       loadFavorites();
     }
   }, [favorites, isLoaded, initialRecipes]);
@@ -52,6 +56,8 @@ export default function MyRecipesClient({ initialRecipes }: MyRecipesClientProps
   } else if (activeTab === 'personal') {
     displayedRecipes = initialRecipes;
   }
+
+  console.log(`[MyRecipesClient] Render — tab: "${activeTab}", displaying ${displayedRecipes.length} recipe(s).`);
 
   const totalLikes = favorites.length;
 

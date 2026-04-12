@@ -6,7 +6,9 @@ import BottomNavBar from '@/app/components/BottomNavBar';
 import MyRecipesClient from './MyRecipesClient';
 
 export default async function MyRecipes() {
+  console.log('[MyRecipes] Server component rendering, fetching personal recipes...');
   const recipes = await getPersonalRecipes();
+  console.log(`[MyRecipes] Fetched ${recipes.length} personal recipe(s).`);
   const totalLikes = 450; // Mocked for design parity
 
   return (

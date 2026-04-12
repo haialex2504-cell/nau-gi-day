@@ -6,11 +6,15 @@ import FavoriteButton from "@/app/components/FavoriteButton";
 
 export default async function RecipeDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
+  console.log('[RecipeDetail] Fetching recipe with id:', id);
   const recipe = await getRecipeDetail(id);
 
   if (!recipe) {
+    console.warn('[RecipeDetail] Recipe not found for id:', id);
     return notFound();
   }
+
+  console.log('[RecipeDetail] Recipe found:', recipe.name);
 
   return (
     <main className="min-h-screen bg-background text-on-background pb-20 selection:bg-secondary-container">

@@ -16,15 +16,25 @@ function ResultsContent() {
 
   useEffect(() => {
     async function fetchResults() {
+      console.log('[Results] fetchResults() called, ingredientsStr:', ingredientsStr);
       if (!ingredientsStr) {
+        console.warn('[Results] No ingredients provided, aborting search.');
         setLoading(false);
         return;
       }
-      
+
       const ingredients = ingredientsStr.split(',').map(i => i.trim());
-      const results = await searchRecipes(ingredients);
-      setRecipes(results);
-      setLoading(false);
+      console.log('[Results] Parsed ingredients:', ingredients);
+
+      try {
+        const results = await searchRecipes(ingredients);
+        console.log(`[Results] Search returned ${results.length} recipe(s):`, results.map(r => r.name));
+        setRecipes(results);
+      } catch (err) {
+        console.error('[Results] searchRecipes threw an error:', err);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchResults();
