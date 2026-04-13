@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // One-off scripts / scratch files (not part of the app)
+    "merge_recipes.js",
+    "scratch/**",
   ]),
 ]);
 

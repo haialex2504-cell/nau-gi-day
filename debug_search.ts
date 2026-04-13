@@ -35,8 +35,9 @@ async function debug() {
   console.log('Actual total count for these ingredients:', count);
 
   if (matchingData) {
+    interface RecipeIngredientRow { recipe_id: string }
     const matchCounts: Record<string, number> = {};
-    matchingData.forEach((m: any) => {
+    (matchingData as RecipeIngredientRow[]).forEach((m) => {
       matchCounts[m.recipe_id] = (matchCounts[m.recipe_id] || 0) + 1;
     });
     const threshold = queries.length >= 2 ? 2 : 1;
@@ -45,7 +46,7 @@ async function debug() {
     
     // Check if trứng & thịt lợn are individually in the same recipes
     const byIng: Record<string, string[]> = {};
-    matchingData.forEach((m: any) => {
+    (matchingData as RecipeIngredientRow[]).forEach((m) => {
       if (!byIng[m.recipe_id]) byIng[m.recipe_id] = [];
     });
     console.log('Total unique recipes in matchingData:', Object.keys(byIng).length);

@@ -301,9 +301,10 @@ export async function createRecipe(formData: FormData) {
 
     console.log('[createRecipe] Done. Recipe created successfully:', recipeId);
     return { success: true, id: recipeId };
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error('[createRecipe] Error creating recipe:', error);
-    return { success: false, error: error.message };
+    const message = error instanceof Error ? error.message : String(error);
+    return { success: false, error: message };
   }
 }
 
