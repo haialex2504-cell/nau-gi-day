@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 interface NavItem {
   label: string;
@@ -12,6 +12,42 @@ interface NavItem {
 
 export default function BottomNavBar() {
   const pathname = usePathname();
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+
+  useEffect(() => {
+    // Hide BottomNavBar when an input or textarea is focused on mobile
+    const handleFocusIn = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === 'INPUT' || 
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable
+      ) {
+        setIsKeyboardOpen(true);
+      }
+    };
+    
+    const handleFocusOut = () => {
+      // Small delay to prevent flashing when moving between inputs
+      setTimeout(() => {
+        if (
+          document.activeElement?.tagName !== 'INPUT' && 
+          document.activeElement?.tagName !== 'TEXTAREA' &&
+          !(document.activeElement as HTMLElement)?.isContentEditable
+        ) {
+          setIsKeyboardOpen(false);
+        }
+      }, 50);
+    };
+
+    document.addEventListener('focusin', handleFocusIn);
+    document.addEventListener('focusout', handleFocusOut);
+
+    return () => {
+      document.removeEventListener('focusin', handleFocusIn);
+      document.removeEventListener('focusout', handleFocusOut);
+    };
+  }, []);
 
   const navItems: NavItem[] = [
     { label: 'Trang chủ', icon: 'home',       href: '/' },
@@ -19,6 +55,9 @@ export default function BottomNavBar() {
     { label: 'Thêm món',   icon: 'add_circle', href: '/add-recipe' },
     { label: 'Hồ sơ',      icon: 'person',     href: '#' },
   ];
+
+  // Do not render BottomNavBar when keyboard is open
+  if (isKeyboardOpen) return null;
 
   return (
     <nav className="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pt-3 pb-8 bg-surface/80 backdrop-blur-xl shadow-[0_-4px_32px_rgba(28,28,22,0.04)] rounded-t-[2rem] border-t border-outline-variant/15">
