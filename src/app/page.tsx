@@ -8,7 +8,41 @@ import BottomNavBar from '@/app/components/BottomNavBar';
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
   const [tags, setTags] = useState<string[]>(['Trứng', 'Thịt lợn']);
+  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const router = useRouter();
+
+  React.useEffect(() => {
+    const handleFocusIn = (e: Event) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === 'INPUT' || 
+        target.tagName === 'TEXTAREA' ||
+        target.isContentEditable
+      ) {
+        setIsKeyboardOpen(true);
+      }
+    };
+    
+    const handleFocusOut = () => {
+      setTimeout(() => {
+        if (
+          document.activeElement?.tagName !== 'INPUT' && 
+          document.activeElement?.tagName !== 'TEXTAREA' &&
+          !(document.activeElement as HTMLElement)?.isContentEditable
+        ) {
+          setIsKeyboardOpen(false);
+        }
+      }, 50);
+    };
+
+    document.addEventListener('focusin', handleFocusIn);
+    document.addEventListener('focusout', handleFocusOut);
+
+    return () => {
+      document.removeEventListener('focusin', handleFocusIn);
+      document.removeEventListener('focusout', handleFocusOut);
+    };
+  }, []);
 
   const handleAddTag = () => {
     if (inputValue.trim()) {
@@ -96,7 +130,7 @@ export default function Home() {
         </section>
 
         {/* Primary Call to Action */}
-        <section>
+        <section className={`sticky z-40 transition-all duration-300 ${isKeyboardOpen ? 'bottom-4' : 'bottom-28'}`}>
           <button 
             className="w-full py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-headline font-bold text-lg shadow-[0_12px_24px_-8px_rgba(171,53,0,0.3)] hover:shadow-[0_16px_32px_-8px_rgba(171,53,0,0.4)] transition-all active:scale-[0.98] flex justify-center items-center gap-3 disabled:opacity-50"
             onClick={handleSearch}
