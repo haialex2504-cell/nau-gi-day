@@ -7,7 +7,7 @@ import BottomNavBar from '@/app/components/BottomNavBar';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
-  const [tags, setTags] = useState<string[]>(['Trứng', 'Thịt lợn']);
+  const [tags, setTags] = useState<string[]>([]);
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const router = useRouter();
 
@@ -104,7 +104,7 @@ export default function Home() {
             </div>
             <input 
               className="w-full pl-14 pr-6 py-5 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary text-on-surface placeholder:text-outline/60 font-medium transition-all shadow-sm outline-none" 
-              placeholder="Thêm nguyên liệu (ví dụ: Thịt bò...)" 
+              placeholder="Nhập nguyên liệu (vd: Thịt bò, cà rốt...)"
               type="text"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
@@ -144,23 +144,46 @@ export default function Home() {
         {/* Quick Categories (Bento Style) */}
         <section className="pt-4 space-y-4">
           <h3 className="font-headline font-bold text-xl px-2">Tìm theo cảm hứng</h3>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3">
+            {/* 1. Quick */}
             <div 
-              className="col-span-1 bg-secondary-container/30 p-6 rounded-lg flex flex-col justify-between h-40 group hover:bg-secondary-container/50 transition-colors cursor-pointer"
+              className="col-span-1 bg-secondary-container/30 p-5 rounded-2xl flex flex-col justify-between h-36 group hover:bg-secondary-container/50 transition-colors cursor-pointer"
               onClick={() => router.push('/results?q=quick')}
             >
               <span className="material-symbols-outlined text-secondary text-3xl">timer</span>
-              <span className="font-headline font-bold text-on-secondary-container text-lg leading-tight">Nấu nhanh <br /> 15 phút</span>
+              <span className="font-headline font-bold text-on-secondary-container text-base leading-tight">Nấu nhanh <br /> 15 phút</span>
             </div>
+            
+            {/* 2. Party */}
             <div 
-              className="col-span-1 bg-surface-container-high p-6 rounded-lg flex flex-col justify-between h-40 hover:bg-surface-variant transition-colors cursor-pointer"
+              className="col-span-1 bg-surface-container-high p-5 rounded-2xl flex flex-col justify-between h-36 hover:bg-surface-variant transition-colors cursor-pointer"
               onClick={() => router.push('/results?q=party')}
             >
               <span className="material-symbols-outlined text-primary text-3xl">local_fire_department</span>
-              <span className="font-headline font-bold text-on-surface text-lg leading-tight">Món nhậu <br /> cuối tuần</span>
+              <span className="font-headline font-bold text-on-surface text-base leading-tight">Món nhậu <br /> cuối tuần</span>
             </div>
+
+            {/* 3. Breakfast */}
             <div 
-              className="col-span-2 bg-tertiary-fixed p-6 rounded-lg flex items-center justify-between hover:bg-tertiary-fixed-dim transition-colors overflow-hidden relative cursor-pointer"
+              className="col-span-1 bg-primary-container/40 p-5 rounded-2xl flex flex-col justify-between h-36 hover:bg-primary-container/60 transition-colors cursor-pointer"
+              onClick={() => router.push('/results?q=breakfast')}
+            >
+              <span className="material-symbols-outlined text-primary text-3xl">bakery_dining</span>
+              <span className="font-headline font-bold text-on-primary-container text-base leading-tight">Bữa sáng <br /> năng lượng</span>
+            </div>
+
+            {/* 4. Snack (Ăn vặt & Tráng miệng) */}
+            <div 
+              className="col-span-1 bg-orange-100 p-5 rounded-2xl flex flex-col justify-between h-36 hover:bg-orange-200 transition-colors cursor-pointer text-orange-800"
+              onClick={() => router.push('/results?q=snack')}
+            >
+              <span className="material-symbols-outlined text-orange-600 text-3xl">icecream</span>
+              <span className="font-headline font-bold text-orange-900 text-base leading-tight">Ăn vặt & <br /> Tráng miệng</span>
+            </div>
+
+            {/* 5. Healthy (Wide) */}
+            <div 
+              className="col-span-2 bg-tertiary-fixed p-5 rounded-2xl flex items-center justify-between hover:bg-tertiary-fixed-dim transition-colors overflow-hidden relative cursor-pointer h-32"
               onClick={() => router.push('/results?q=healthy')}
             >
               <div className="z-10">
@@ -168,7 +191,7 @@ export default function Home() {
                 <h4 className="font-headline font-bold text-on-tertiary-fixed text-lg">Thanh đạm & Healthy</h4>
               </div>
               <img 
-                className="absolute -right-4 -bottom-4 w-32 h-32 object-cover rounded-full rotate-12 opacity-80" 
+                className="absolute -right-2 -bottom-2 w-28 h-28 object-cover rounded-full rotate-12 opacity-80" 
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuCosnymvOXUqDzHCdHeDkrnI9U9UfrnpwaLBeTSLFZwI8jn_4C60Qw_th45SK_iX6ysjeeI93R-7J3UPXWkGf0zDrw4vmaJXza7QkAKt2uwDSEXCsZZwUQRnubeQXmOZ7mSD2Zqf8N9TkxSAZy_YXb4ARLVFQJK3f-HB_SvSuyO4KGZcI0lGHcfTB0CFrA5xRQPuhtRe9VSemzrvGCrIxlzjKigC5Kaxo3kKgyLoLL5FlNhuqKnFPPLKQ9tpZy9xAfzL1VEtet-8iQ"
                 alt="Healthy buddha bowl"
               />

@@ -325,3 +325,47 @@ export async function getRecipesByIds(ids: string[]): Promise<RecipeSearchResult
   console.log(`[getRecipesByIds] Returned ${data.length}/${ids.length} recipes.`);
   return data as RecipeSearchResult[];
 }
+
+export async function getInspiredRecipes(inspirationType: string): Promise<RecipeSearchResult[]> {
+  console.log('[getInspiredRecipes] Fetching recipes for inspiration:', inspirationType);
+  let query = supabase
+    .from('recipes')
+    .select('id, name, category, sub_category, cooking_time, calories, image_url, difficulty')
+    .limit(30);
+
+  switch (inspirationType) {
+    case 'quick':
+      query = query.lte('cooking_time', 15);
+      break;
+    case 'party':
+      // 'an-vat', 'khai-vi' categories or 'nuong', 'chien' sub_categories
+      query = query.or('category.in.(an-vat,khai-vi),sub_category.in.(nuong,chien)');
+      break;
+    case 'healthy':
+      // 'salad-goi', 'an-chay' categories or low calories (< 350 rounded)
+      query = query.or('category.in.(salad-goi,an-chay),calories.lt.350');
+      break;
+    case 'breakfast':
+      query = query.in('category', ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien']);
+      break;
+    case 'snack':
+      query = query.in('category', ['an-vat', 'trang-mieng-che']);
+      break;
+    default:
+      console.warn(`[getInspiredRecipes] Unknown inspirationType: ${inspirationType}. Returning empty.`);
+      return [];
+  }
+  
+  const { data, error } = await query;
+
+  if (error || !data) {
+    console.error('[getInspiredRecipes] Error fetching recipes:', error);
+    return [];
+  }
+
+  // Shuffle the results to provide variety
+  const shuffled = data.sort(() => 0.5 - Math.random());
+  
+  console.log(`[getInspiredRecipes] Returned ${shuffled.length} recipes for ${inspirationType}.`);
+  return shuffled as RecipeSearchResult[];
+}

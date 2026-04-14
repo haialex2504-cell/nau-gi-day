@@ -4,41 +4,66 @@ import { ChevronLeft, Info, Clock, Flame, Heart } from "lucide-react";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
-import { searchRecipes, RecipeSearchResult } from "@/app/actions/recipe";
+import { searchRecipes, getInspiredRecipes, RecipeSearchResult } from "@/app/actions/recipe";
 import BackButton from "@/app/components/BackButton";
 import FavoriteButton from "@/app/components/FavoriteButton";
 
 function ResultsContent() {
   const searchParams = useSearchParams();
   const ingredientsStr = searchParams.get('ingredients') || '';
+  const inspirationQ = searchParams.get('q') || '';
   const [recipes, setRecipes] = useState<RecipeSearchResult[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // Dynamic Title setup based on Q
+  let pageTitle = "Gợi ý cho bạn";
+  let subTitle = ingredientsStr ? `${ingredientsStr.split(',').length} nguyên liệu đã chọn` : "Dành riêng cho bạn";
+  
+  if (inspirationQ) {
+     switch (inspirationQ) {
+       case 'quick': pageTitle = "Nấu nhanh 15 phút"; subTitle = "Gợi ý tiện lợi"; break;
+       case 'party': pageTitle = "Món nhậu cuối tuần"; subTitle = "Gợi ý tiệc tùng"; break;
+       case 'healthy': pageTitle = "Thanh đạm & Healthy"; subTitle = "Gợi ý cho sức khỏe"; break;
+       case 'breakfast': pageTitle = "Bữa sáng năng lượng"; subTitle = "Gợi ý ngày mới"; break;
+       case 'snack': pageTitle = "Ăn vặt & Tráng miệng"; subTitle = "Gợi ý vui miệng"; break;
+     }
+  }
+
   useEffect(() => {
     async function fetchResults() {
-      console.log('[Results] fetchResults() called, ingredientsStr:', ingredientsStr);
-      if (!ingredientsStr) {
-        console.warn('[Results] No ingredients provided, aborting search.');
-        setLoading(false);
-        return;
-      }
-
-      const ingredients = ingredientsStr.split(',').map(i => i.trim());
-      console.log('[Results] Parsed ingredients:', ingredients);
-
-      try {
-        const results = await searchRecipes(ingredients);
-        console.log(`[Results] Search returned ${results.length} recipe(s):`, results.map(r => r.name));
-        setRecipes(results);
-      } catch (err) {
-        console.error('[Results] searchRecipes threw an error:', err);
-      } finally {
+      setLoading(true);
+      
+      if (ingredientsStr) {
+        console.log('[Results] fetchResults() by ingredientsStr:', ingredientsStr);
+        const ingredients = ingredientsStr.split(',').map(i => i.trim());
+        try {
+          const results = await searchRecipes(ingredients);
+          console.log(`[Results] Search returned ${results.length} recipe(s)`);
+          setRecipes(results);
+        } catch (err) {
+          console.error('[Results] searchRecipes threw an error:', err);
+        } finally {
+          setLoading(false);
+        }
+      } else if (inspirationQ) {
+        console.log('[Results] fetchResults() by inspirationQ:', inspirationQ);
+        try {
+          const results = await getInspiredRecipes(inspirationQ);
+          console.log(`[Results] Inspired Search returned ${results.length} recipe(s)`);
+          setRecipes(results);
+        } catch (err) {
+          console.error('[Results] getInspiredRecipes threw an error:', err);
+        } finally {
+          setLoading(false);
+        }
+      } else {
+        console.warn('[Results] No query provided, aborting search.');
         setLoading(false);
       }
     }
 
     fetchResults();
-  }, [ingredientsStr]);
+  }, [ingredientsStr, inspirationQ]);
 
   return (
     <main className="min-h-screen bg-background text-on-background pb-12">
@@ -47,9 +72,9 @@ function ResultsContent() {
         <div className="max-w-2xl mx-auto px-6 py-4 flex items-center gap-4">
           <BackButton />
           <div>
-            <h1 className="text-xl font-headline font-black text-primary italic">Gợi ý cho bạn</h1>
+            <h1 className="text-xl font-headline font-black text-primary italic">{pageTitle}</h1>
             <p className="text-xs font-bold text-on-surface-variant uppercase tracking-wider">
-              {ingredientsStr ? ingredientsStr.split(',').length : 0} nguyên liệu đã chọn
+              {subTitle}
             </p>
           </div>
         </div>
@@ -91,7 +116,7 @@ function ResultsContent() {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-4 left-4 bg-primary/90 text-on-primary px-3 py-1 rounded-full text-xs font-bold backdrop-blur-md">
-                    Khớp {recipe.match_count} vị
+                    {ingredientsStr ? `Khớp ${recipe.match_count || 0} vị` : 'Gợi ý lý tưởng' }
                   </div>
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-1 rounded-full shadow-md z-10" onClick={(e) => e.preventDefault()}>
                     <FavoriteButton recipeId={recipe.id} />

@@ -1,8 +1,38 @@
 import { getRecipeDetail } from "@/app/actions/recipe";
-import Link from "next/link";
+import { Metadata } from 'next';
 import { notFound } from "next/navigation";
 import BackButton from "@/app/components/BackButton";
-import FavoriteButton from "@/app/components/FavoriteButton";
+import RecipeActions from "./RecipeActions";
+
+// Generate Open Graph Metadata dynamically for SEO and Social Sharing
+export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
+  const { id } = await params;
+  const recipe = await getRecipeDetail(id);
+
+  if (!recipe) {
+    return {
+      title: "Công thức không tìm thấy | Nấu Gì Đây",
+    };
+  }
+
+  return {
+    title: `${recipe.name} | Nấu Gì Đây`,
+    description: `Công thức làm ${recipe.name}. Thời gian: ${recipe.cooking_time} phút, Calo: ${recipe.calories} kcal. Mở app để xem chi tiết!`,
+    openGraph: {
+      title: `${recipe.name} | Gợi ý món hay`,
+      description: `Công thức ${recipe.cooking_time} phút - ${recipe.calories} kcal. Cùng xem cách làm trên Nấu Gì Đây nhé!`,
+      images: [
+        {
+          url: recipe.image_url || 'https://naugiday.vercel.app/icon-512.png', // Replace with your domain's default share image
+          width: 800,
+          height: 600,
+          alt: recipe.name,
+        },
+      ],
+      type: 'article',
+    },
+  };
+}
 
 export default async function RecipeDetail({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
@@ -30,15 +60,13 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
             className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg" 
             fallbackHref="/results" 
           />
-          <div className="flex gap-3">
-            <button className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg">
-              <span className="material-symbols-outlined text-on-surface">share</span>
-            </button>
-            <FavoriteButton 
-              recipeId={recipe.id} 
-              className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg"
-            />
-          </div>
+          
+          {/* Client Component handling Share & Favorite */}
+          <RecipeActions 
+            recipeId={recipe.id} 
+            recipeName={recipe.name} 
+            recipeImage={recipe.image_url} 
+          />
         </div>
       </div>
 
