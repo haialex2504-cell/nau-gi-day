@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { getDictionary, hasLocale, type Locale } from "@/app/[lang]/dictionaries";
 import BackButton from "@/app/[lang]/components/BackButton";
 import RecipeActions from "./RecipeActions";
+import { createClient } from '@/utils/supabase/server';
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string; lang: string }> }): Promise<Metadata> {
   const { id, lang } = await params;
@@ -57,6 +58,10 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
     return notFound();
   }
 
+  const supabase = await createClient();
+  const { data: { user } } = await supabase.auth.getUser();
+  const isAuthor = !!user && user.id === recipe.user_id;
+
   return (
     <main className="min-h-screen bg-background text-on-background pb-20 selection:bg-secondary-container">
       {/* Top Banner Image */}
@@ -76,6 +81,7 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
             recipeId={recipe.id}
             recipeName={recipe.name}
             recipeImage={recipe.image_url}
+            isAuthor={isAuthor}
           />
         </div>
       </div>

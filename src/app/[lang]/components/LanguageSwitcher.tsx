@@ -18,6 +18,9 @@ export default function LanguageSwitcher({ lang }: { lang: string }) {
     router.push(newPath);
   };
 
+  // Temporarily hidden as per user request (Vietnamese only for now)
+  return null;
+  /*
   return (
     <button
       onClick={switchLocale}
@@ -26,4 +29,5 @@ export default function LanguageSwitcher({ lang }: { lang: string }) {
       {localeLabels[lang] || lang.toUpperCase()}
     </button>
   );
+  */
 }

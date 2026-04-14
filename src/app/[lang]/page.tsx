@@ -3,7 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import BottomNavBar from '@/app/[lang]/components/BottomNavBar';
-import LanguageSwitcher from '@/app/[lang]/components/LanguageSwitcher';
+import TopAppBar from '@/app/[lang]/components/TopAppBar';
 import { useLang } from '@/app/[lang]/components/LangContext';
 
 export default function Home() {
@@ -73,20 +73,7 @@ export default function Home() {
   return (
     <div className="bg-background text-on-background font-body min-h-screen">
       {/* TopAppBar */}
-      <header className="flex justify-between items-center w-full px-6 py-4 fixed top-0 z-40 bg-surface-container-low transition-colors shadow-sm">
-        <div className="flex items-center gap-4">
-          <button className="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
-            <span className="material-symbols-outlined text-primary">menu</span>
-          </button>
-          <h1 className="text-2xl font-black text-primary italic font-headline tracking-tight">{t.common.appName}</h1>
-        </div>
-        <div className="flex items-center gap-2">
-          <LanguageSwitcher lang={lang} />
-          <button className="p-2 hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
-            <span className="material-symbols-outlined text-primary">account_circle</span>
-          </button>
-        </div>
-      </header>
+      <TopAppBar />
 
       <main className="pt-24 pb-32 px-6 max-w-2xl mx-auto space-y-8">
         {/* Hero Section Header */}

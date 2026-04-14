@@ -14,7 +14,19 @@
     "copyLink": "Copy Link",
     "minutes": "phút",
     "servings": "người",
-    "ingredients": "nguyên liệu"
+    "ingredients": "nguyên liệu",
+    "later": "Để sau"
+  },
+  "auth": {
+    "loggedInAs": "Đang đăng nhập",
+    "myRecipes": "Món của tôi",
+    "logout": "Đăng xuất",
+    "login": "Đăng nhập",
+    "profile": "Hồ sơ",
+    "loginToCreateTitle": "Chia sẻ món ngon?",
+    "loginToCreateMessage": "Hãy đăng nhập ngay để bắt đầu sáng tạo và lưu giữ công thức của riêng bạn!",
+    "unauthorized": "Vui lòng đăng nhập để lưu công thức.",
+    "sessionExpired": "Phiên làm việc hết hạn. Vui lòng đăng nhập lại."
   },
   "home": {
     "heroTitle1": "Trong tủ lạnh bạn",
@@ -111,7 +123,8 @@
     "noRecipesDesc": "Bạn chưa có công thức nào trong mục này.",
     "createNow": "Tạo ngay",
     "exploreNow": "Khám phá ngay",
-    "myLabel": "Của Tôi"
+    "myLabel": "Của Tôi",
+    "localDataWarning": "💡 Dữ liệu chỉ lưu trên máy này. Đăng nhập để đồng bộ."
   },
   "share": {
     "nativeTitle": "Nấu Gì Đây: {name}",

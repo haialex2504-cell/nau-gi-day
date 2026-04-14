@@ -14,7 +14,18 @@
     "copyLink": "Copy Link",
     "minutes": "min",
     "servings": "servings",
-    "ingredients": "ingredients"
+    "ingredients": "ingredients",
+    "later": "Later"
+  },
+  "auth": {
+    "loggedInAs": "Logged in as",
+    "myRecipes": "My Recipes",
+    "logout": "Logout",
+    "login": "Login",
+    "profile": "Profile",
+    "loginToCreateTitle": "Share amazing dishes?",
+    "loginToCreateMessage": "Login now to start creating and saving your own recipes!",
+    "unauthorized": "Session expired. Please login again."
   },
   "home": {
     "heroTitle1": "What's left in",
@@ -111,7 +122,8 @@
     "noRecipesDesc": "You don't have any recipes in this section.",
     "createNow": "Create now",
     "exploreNow": "Explore now",
-    "myLabel": "Mine"
+    "myLabel": "Mine",
+    "localDataWarning": "💡 Data only saved on this device. Login to sync."
   },
   "share": {
     "nativeTitle": "What to Cook: {name}",

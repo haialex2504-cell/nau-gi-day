@@ -4,9 +4,9 @@ import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState, Suspense } from "react";
 import { searchRecipes, getInspiredRecipes, RecipeSearchResult } from "@/app/[lang]/actions/recipe";
-import BackButton from "@/app/[lang]/components/BackButton";
 import FavoriteButton from "@/app/[lang]/components/FavoriteButton";
 import { useLang } from "@/app/[lang]/components/LangContext";
+import TopAppBar from "@/app/[lang]/components/TopAppBar";
 
 function ResultsContent() {
   const searchParams = useSearchParams();
@@ -66,17 +66,7 @@ function ResultsContent() {
   return (
     <main className="min-h-screen bg-background text-on-background pb-12">
       {/* Header */}
-      <header className="fixed top-0 left-0 right-0 bg-background/80 backdrop-blur-md z-10 border-b border-outline-variant/10">
-        <div className="max-w-2xl mx-auto px-6 py-4 flex items-center gap-4">
-          <BackButton />
-          <div>
-            <h1 className="text-xl font-headline font-black text-primary italic">{pageTitle}</h1>
-            <p className="text-xs font-bold text-on-surface-variant uppercase tracking-wider">
-              {subTitle}
-            </p>
-          </div>
-        </div>
-      </header>
+      <TopAppBar title={pageTitle} subtitle={subTitle} />
 
       <div className="max-w-2xl mx-auto px-6 pt-24 space-y-8">
         {/* Info Box */}
