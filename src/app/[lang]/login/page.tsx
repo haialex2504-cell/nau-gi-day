@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { checkEmailExists } from '@/app/[lang]/actions/auth';
+import { checkEmailExists, registerUserDirectly } from '@/app/[lang]/actions/auth';
 import { createClient } from '@/utils/supabase/client';
 
 type LoginStep = 'email' | 'password_new' | 'password_existing';
@@ -57,13 +57,25 @@ export default function LoginPage() {
 
     setLoading(true);
     setErrorMsg('');
-    const { data, error } = await supabase.auth.signUp({
+    
+    // Create the user and set email_confirm: true via Admin API
+    const result = await registerUserDirectly(email, password);
+
+    if (!result.success) {
+      setErrorMsg(result.error || 'Đăng ký thất bại');
+      setLoading(false);
+      return;
+    }
+
+    // After success registration, automatically sign in to establish session
+    const { error: loginError } = await supabase.auth.signInWithPassword({
       email,
       password,
     });
 
-    if (error) {
-      setErrorMsg(error.message);
+    if (loginError) {
+      setErrorMsg('Đăng ký thành công nhưng không thể đăng nhập tự động. Vui lòng thử đăng nhập lại.');
+      setStep('password_existing');
       setLoading(false);
     } else {
       // Sync local favorites if needed

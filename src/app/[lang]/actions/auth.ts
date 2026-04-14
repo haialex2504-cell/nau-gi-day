@@ -37,3 +37,22 @@ export async function checkEmailExists(email: string): Promise<boolean> {
     return false;
   }
 }
+
+export async function registerUserDirectly(email: string, password: string) {
+  try {
+    const { data, error } = await supabaseAdmin.auth.admin.createUser({
+      email,
+      password,
+      email_confirm: true
+    });
+
+    if (error) {
+      return { success: false, error: error.message };
+    }
+
+    return { success: true, user: data.user };
+  } catch (error: any) {
+    console.error('Registration error:', error);
+    return { success: false, error: error.message || 'Có lỗi xảy ra khi đăng ký' };
+  }
+}
