@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { RecipeSearchResult, getRecipesByIds } from '@/app/actions/recipe';
 import { useFavorites } from '@/hooks/useFavorites';
 import FavoriteButton from '@/app/components/FavoriteButton';
+import Image from 'next/image';
 
 interface MyRecipesClientProps {
   initialRecipes: RecipeSearchResult[];
@@ -85,10 +86,12 @@ export default function MyRecipesClient({ initialRecipes }: MyRecipesClientProps
             </div>
           </div>
           <div className="relative w-48 h-48 md:w-64 md:h-64 shrink-0">
-            <img 
+            <Image 
               alt="Cooking scene" 
-              className="w-full h-full object-cover rounded-full shadow-lg border-4 border-white" 
+              className="object-cover rounded-full shadow-lg border-4 border-white" 
               src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=400&auto=format&fit=crop"
+              fill
+              sizes="(max-width: 768px) 192px, 256px"
             />
             <div className="absolute -bottom-2 -right-2 bg-secondary-container p-4 rounded-full shadow-xl">
               <span className="material-symbols-outlined text-on-secondary-container" style={{ fontVariationSettings: "'FILL' 1" }}>eco</span>
@@ -145,10 +148,12 @@ export default function MyRecipesClient({ initialRecipes }: MyRecipesClientProps
             {displayedRecipes.map((recipe, index) => (
               <div key={recipe.id} className="group relative bg-surface-container-lowest rounded-[2rem] overflow-hidden shadow-sm border border-outline-variant/10 transition-all hover:shadow-xl hover:-translate-y-2">
                 <div className="aspect-[4/3] overflow-hidden relative">
-                  <img 
+                  <Image 
                     alt={recipe.name} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" 
+                    className="object-cover transition-transform duration-700 group-hover:scale-110" 
                     src={recipe.image_url || 'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=400&auto=format&fit=crop'} 
+                    fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-md z-10">
                     <FavoriteButton recipeId={recipe.id} />

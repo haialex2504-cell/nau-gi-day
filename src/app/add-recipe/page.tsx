@@ -2,7 +2,7 @@
 
 import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/navigation';
-import Link from 'next/link';
+import Image from 'next/image';
 import { createRecipe } from '@/app/actions/recipe';
 import BackButton from '@/app/components/BackButton';
 
@@ -18,7 +18,7 @@ export default function CreateRecipe() {
   const [description, setDescription] = useState('');
   const [cookingTime, setCookingTime] = useState('45');
   const [difficulty, setDifficulty] = useState('Trung bình');
-  const [servings, setServings] = useState('2');
+  const [servings] = useState('2');
   const [ingredients, setIngredients] = useState([{ name: '', amount: '' }]);
   const [steps, setSteps] = useState(['']);
 
@@ -108,7 +108,7 @@ export default function CreateRecipe() {
           >
             {imagePreview ? (
               <>
-                <img src={imagePreview} className="absolute inset-0 w-full h-full object-cover transition-transform group-hover:scale-105" alt="Preview" />
+                <Image src={imagePreview} fill className="object-cover transition-transform group-hover:scale-105" alt="Preview" />
                 <div className="absolute inset-0 bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <div className="bg-white/90 backdrop-blur-md px-6 py-2 rounded-full flex items-center gap-2">
                     <span className="material-symbols-outlined text-primary text-sm">edit</span>
