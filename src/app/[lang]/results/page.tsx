@@ -7,6 +7,7 @@ import { searchRecipes, getInspiredRecipes, RecipeSearchResult } from "@/app/[la
 import FavoriteButton from "@/app/[lang]/components/FavoriteButton";
 import { useLang } from "@/app/[lang]/components/LangContext";
 import TopAppBar from "@/app/[lang]/components/TopAppBar";
+import { getDifficultyLabel } from "@/lib/difficulty";
 
 function ResultsContent() {
   const searchParams = useSearchParams();
@@ -110,6 +111,11 @@ function ResultsContent() {
                   </div>
                   <div className="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-1 rounded-full shadow-md z-10" onClick={(e) => e.preventDefault()}>
                     <FavoriteButton recipeId={recipe.id} />
+                  </div>
+                  <div className="absolute bottom-4 left-4 flex gap-2">
+                    <span className="bg-secondary/90 backdrop-blur-md text-on-secondary text-[10px] uppercase font-black tracking-widest px-3 py-1 rounded-full shadow-lg">
+                      {getDifficultyLabel(recipe.difficulty, t.addRecipe)}
+                    </span>
                   </div>
                 </div>
                 <div className="p-6">

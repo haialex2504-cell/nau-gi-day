@@ -8,6 +8,7 @@ import FavoriteButton from '@/app/[lang]/components/FavoriteButton';
 import { useLang } from '@/app/[lang]/components/LangContext';
 import Image from 'next/image';
 import LoginPrompt from '@/app/[lang]/components/LoginPrompt';
+import { getDifficultyLabel } from '@/lib/difficulty';
 
 interface MyRecipesClientProps {
   initialRecipes: RecipeSearchResult[];
@@ -245,7 +246,7 @@ function RecipeCard({ recipe, lang, t, index, isLoggedIn }: { recipe: any; lang:
           />
           <div className="absolute bottom-2 left-2 md:bottom-5 md:left-5 flex flex-wrap gap-1 md:gap-2">
             <span className="bg-secondary/90 backdrop-blur-md text-on-secondary text-[8px] md:text-[10px] uppercase font-black tracking-widest px-2 md:px-4 py-1 md:py-2 rounded-full shadow-lg">
-              {recipe.difficulty || 'MEDIUM'}
+              {getDifficultyLabel(recipe.difficulty, t.addRecipe)}
             </span>
             {recipe.is_personal && (
               <span className="bg-primary/95 backdrop-blur-md text-on-primary text-[8px] md:text-[10px] uppercase font-black tracking-widest px-2 md:px-4 py-1 md:py-2 rounded-full shadow-lg border border-white/20">

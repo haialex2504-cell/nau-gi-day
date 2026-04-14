@@ -9,6 +9,7 @@ import { useLang } from '@/app/[lang]/components/LangContext';
 import Toast from '@/app/[lang]/components/Toast';
 import { useAuth } from '@/hooks/useAuth';
 import LoginPrompt from '@/app/[lang]/components/LoginPrompt';
+import { getStandardizedDifficulty } from '@/lib/difficulty';
 
 function CreateRecipeForm() {
   const router = useRouter();
@@ -31,7 +32,7 @@ function CreateRecipeForm() {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [cookingTime, setCookingTime] = useState('45');
-  const [difficulty, setDifficulty] = useState(t.addRecipe.difficultyMedium);
+  const [difficulty, setDifficulty] = useState('trung-binh');
   const [servings, setServings] = useState('2');
   const [ingredients, setIngredients] = useState([{ name: '', amount: '' }]);
   const [steps, setSteps] = useState(['']);
@@ -46,7 +47,7 @@ function CreateRecipeForm() {
           setName(cloneId ? `${data.name} (Copy)` : data.name);
           setDescription(data.description || '');
           setCookingTime(String(data.cooking_time || 45));
-          setDifficulty(data.difficulty || t.addRecipe.difficultyMedium);
+          setDifficulty(getStandardizedDifficulty(data.difficulty));
           setServings(String(data.servings || 2));
           setSteps(data.steps?.length ? data.steps : ['']);
           
@@ -69,7 +70,7 @@ function CreateRecipeForm() {
       }
     }
     loadData();
-  }, [editId, cloneId, t.addRecipe.difficultyMedium]);
+  }, [editId, cloneId]);
 
   // Guest Protection
   useEffect(() => {
@@ -264,9 +265,9 @@ function CreateRecipeForm() {
                 value={difficulty}
                 onChange={(e) => setDifficulty(e.target.value)}
               >
-                <option>{t.addRecipe.difficultyEasy}</option>
-                <option>{t.addRecipe.difficultyMedium}</option>
-                <option>{t.addRecipe.difficultyHard}</option>
+                <option value="de">{t.addRecipe.difficultyEasy}</option>
+                <option value="trung-binh">{t.addRecipe.difficultyMedium}</option>
+                <option value="kho">{t.addRecipe.difficultyHard}</option>
               </select>
             </div>
           </div>
