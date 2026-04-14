@@ -215,9 +215,12 @@ export async function createRecipe(formData: FormData) {
       imageUrl = publicUrl;
     }
 
+    const newRecipeId = `usr-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+
     const { data: recipe, error: recipeError } = await supabase
       .from('recipes')
       .insert({
+        id: newRecipeId,
         name,
         description,
         cooking_time: cookingTime,

@@ -42,7 +42,7 @@ VALUES (
   2, 
   280, 
   'Bữa sáng năng lượng, không đường, tốt cho tim mạch.', 
-  'https://images.unsplash.com/photo-1567620905732-2d1ec7bb7445', 
+  NULL, 
   ARRAY['Dầm nhuyễn 2 quả chuối chín', 'Trộn với 1 quả trứng và 50g bột yến mạch', 'Áp chảo lửa nhỏ cho đến khi vàng đều hai mặt', 'Dùng kèm mật ong và trái cây tươi']
 ) ON CONFLICT (id) DO NOTHING;
 
@@ -58,7 +58,7 @@ VALUES (
   4, 
   250, 
   'Món tráng miệng truyền thống với hương vị hiện đại, thanh mát.', 
-  'https://images.unsplash.com/photo-1590080873974-9a38ca490234', 
+  NULL, 
   ARRAY['Cùi bưởi sơ chế khử đắng, tẩm bột năng', 'Luộc cùi bưởi cho đến khi trong veo, vớt ra nước lạnh', 'Nấu nước đường thốt nốt, cho đậu xanh đã hấp chín và cốm vào', 'Cho cùi bưởi vào khuấy đều, thêm nước cốt dừa khi ăn']
 ) ON CONFLICT (id) DO NOTHING;
 
