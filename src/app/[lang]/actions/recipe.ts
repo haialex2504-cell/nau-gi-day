@@ -301,13 +301,16 @@ export async function getInspiredRecipes(inspirationType: string): Promise<Recip
       query = query.or('category.in.(an-vat,khai-vi),sub_category.in.(nuong,chien)');
       break;
     case 'healthy':
-      query = query.or('category.in.(salad-goi,an-chay),calories.lt.350');
+      // Include specific categories or low-calorie dishes
+      query = query.or('category.in.(salad-goi,an-chay,healthy),calories.lt.400');
       break;
     case 'breakfast':
-      query = query.in('category', ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien']);
+      // Include all common breakfast categories
+      query = query.in('category', ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien', 'breakfast']);
       break;
     case 'snack':
-      query = query.in('category', ['an-vat', 'trang-mieng-che']);
+      // Include snacks, desserts and treats
+      query = query.or('category.in.(an-vat,trang-mieng-che,trang-mieng,snack),sub_category.in.(trang-mieng,an-vat)');
       break;
     default:
       return [];
