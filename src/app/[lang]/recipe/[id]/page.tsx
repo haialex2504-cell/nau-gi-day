@@ -1,29 +1,38 @@
-import { getRecipeDetail } from "@/app/actions/recipe";
+import { getRecipeDetail } from "@/app/[lang]/actions/recipe";
 import { Metadata } from 'next';
 import { notFound } from "next/navigation";
-import BackButton from "@/app/components/BackButton";
+import { getDictionary, hasLocale, type Locale } from "@/app/[lang]/dictionaries";
+import BackButton from "@/app/[lang]/components/BackButton";
 import RecipeActions from "./RecipeActions";
 
-// Generate Open Graph Metadata dynamically for SEO and Social Sharing
-export async function generateMetadata({ params }: { params: Promise<{ id: string }> }): Promise<Metadata> {
-  const { id } = await params;
+export async function generateMetadata({ params }: { params: Promise<{ id: string; lang: string }> }): Promise<Metadata> {
+  const { id, lang } = await params;
   const recipe = await getRecipeDetail(id);
+
+  if (!hasLocale(lang)) return { title: "Not Found" };
+
+  const t = await getDictionary(lang as Locale);
 
   if (!recipe) {
     return {
-      title: "Công thức không tìm thấy | Nấu Gì Đây",
+      title: `${t.recipe.notFoundTitle} | ${t.common.appName}`,
     };
   }
 
   return {
-    title: `${recipe.name} | Nấu Gì Đây`,
-    description: `Công thức làm ${recipe.name}. Thời gian: ${recipe.cooking_time} phút, Calo: ${recipe.calories} kcal. Mở app để xem chi tiết!`,
+    title: `${recipe.name} | ${t.common.appName}`,
+    description: t.recipe.recipeDescription
+      .replace('{name}', recipe.name)
+      .replace('{time}', String(recipe.cooking_time))
+      .replace('{calories}', String(recipe.calories)),
     openGraph: {
-      title: `${recipe.name} | Gợi ý món hay`,
-      description: `Công thức ${recipe.cooking_time} phút - ${recipe.calories} kcal. Cùng xem cách làm trên Nấu Gì Đây nhé!`,
+      title: `${recipe.name} | ${t.recipe.shareTitle}`,
+      description: t.recipe.shareDescription
+        .replace('{time}', String(recipe.cooking_time))
+        .replace('{calories}', String(recipe.calories)),
       images: [
         {
-          url: recipe.image_url || 'https://naugiday.vercel.app/icon-512.png', // Replace with your domain's default share image
+          url: recipe.image_url || 'https://naugiday.vercel.app/icon-512.png',
           width: 800,
           height: 600,
           alt: recipe.name,
@@ -34,38 +43,39 @@ export async function generateMetadata({ params }: { params: Promise<{ id: strin
   };
 }
 
-export default async function RecipeDetail({ params }: { params: Promise<{ id: string }> }) {
-  const { id } = await params;
-  console.log('[RecipeDetail] Fetching recipe with id:', id);
-  const recipe = await getRecipeDetail(id);
+export default async function RecipeDetail({ params }: { params: Promise<{ id: string; lang: string }> }) {
+  const { id, lang } = await params;
+
+  if (!hasLocale(lang)) notFound();
+
+  const [recipe, t] = await Promise.all([
+    getRecipeDetail(id),
+    getDictionary(lang as Locale),
+  ]);
 
   if (!recipe) {
-    console.warn('[RecipeDetail] Recipe not found for id:', id);
     return notFound();
   }
-
-  console.log('[RecipeDetail] Recipe found:', recipe.name);
 
   return (
     <main className="min-h-screen bg-background text-on-background pb-20 selection:bg-secondary-container">
       {/* Top Banner Image */}
       <div className="relative h-[45vh] w-full max-w-2xl mx-auto shadow-xl">
-        <img 
-          src={recipe.image_url || '/default-recipe.png'} 
-          alt={recipe.name} 
+        <img
+          src={recipe.image_url || '/default-recipe.png'}
+          alt={recipe.name}
           className="w-full h-full object-cover"
         />
         <div className="absolute top-0 left-0 right-0 p-6 flex justify-between items-center bg-gradient-to-b from-black/40 to-transparent">
-          <BackButton 
-            className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg" 
-            fallbackHref="/results" 
+          <BackButton
+            className="p-2 bg-white/90 backdrop-blur-md rounded-full shadow-lg"
+            fallbackHref={`/${lang}/results`}
           />
-          
-          {/* Client Component handling Share & Favorite */}
-          <RecipeActions 
-            recipeId={recipe.id} 
-            recipeName={recipe.name} 
-            recipeImage={recipe.image_url} 
+
+          <RecipeActions
+            recipeId={recipe.id}
+            recipeName={recipe.name}
+            recipeImage={recipe.image_url}
           />
         </div>
       </div>
@@ -77,9 +87,9 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
             {recipe.name}
           </h1>
           <div className="flex flex-wrap gap-2 mt-2">
-             {recipe.recipe_tags?.map((t: any, i: number) => (
+             {recipe.recipe_tags?.map((tag: any, i: number) => (
                 <span key={i} className="text-[10px] font-bold uppercase tracking-widest bg-secondary-container/50 text-on-secondary-container px-3 py-1 rounded-full">
-                  #{t.tag}
+                  #{tag.tag}
                 </span>
              ))}
           </div>
@@ -89,11 +99,11 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
         <div className="grid grid-cols-3 gap-4 mb-10 p-5 bg-surface-container-low rounded-3xl border border-outline-variant/10 animate-fade-in" style={{ animationDelay: '0.1s' }}>
           <div className="flex flex-col items-center gap-1">
             <span className="material-symbols-outlined text-primary">timer</span>
-            <span className="text-[10px] font-black text-on-surface-variant uppercase">{recipe.cooking_time} phút</span>
+            <span className="text-[10px] font-black text-on-surface-variant uppercase">{recipe.cooking_time} {t.common.minutes}</span>
           </div>
           <div className="flex flex-col items-center gap-1 border-x border-outline-variant/20">
             <span className="material-symbols-outlined text-primary">groups</span>
-            <span className="text-[10px] font-black text-on-surface-variant uppercase">{recipe.servings} người</span>
+            <span className="text-[10px] font-black text-on-surface-variant uppercase">{recipe.servings} {t.common.servings}</span>
           </div>
           <div className="flex flex-col items-center gap-1">
             <span className="material-symbols-outlined text-primary">local_fire_department</span>
@@ -105,7 +115,7 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
         <section className="mb-12 animate-fade-in" style={{ animationDelay: '0.2s' }}>
           <h2 className="text-xl font-headline font-black mb-6 flex items-center gap-3">
             <div className="w-2 h-6 bg-primary rounded-full"></div>
-            Nguyên liệu
+            {t.recipe.ingredientsSection}
           </h2>
           <div className="grid grid-cols-1 gap-3">
             {recipe.recipe_ingredients?.map((item: any, i: number) => (
@@ -126,7 +136,7 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
         <section className="pb-20 animate-fade-in" style={{ animationDelay: '0.3s' }}>
           <h2 className="text-xl font-headline font-black mb-8 flex items-center gap-3">
             <div className="w-2 h-6 bg-secondary rounded-full"></div>
-            Cách thực hiện
+            {t.recipe.stepsSection}
           </h2>
           <div className="space-y-10">
             {recipe.steps.map((step: string, i: number) => (
@@ -146,7 +156,7 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
             <div className="bg-tertiary-fixed p-6 rounded-3xl border border-tertiary/20 flex gap-4">
                <span className="material-symbols-outlined text-tertiary text-2xl">lightbulb</span>
                <div>
-                  <h4 className="font-headline font-bold text-on-tertiary-fixed mb-1">Mẹo nhỏ cho bạn</h4>
+                  <h4 className="font-headline font-bold text-on-tertiary-fixed mb-1">{t.recipe.tipsSection}</h4>
                   <p className="text-sm text-on-tertiary-fixed-variant leading-relaxed">{recipe.tips}</p>
                </div>
             </div>

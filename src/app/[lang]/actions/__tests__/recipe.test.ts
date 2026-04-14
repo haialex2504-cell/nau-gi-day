@@ -124,14 +124,27 @@ describe('searchRecipes()', () => {
   });
 
   it('áp dụng threshold=1 cho query 1 nguyên liệu', async () => {
-    const mockIn = vi.fn()
-      .mockResolvedValueOnce({ data: [{ id: 'ing1', name: 'trứng' }], error: null })
-      .mockResolvedValueOnce({ data: [{ recipe_id: 'r1' }], error: null })
-      .mockResolvedValueOnce({ data: [makeRecipe({ id: 'r1', name: 'Cơm Chiên Trứng' })], error: null });
-    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
-    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
-    vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
+    vi.mocked(supabase.from).mockImplementation((table: string) => {
+      return {
+        select: () => {
+          if (table === 'ingredients') {
+            return { eq: () => Promise.resolve({ data: [{ id: 'ing1', name: 'trứng' }], error: null }) };
+          }
+          if (table === 'recipe_ingredients') {
+            return {
+              in: (col: string) => {
+                const chain: any = Promise.resolve({ data: [{ recipe_id: 'r1' }], error: null });
+                chain.eq = () => Promise.resolve({ data: [{ recipe_id: 'r1' }], error: null });
+                return chain;
+              }
+            };
+          }
+          if (table === 'recipes') {
+            return { in: () => Promise.resolve({ data: [makeRecipe({ id: 'r1', name: 'Cơm Chiên Trứng' })], error: null }) };
+          }
+        }
+      } as unknown as MockFromReturn;
+    });
 
     const result = await searchRecipes(['trứng']);
     expect(result).toHaveLength(1);
@@ -140,24 +153,27 @@ describe('searchRecipes()', () => {
   });
 
   it('áp dụng threshold=2 và lọc recipe chỉ khớp 1 nguyên liệu', async () => {
-    const mockIn = vi.fn()
-      .mockResolvedValueOnce({
-        data: [{ id: 'ing1', name: 'thịt bò' }, { id: 'ing2', name: 'hành tây' }],
-        error: null,
-      })
-      .mockResolvedValueOnce({
-        // r1 khớp 2, r2 chỉ khớp 1 → r2 bị lọc
-        data: [{ recipe_id: 'r1' }, { recipe_id: 'r1' }, { recipe_id: 'r2' }],
-        error: null,
-      })
-      .mockResolvedValueOnce({
-        data: [makeRecipe({ id: 'r1', name: 'Bít Tết' })],
-        error: null,
-      });
-    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
-    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
-    vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
+    vi.mocked(supabase.from).mockImplementation((table: string) => {
+      return {
+        select: () => {
+          if (table === 'ingredients') {
+            return { eq: (col: string, val: string) => Promise.resolve({ data: val === 'thịt bò' ? [{ id: 'ing1', name: 'thịt bò' }] : [{ id: 'ing2', name: 'hành tây' }], error: null }) };
+          }
+          if (table === 'recipe_ingredients') {
+            return {
+              in: (col: string) => {
+                const chain: any = Promise.resolve({ data: [{ recipe_id: 'r1' }, { recipe_id: 'r1' }, { recipe_id: 'r2' }], error: null });
+                chain.eq = () => Promise.resolve({ data: [{ recipe_id: 'r1' }, { recipe_id: 'r1' }, { recipe_id: 'r2' }], error: null });
+                return chain;
+              }
+            };
+          }
+          if (table === 'recipes') {
+            return { in: () => Promise.resolve({ data: [makeRecipe({ id: 'r1', name: 'Bít Tết' })], error: null }) };
+          }
+        }
+      } as unknown as MockFromReturn;
+    });
 
     const result = await searchRecipes(['thịt bò', 'hành tây']);
     expect(result).toHaveLength(1);
@@ -166,33 +182,40 @@ describe('searchRecipes()', () => {
   });
 
   it('sắp xếp kết quả theo match_count giảm dần', async () => {
-    const mockIn = vi.fn()
-      .mockResolvedValueOnce({
-        data: [
-          { id: 'ing1', name: 'tỏi' },
-          { id: 'ing2', name: 'hành' },
-          { id: 'ing3', name: 'ớt' },
-        ],
-        error: null,
-      })
-      .mockResolvedValueOnce({
-        // r2 khớp 3, r1 khớp 2 → r2 phải đứng trước
-        data: [
-          { recipe_id: 'r1' }, { recipe_id: 'r1' },
-          { recipe_id: 'r2' }, { recipe_id: 'r2' }, { recipe_id: 'r2' },
-        ],
-        error: null,
-      })
-      .mockResolvedValueOnce({
-        data: [makeRecipe({ id: 'r1', name: 'Món A' }), makeRecipe({ id: 'r2', name: 'Món B' })],
-        error: null,
-      });
-    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
-    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
-    vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
+    vi.mocked(supabase.from).mockImplementation((table: string) => {
+      return {
+        select: () => {
+          if (table === 'ingredients') {
+            return { eq: (col: string, val: string) => Promise.resolve({ data: [{ id: `ing_${val}`, name: val }], error: null }) };
+          }
+          if (table === 'recipe_ingredients') {
+            return {
+              in: (col: string) => {
+                const chain: any = Promise.resolve({
+                  data: [
+                    { recipe_id: 'r1' }, { recipe_id: 'r1' },
+                    { recipe_id: 'r2' }, { recipe_id: 'r2' }, { recipe_id: 'r2' }
+                  ], error: null
+                });
+                chain.eq = () => Promise.resolve({
+                  data: [
+                    { recipe_id: 'r1' }, { recipe_id: 'r1' },
+                    { recipe_id: 'r2' }, { recipe_id: 'r2' }, { recipe_id: 'r2' }
+                  ], error: null
+                });
+                return chain;
+              }
+            };
+          }
+          if (table === 'recipes') {
+            return { in: () => Promise.resolve({ data: [makeRecipe({ id: 'r1', name: 'Món A' }), makeRecipe({ id: 'r2', name: 'Món B' })], error: null }) };
+          }
+        }
+      } as unknown as MockFromReturn;
+    });
 
     const result = await searchRecipes(['tỏi', 'hành', 'ớt']);
+    expect(result).toHaveLength(2);
     expect(result[0].id).toBe('r2');
     expect(result[1].id).toBe('r1');
   });

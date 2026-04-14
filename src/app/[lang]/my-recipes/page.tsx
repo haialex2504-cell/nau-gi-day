@@ -1,15 +1,18 @@
 import React from 'react';
-import Link from 'next/link';
-import { getPersonalRecipes } from '@/app/actions/recipe';
-import BackButton from '@/app/components/BackButton';
-import BottomNavBar from '@/app/components/BottomNavBar';
+import { getPersonalRecipes } from '@/app/[lang]/actions/recipe';
+import BottomNavBar from '@/app/[lang]/components/BottomNavBar';
+import { getDictionary, hasLocale, type Locale } from '@/app/[lang]/dictionaries';
+import { notFound } from 'next/navigation';
 import MyRecipesClient from './MyRecipesClient';
 
-export default async function MyRecipes() {
-  console.log('[MyRecipes] Server component rendering, fetching personal recipes...');
-  const recipes = await getPersonalRecipes();
-  console.log(`[MyRecipes] Fetched ${recipes.length} personal recipe(s).`);
-  const totalLikes = 450; // Mocked for design parity
+export default async function MyRecipes({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
+  if (!hasLocale(lang)) notFound();
+
+  const [recipes, t] = await Promise.all([
+    getPersonalRecipes(),
+    getDictionary(lang as Locale),
+  ]);
 
   return (
     <main className="bg-surface text-on-surface pb-32 max-w-5xl mx-auto min-h-screen selection:bg-secondary-container">
@@ -20,7 +23,7 @@ export default async function MyRecipes() {
             <button className="w-10 h-10 flex items-center justify-center hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
               <span className="material-symbols-outlined text-primary">menu</span>
             </button>
-            <h1 className="font-headline font-bold text-xl tracking-tight text-primary uppercase italic">Bếp Của Tôi</h1>
+            <h1 className="font-headline font-bold text-xl tracking-tight text-primary uppercase italic">{t.myRecipes.pageTitle}</h1>
           </div>
           <button className="w-10 h-10 flex items-center justify-center hover:bg-surface-variant/50 transition-colors active:scale-95 duration-200 rounded-full">
             <span className="material-symbols-outlined text-primary">account_circle</span>

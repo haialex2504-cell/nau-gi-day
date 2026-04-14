@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import React, { useEffect, useState } from 'react';
+import { useLang } from './LangContext';
 
 interface NavItem {
   label: string;
@@ -13,25 +14,24 @@ interface NavItem {
 export default function BottomNavBar() {
   const pathname = usePathname();
   const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
+  const { lang, dict: t } = useLang();
 
   useEffect(() => {
-    // Hide BottomNavBar when an input or textarea is focused on mobile
     const handleFocusIn = (e: Event) => {
       const target = e.target as HTMLElement;
       if (
-        target.tagName === 'INPUT' || 
+        target.tagName === 'INPUT' ||
         target.tagName === 'TEXTAREA' ||
         target.isContentEditable
       ) {
         setIsKeyboardOpen(true);
       }
     };
-    
+
     const handleFocusOut = () => {
-      // Small delay to prevent flashing when moving between inputs
       setTimeout(() => {
         if (
-          document.activeElement?.tagName !== 'INPUT' && 
+          document.activeElement?.tagName !== 'INPUT' &&
           document.activeElement?.tagName !== 'TEXTAREA' &&
           !(document.activeElement as HTMLElement)?.isContentEditable
         ) {
@@ -50,13 +50,12 @@ export default function BottomNavBar() {
   }, []);
 
   const navItems: NavItem[] = [
-    { label: 'Trang chủ', icon: 'home',       href: '/' },
-    { label: 'Yêu thích',  icon: 'favorite',   href: '/my-recipes' },
-    { label: 'Thêm món',   icon: 'add_circle', href: '/add-recipe' },
-    { label: 'Hồ sơ',      icon: 'person',     href: '#' },
+    { label: t.common.home,       icon: 'home',       href: `/${lang}` },
+    { label: t.common.favorites,  icon: 'favorite',   href: `/${lang}/my-recipes` },
+    { label: t.common.addRecipe,  icon: 'add_circle', href: `/${lang}/add-recipe` },
+    { label: t.common.profile,    icon: 'person',     href: '#' },
   ];
 
-  // Do not render BottomNavBar when keyboard is open
   if (isKeyboardOpen) return null;
 
   return (
@@ -64,17 +63,17 @@ export default function BottomNavBar() {
       {navItems.map((item) => {
         const isActive = pathname === item.href;
         return (
-          <Link 
-            key={item.label}
+          <Link
+            key={item.icon}
             href={item.href}
             className={`flex flex-col items-center justify-center transition-all active:scale-90 px-5 py-1.5 rounded-full ${
-              isActive 
-                ? 'bg-primary-container/10 text-primary' 
+              isActive
+                ? 'bg-primary-container/10 text-primary'
                 : 'text-on-surface/50 hover:text-primary'
-            }`} 
+            }`}
           >
-            <span 
-              className="material-symbols-outlined" 
+            <span
+              className="material-symbols-outlined"
               style={{ fontVariationSettings: isActive ? "'FILL' 1" : "'FILL' 0" }}
             >
               {item.icon}
