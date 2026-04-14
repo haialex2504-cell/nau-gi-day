@@ -109,7 +109,7 @@ export default function ShareModal({
           <div className="bg-surface-container-low rounded-xl p-3 mb-8 flex items-center gap-4 border border-outline-variant/20 shadow-sm">
             <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 relative">
               <Image 
-                src={recipeImage || 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=200&auto=format&fit=crop'} 
+                src={recipeImage || '/default-recipe.png'} 
                 alt={recipeName}
                 fill
                 className="object-cover"

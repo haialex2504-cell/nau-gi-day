@@ -111,7 +111,7 @@ function ResultsContent() {
               >
                 <div className="relative h-48 w-full overflow-hidden">
                   <img 
-                    src={recipe.image_url || 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=400&auto=format&fit=crop'} 
+                    src={recipe.image_url || '/default-recipe.png'} 
                     alt={recipe.name} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />

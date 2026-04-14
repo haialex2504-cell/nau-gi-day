@@ -51,7 +51,7 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
       {/* Top Banner Image */}
       <div className="relative h-[45vh] w-full max-w-2xl mx-auto shadow-xl">
         <img 
-          src={recipe.image_url || 'https://images.unsplash.com/photo-1547592166-23ac45744acd?q=80&w=800&auto=format&fit=crop'} 
+          src={recipe.image_url || '/default-recipe.png'} 
           alt={recipe.name} 
           className="w-full h-full object-cover"
         />

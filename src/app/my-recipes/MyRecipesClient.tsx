@@ -89,7 +89,7 @@ export default function MyRecipesClient({ initialRecipes }: MyRecipesClientProps
             <Image 
               alt="Cooking scene" 
               className="object-cover rounded-full shadow-lg border-4 border-white" 
-              src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?q=80&w=400&auto=format&fit=crop"
+              src="/default-recipe.png"
               fill
               sizes="(max-width: 768px) 192px, 256px"
             />
@@ -151,7 +151,7 @@ export default function MyRecipesClient({ initialRecipes }: MyRecipesClientProps
                   <Image 
                     alt={recipe.name} 
                     className="object-cover transition-transform duration-700 group-hover:scale-110" 
-                    src={recipe.image_url || 'https://images.unsplash.com/photo-1495147466023-ac5c588e2e94?q=80&w=400&auto=format&fit=crop'} 
+                    src={recipe.image_url || '/default-recipe.png'} 
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   />

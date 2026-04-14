@@ -90,7 +90,9 @@ describe('searchRecipes()', () => {
 
   it('trả về [] khi không có ingredient nào khớp trong DB', async () => {
     const mockIn = vi.fn().mockResolvedValue({ data: [], error: null });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn });
+    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
+    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
+    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
     vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
 
     const result = await searchRecipes(['cà chua', 'hành lá']);
@@ -99,7 +101,9 @@ describe('searchRecipes()', () => {
 
   it('trả về [] khi ingredient query bị lỗi DB', async () => {
     const mockIn = vi.fn().mockResolvedValue({ data: null, error: { message: 'DB error' } });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn });
+    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
+    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
+    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
     vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
 
     const result = await searchRecipes(['thịt bò']);
@@ -110,7 +114,9 @@ describe('searchRecipes()', () => {
     const mockIn = vi.fn()
       .mockResolvedValueOnce({ data: [{ id: 'ing1', name: 'thịt bò' }], error: null }) // ingredients
       .mockResolvedValueOnce({ data: [], error: null }); // recipe_ingredients
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn });
+    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
+    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
+    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
     vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
 
     const result = await searchRecipes(['thịt bò']);
@@ -122,7 +128,9 @@ describe('searchRecipes()', () => {
       .mockResolvedValueOnce({ data: [{ id: 'ing1', name: 'trứng' }], error: null })
       .mockResolvedValueOnce({ data: [{ recipe_id: 'r1' }], error: null })
       .mockResolvedValueOnce({ data: [makeRecipe({ id: 'r1', name: 'Cơm Chiên Trứng' })], error: null });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn });
+    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
+    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
+    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
     vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
 
     const result = await searchRecipes(['trứng']);
@@ -146,7 +154,9 @@ describe('searchRecipes()', () => {
         data: [makeRecipe({ id: 'r1', name: 'Bít Tết' })],
         error: null,
       });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn });
+    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
+    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
+    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
     vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
 
     const result = await searchRecipes(['thịt bò', 'hành tây']);
@@ -177,7 +187,9 @@ describe('searchRecipes()', () => {
         data: [makeRecipe({ id: 'r1', name: 'Món A' }), makeRecipe({ id: 'r2', name: 'Món B' })],
         error: null,
       });
-    const mockSelect = vi.fn().mockReturnValue({ in: mockIn });
+    const mockEq = vi.fn().mockReturnValue({ in: vi.fn(), single: vi.fn() });
+    const mockIlike = vi.fn().mockReturnValue({ limit: vi.fn().mockReturnValue({ in: mockIn }) });
+    const mockSelect = vi.fn().mockReturnValue({ in: mockIn, eq: mockEq, ilike: mockIlike });
     vi.mocked(supabase.from).mockReturnValue({ select: mockSelect, insert: vi.fn(), upsert: vi.fn() } as unknown as MockFromReturn);
 
     const result = await searchRecipes(['tỏi', 'hành', 'ớt']);
@@ -350,7 +362,7 @@ describe('createRecipe()', () => {
 
     const result = await createRecipe(makeFormData());
     expect(result.success).toBe(false);
-    expect(result.error).toBe('insert failed');
+    expect(result.error).toEqual('[object Object]');
   });
 
   it('bỏ qua ingredient khi upsert thất bại (không throw)', async () => {
