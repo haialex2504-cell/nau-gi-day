@@ -8,65 +8,12 @@ import { useLang } from '@/app/[lang]/components/LangContext';
 
 export default function Home() {
   const [inputValue, setInputValue] = useState('');
-  const [tags, setTags] = useState<string[]>([]);
-  const [isKeyboardOpen, setIsKeyboardOpen] = useState(false);
   const router = useRouter();
   const { lang, dict: t } = useLang();
 
-  React.useEffect(() => {
-    const handleFocusIn = (e: Event) => {
-      const target = e.target as HTMLElement;
-      if (
-        target.tagName === 'INPUT' ||
-        target.tagName === 'TEXTAREA' ||
-        target.isContentEditable
-      ) {
-        setIsKeyboardOpen(true);
-      }
-    };
-
-    const handleFocusOut = () => {
-      setTimeout(() => {
-        if (
-          document.activeElement?.tagName !== 'INPUT' &&
-          document.activeElement?.tagName !== 'TEXTAREA' &&
-          !(document.activeElement as HTMLElement)?.isContentEditable
-        ) {
-          setIsKeyboardOpen(false);
-        }
-      }, 50);
-    };
-
-    document.addEventListener('focusin', handleFocusIn);
-    document.addEventListener('focusout', handleFocusOut);
-
-    return () => {
-      document.removeEventListener('focusin', handleFocusIn);
-      document.removeEventListener('focusout', handleFocusOut);
-    };
-  }, []);
-
-  const handleAddTag = () => {
-    if (inputValue.trim()) {
-      const newTags = inputValue
-        .split(',')
-        .map(tag => tag.trim())
-        .filter(tag => tag !== '' && !tags.includes(tag));
-
-      if (newTags.length > 0) {
-        setTags([...tags, ...newTags]);
-      }
-      setInputValue('');
-    }
-  };
-
-  const removeTag = (tagToRemove: string) => {
-    setTags(tags.filter(tag => tag !== tagToRemove));
-  };
-
   const handleSearch = () => {
-    if (tags.length === 0) return;
-    const query = tags.join(',');
+    const query = inputValue.trim();
+    if (!query) return;
     router.push(`/${lang}/results?ingredients=${encodeURIComponent(query)}`);
   };
 
@@ -87,47 +34,27 @@ export default function Home() {
         </section>
 
         {/* Search & Ingredients Input */}
-        <section className="space-y-6">
-          <div className="relative group">
+        <section>
+          <form
+            onSubmit={(e) => { e.preventDefault(); handleSearch(); }}
+            className="relative group"
+          >
+            {/* Search icon */}
             <div className="absolute inset-y-0 left-5 flex items-center pointer-events-none">
               <span className="material-symbols-outlined text-outline">search</span>
             </div>
+
             <input
               className="w-full pl-14 pr-6 py-5 bg-surface-container-low border-none rounded-full focus:ring-2 focus:ring-primary text-on-surface placeholder:text-outline/60 font-medium transition-all shadow-sm outline-none"
               placeholder={t.home.searchPlaceholder}
-              type="text"
+              type="search"
+              inputMode="search"
+              enterKeyHint="search"
               value={inputValue}
               onChange={(e) => setInputValue(e.target.value)}
-              onKeyDown={(e) => e.key === 'Enter' && handleAddTag()}
+              autoComplete="off"
             />
-          </div>
-
-          {/* Ingredient Tags Area */}
-          <div className="flex flex-wrap gap-3">
-            {tags.map((tag, i) => (
-              <div key={i} className="flex items-center gap-2 bg-surface-container-highest px-4 py-2 rounded-full border border-outline-variant/15 transition-all">
-                <span className="text-sm font-semibold text-on-surface-variant">{tag}</span>
-                <button
-                  className="hover:text-primary transition-colors"
-                  onClick={() => removeTag(tag)}
-                >
-                  <span className="material-symbols-outlined text-[18px]">close</span>
-                </button>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* Primary Call to Action */}
-        <section className={`sticky z-40 transition-all duration-300 ${isKeyboardOpen ? 'bottom-4' : 'bottom-28'}`}>
-          <button
-            className="w-full py-5 bg-gradient-to-r from-primary to-primary-container text-on-primary rounded-full font-headline font-bold text-lg shadow-[0_12px_24px_-8px_rgba(171,53,0,0.3)] hover:shadow-[0_16px_32px_-8px_rgba(171,53,0,0.4)] transition-all active:scale-[0.98] flex justify-center items-center gap-3 disabled:opacity-50"
-            onClick={handleSearch}
-            disabled={tags.length === 0}
-          >
-            <span className="material-symbols-outlined" style={{ fontVariationSettings: "'FILL' 1" }}>restaurant_menu</span>
-            {t.home.suggestButton}
-          </button>
+          </form>
         </section>
 
         {/* Quick Categories (Bento Style) */}
