@@ -27877,5 +27877,3643 @@
     "calories": 180,
     "tips": "Bánh tráng ướt vừa đủ giúp cuốn không bị rách, dễ ăn.",
     "imageUrl": "/images/chay-035.jpg"
+  },
+  {
+    "id": "ca-chep-001",
+    "name": "Cá chép kho tộ",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "2 muỗng canh nước dừa tươi"
+      ],
+      "optional": [
+        "Nước mắm",
+        "đường",
+        "tiêu",
+        "hành tím",
+        "ớt hiểm"
+      ]
+    },
+    "steps": [
+      "Làm sạch cá, ướp với nước mắm, đường, tiêu trong 15 phút.",
+      "Phi thơm hành tím, xếp cá vào nồi kho nhỏ lửa.",
+      "Thêm nước dừa, kho đến khi nước sánh lại, rắc tiêu và ớt lên trên."
+    ],
+    "cookingTime": 40,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "savory",
+      "traditional",
+      "home-cooking",
+      "caramelized",
+      "comfort-food"
+    ],
+    "region": "mien-nam",
+    "calories": 320,
+    "tips": "Nên dùng nồi đất để giữ nhiệt tốt và giúp cá kho thơm ngon hơn. Không đảo cá nhiều để tránh nát.",
+    "description": "Cá chép kho tộ thấm đẫm gia vị, thịt chắc ngọt hòa quyện cùng nước dừa béo ngậy."
+  },
+  {
+    "id": "ca-chep-002",
+    "name": "Cá chép hấp bia",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "1 lon bia tươi"
+      ],
+      "optional": [
+        "Sả",
+        "gừng",
+        "hành lá",
+        "rau răm",
+        "nước mắm",
+        "muối"
+      ]
+    },
+    "steps": [
+      "Làm sạch cá, khứa nhẹ hai bên thân, ướp muối và sả băm.",
+      "Đặt cá lên đĩa, đổ bia ngập nửa thân cá, thêm gừng đập dập.",
+      "Hấp cách thủy 20 phút, rắc hành lá và rau răm lên trước khi dùng."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed",
+      "aromatic",
+      "light",
+      "refreshing",
+      "beer-infused"
+    ],
+    "region": "mien-trung",
+    "calories": 280,
+    "tips": "Không hấp quá lâu để thịt cá không bị bở. Bia giúp khử tanh và làm mềm thịt cá nhanh chóng.",
+    "description": "Cá chép hấp bia giữ trọn vị ngọt tự nhiên, thịt cá mềm thơm hương bia và gừng nhẹ."
+  },
+  {
+    "id": "ca-chep-003",
+    "name": "Cá chép nấu canh chua",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "200g bạc hà",
+        "100g giá đỗ"
+      ],
+      "optional": [
+        "Me chua",
+        "cà chua",
+        "thơm",
+        "đường",
+        "nước mắm",
+        "ngò gai",
+        "ớt"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, cắt khúc, ướp chút muối. Me vắt lấy nước cốt.",
+      "Đun sôi nước, thả cá vào nấu chín, vớt bọt.",
+      "Cho thơm, cà chua, bạc hà vào, nêm nếm chua ngọt vừa miệng, tắt bếp thêm giá và ngò."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "sour-soup",
+      "refreshing",
+      "traditional",
+      "light",
+      "vegetable-rich"
+    ],
+    "region": "mien-nam",
+    "calories": 250,
+    "tips": "Thả rau sống vào sau cùng để giữ độ giòn. Nêm đường nhẹ để cân bằng vị chua gắt.",
+    "description": "Canh chua cá chép thanh mát, vị chua dịu từ me hòa quyện cùng thịt cá ngọt lành."
+  },
+  {
+    "id": "ca-chep-004",
+    "name": "Cá chép chiên giòn",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "100g bột chiên giòn"
+      ],
+      "optional": [
+        "Muối",
+        "tiêu",
+        "tỏi băm",
+        "dầu ăn",
+        "tương ớt",
+        "chanh"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa chéo, ướp muối tiêu 10 phút.",
+      "Lăn cá qua bột chiên giòn đã pha loãng sệt vừa phải.",
+      "Chiên ngập dầu lửa vừa đến khi vàng giòn, vớt ra giấy thấm dầu."
+    ],
+    "cookingTime": 25,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "crispy",
+      "fried",
+      "street-food",
+      "quick-meal",
+      "golden"
+    ],
+    "region": "toan-quoc",
+    "calories": 380,
+    "tips": "Chiên lửa nhỏ trước để cá chín đều, sau đó tăng lửa lớn để vỏ giòn. Dầu nóng già giúp cá không ngấm mỡ.",
+    "description": "Cá chép chiên giòn rụm bên ngoài, thịt bên trong ẩm mềm, chấm tương ớt cay nhẹ rất đưa cơm."
+  },
+  {
+    "id": "ca-chep-005",
+    "name": "Cá chép om dưa",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "300g dưa cải muối chua"
+      ],
+      "optional": [
+        "Thì là",
+        "hành lá",
+        "mỡ lợn",
+        "nước mắm",
+        "đường",
+        "ớt"
+      ]
+    },
+    "steps": [
+      "Dưa cải rửa sạch, vắt ráo, cắt khúc. Cá ướp gia vị sơ.",
+      "Phi thơm mỡ lợn, xào dưa cho săn, đổ nước vừa ăn đun sôi.",
+      "Cho cá vào om lửa nhỏ 15 phút, rắc thì là và hành lá."
+    ],
+    "cookingTime": 45,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "fermented",
+      "tangy",
+      "northern",
+      "comfort-food",
+      "savory"
+    ],
+    "region": "mien-bac",
+    "calories": 310,
+    "tips": "Dùng mỡ lợn xào dưa sẽ thơm hơn dầu ăn. Om nhỏ lửa giúp cá thấm vị mà không nát.",
+    "description": "Cá chép om dưa mang hương vị đặc trưng miền Bắc, vị chua dịu của dưa hòa quyện thịt cá béo ngọt."
+  },
+  {
+    "id": "ca-chep-006",
+    "name": "Cháo cá chép",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 400g",
+        "100g gạo tẻ"
+      ],
+      "optional": [
+        "Gừng",
+        "hành khô",
+        "ngò gai",
+        "nước mắm",
+        "muối",
+        "tiêu",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Nấu gạo thành cháo đặc. Luộc cá chín, gỡ lấy thịt, xương hầm lấy nước trong.",
+      "Xào hành khô, gừng với dầu, phi thơm rồi cho thịt cá vào đảo nhẹ.",
+      "Đổ thịt cá và nước luộc vào cháo, nêm nếm, rắc hành ngò trước khi ăn."
+    ],
+    "cookingTime": 50,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "porridge",
+      "nutritious",
+      "healing",
+      "comfort-food",
+      "breakfast"
+    ],
+    "region": "toan-quoc",
+    "calories": 260,
+    "tips": "Gỡ kỹ xương cá để tránh hóc. Cho gừng vào khử tanh và giữ ấm cơ thể.",
+    "description": "Cháo cá chép nóng hổi, dễ tiêu hóa, thích hợp cho người mới ốm dậy hoặc trẻ nhỏ."
+  },
+  {
+    "id": "ca-chep-007",
+    "name": "Cá chép nướng lá chuối",
+    "category": "com",
+    "subCategory": "nuong",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "2 lá chuối to"
+      ],
+      "optional": [
+        "Sả",
+        "ớt",
+        "ngũ vị hương",
+        "nước mắm",
+        "đường",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, ướp sả ớt băm, ngũ vị hương, nước mắm, đường 20 phút.",
+      "Gói cá kín trong lá chuối, buộc chặt bằng dây chuối hoặc lạt.",
+      "Nướng trên than hoa hoặc lò 20 phút đến khi lá chuối xém thơm."
+    ],
+    "cookingTime": 40,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "grilled",
+      "aromatic",
+      "leaf-wrapped",
+      "traditional",
+      "smoky"
+    ],
+    "region": "mien-trung",
+    "calories": 290,
+    "tips": "Dùng lá chuối tươi sẽ không bị rách khi nướng. Quét thêm dầu lên lá giúp cá không dính.",
+    "description": "Cá nướng lá chuối giữ nguyên độ ẩm, thơm mùi lá chuối cháy xém và gia vị đậm đà."
+  },
+  {
+    "id": "ca-chep-008",
+    "name": "Cá chép sốt cà chua",
+    "category": "com",
+    "subCategory": "sot",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "3 quả cà chua chín"
+      ],
+      "optional": [
+        "Hành tím",
+        "tỏi",
+        "nước mắm",
+        "đường",
+        "tương cà",
+        "dầu ăn",
+        "hành lá"
+      ]
+    },
+    "steps": [
+      "Cá chiên sơ vàng, vớt ra để ráo. Cà chua băm nhuyễn, xào chín nhừ.",
+      "Phi thơm hành tỏi, cho cà chua vào đảo, nêm mắm đường.",
+      "Cho cá vào rim nhẹ 5 phút, nước sốt sánh lại thì tắt bếp."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "tomato-sauce",
+      "sweet-tangy",
+      "home-cooking",
+      "colorful",
+      "family-meal"
+    ],
+    "region": "mien-bac",
+    "calories": 300,
+    "tips": "Xào kỹ cà chua để ra màu đỏ đẹp. Nêm ngọt nhẹ để cân bằng vị chua của cà.",
+    "description": "Cá chép sốt cà chua chua ngọt hài hòa, màu sắc bắt mắt, rất dễ ăn và đưa cơm."
+  },
+  {
+    "id": "ca-chep-009",
+    "name": "Cá chép hấp nấm hương",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g nấm hương khô"
+      ],
+      "optional": [
+        "Gừng",
+        "hành lá",
+        "nước tương",
+        "dầu mè",
+        "tiêu",
+        "muối"
+      ]
+    },
+    "steps": [
+      "Nấm hương ngâm mềm, thái sợi. Cá ướp gừng băm, muối, nước tương 15 phút.",
+      "Xếp nấm hương lên mặt cá, đặt vào xửng hấp.",
+      "Hấp 20 phút, rắc tiêu, hành lá, rưới dầu mè nóng lên trên."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed",
+      "umami",
+      "light",
+      "mushroom",
+      "healthy"
+    ],
+    "region": "toan-quoc",
+    "calories": 270,
+    "tips": "Ngâm nấm trong nước ấm để nấm nở đều và giữ hương. Rưới dầu mè khi vừa tắt bếp để dậy mùi.",
+    "description": "Cá hấp nấm hương thanh đạm, vị ngọt từ nấm và cá hòa quyện, tốt cho sức khỏe."
+  },
+  {
+    "id": "ca-chep-010",
+    "name": "Cá chép rim mặn ngọt",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 400g cắt khúc",
+        "2 muỗng đường"
+      ],
+      "optional": [
+        "Nước mắm",
+        "tiêu",
+        "hành tím",
+        "nước màu dừa",
+        "ớt"
+      ]
+    },
+    "steps": [
+      "Ướp cá với nước mắm, đường, nước màu trong 10 phút.",
+      "Phi hành tím, cho cá vào rim lửa nhỏ, trở nhẹ tay.",
+      "Khi nước sốt sệt lại, rắc tiêu và ớt, tắt bếp."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "sweet-savory",
+      "glazed",
+      "quick",
+      "simple",
+      "comfort-food"
+    ],
+    "region": "mien-nam",
+    "calories": 310,
+    "tips": "Dùng nước màu dừa tự nhiên để cá lên màu đẹp và không bị đắng. Rim lửa nhỏ giúp cá không cháy.",
+    "description": "Cá rim mặn ngọt bóng bẩy, thấm đều gia vị, ăn kèm cơm nóng rất ngon."
+  },
+  {
+    "id": "ca-chep-011",
+    "name": "Lẩu cá chép",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 800g",
+        "500g rau muống",
+        "200g đậu phụ"
+      ],
+      "optional": [
+        "Mẻ",
+        "mắm tôm",
+        "sả",
+        "ớt",
+        "me chua",
+        "bún",
+        "nấm kim châm"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, ướp sả ớt, me chua 15 phút. Nước lẩu hầm xương lợn.",
+      "Phi thơm sả, cho nước dùng vào, nêm mẻ và mắm tôm.",
+      "Nhúng cá vào lẩu sôi, ăn kèm rau, đậu, bún và nấm."
+    ],
+    "cookingTime": 60,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "hotpot",
+      "communal",
+      "spicy",
+      "aromatic",
+      "social-dining"
+    ],
+    "region": "toan-quoc",
+    "calories": 450,
+    "tips": "Cho mẻ vào sau khi nước sôi để giữ vị chua thơm. Nhúng cá vừa chín tới để thịt ngọt.",
+    "description": "Lẩu cá chép nóng hổi, vị chua cay đặc trưng, thích hợp cho bữa ăn gia đình hoặc tụ tập bạn bè."
+  },
+  {
+    "id": "ca-chep-012",
+    "name": "Cá chép xào lăn",
+    "category": "com",
+    "subCategory": "xao",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "100g dừa tươi nạo"
+      ],
+      "optional": [
+        "Sả",
+        "gừng",
+        "hành tỏi",
+        "nghệ",
+        "nước cốt dừa",
+        "tiêu",
+        "rau răm"
+      ]
+    },
+    "steps": [
+      "Cá cắt khúc, ướp nghệ, sả, gừng, tiêu 15 phút.",
+      "Phi thơm hành tỏi, xào cá săn, thêm dừa nạo và nước cốt dừa.",
+      "Đun nhỏ lửa 10 phút, rắc rau răm, ăn nóng với cơm."
+    ],
+    "cookingTime": 35,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "coconut",
+      "aromatic",
+      "stir-fried",
+      "northern",
+      "rich"
+    ],
+    "region": "mien-bac",
+    "calories": 360,
+    "tips": "Dùng dừa tươi nạo sẽ thơm hơn dừa đóng hộp. Xào lửa vừa để cá không vỡ nát.",
+    "description": "Cá xào lăn béo ngậy nước cốt dừa, thơm hương sả gừng, vị đậm đà khó cưỡng."
+  },
+  {
+    "id": "ca-chep-013",
+    "name": "Cá chép chưng tương",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "3 muỗng tương bần"
+      ],
+      "optional": [
+        "Dứa",
+        "gừng",
+        "hành khô",
+        "ớt",
+        "đường",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa nhẹ, ướp tương bần và đường 10 phút.",
+      "Xếp cá vào đĩa, phủ dứa thái lát, gừng sợi lên trên.",
+      "Hấp cách thủy 20 phút, phi hành ớt rưới lên mặt cá."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "fermented-paste",
+      "steamed",
+      "tangy",
+      "traditional",
+      "simple"
+    ],
+    "region": "mien-bac",
+    "calories": 290,
+    "tips": "Tương bần đã mặn nên hạn chế thêm mắm muối. Dứa giúp cân bằng vị và khử tanh hiệu quả.",
+    "description": "Cá chưng tương bần mang hương vị đặc trưng đồng bằng Bắc Bộ, vị mặn ngọt hài hòa."
+  },
+  {
+    "id": "ca-chep-014",
+    "name": "Cá chép cuốn bánh tráng",
+    "category": "an-vat",
+    "subCategory": "tron",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "200g bánh tráng mỏng"
+      ],
+      "optional": [
+        "Rau sống",
+        "bún",
+        "dưa leo",
+        "xà lách",
+        "nước mắm pha",
+        "tỏi",
+        "ớt",
+        "chanh"
+      ]
+    },
+    "steps": [
+      "Cá hấp chín, gỡ thịt thành sợi. Tráng bánh mềm, xếp rau, bún, cá lên.",
+      "Cuộn chặt tay, chấm nước mắm chua ngọt pha tỏi ớt.",
+      "Thưởng thức ngay để bánh tráng không bị khô cứng."
+    ],
+    "cookingTime": 25,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "fresh",
+      "wrapped",
+      "light",
+      "healthy",
+      "street-food"
+    ],
+    "region": "mien-nam",
+    "calories": 280,
+    "tips": "Rưới chút dầu ăn lên bánh tráng khi cuốn để không dính. Cá hấp xong nên để nguội bớt mới cuốn.",
+    "description": "Gỏi cuốn cá chép thanh mát, giòn ngọt từ rau sống và cá, chấm mắm nêm hoặc mắm pha đều ngon."
+  },
+  {
+    "id": "ca-chep-015",
+    "name": "Cá chép chiên nước mắm",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "4 muỗng nước mắm"
+      ],
+      "optional": [
+        "Đường",
+        "tỏi băm",
+        "ớt",
+        "chanh",
+        "dầu ăn",
+        "tiêu"
+      ]
+    },
+    "steps": [
+      "Cá chiên vàng giòn, vớt ra giấy thấm dầu. Pha nước mắm, đường, tỏi ớt, chanh.",
+      "Đun hỗn hợp nước mắm sôi nhẹ, đổ nhanh lên mặt cá.",
+      "Rắc tiêu, dùng nóng với cơm trắng."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "sweet-fish-sauce",
+      "crispy",
+      "quick",
+      "southern",
+      "flavorful"
+    ],
+    "region": "mien-nam",
+    "calories": 350,
+    "tips": "Đổ nước mắm khi vừa sôi để tỏi ớt dậy mùi mà không bị cháy. Chiên cá thật khô vỏ để không bị ỉu.",
+    "description": "Cá chiên giòn rụm tưới nước mắm chua ngọt tỏi ớt, thơm lừng, kích thích vị giác."
+  },
+  {
+    "id": "ca-chep-016",
+    "name": "Cá chép hầm thuốc bắc",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "gói thuốc bắc (đương quy",
+        "kỷ tử",
+        "táo đỏ)"
+      ],
+      "optional": [
+        "Gừng",
+        "nước dừa",
+        "muối",
+        "tiêu",
+        "hành lá",
+        "rượu nếp"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, ướp gừng và rượu 10 phút. Thuốc bắc rửa sạch.",
+      "Xếp thuốc bắc vào bụng cá, buộc lạt chặt. Cho vào nồi, đổ nước dừa ngập.",
+      "Hầm lửa nhỏ 45 phút, nêm muối nhẹ, rắc hành lá."
+    ],
+    "cookingTime": 60,
+    "difficulty": "kho",
+    "servings": 4,
+    "tags": [
+      "herbal",
+      "nourishing",
+      "slow-cooked",
+      "medicinal",
+      "tonic"
+    ],
+    "region": "toan-quoc",
+    "calories": 320,
+    "tips": "Không hầm quá lâu để thuốc không bị đắng. Dùng nồi đất hoặc nồi áp suất để giữ dưỡng chất.",
+    "description": "Cá hầm thuốc bắc bổ dưỡng, thích hợp bồi bổ sức khỏe, vị ngọt thanh từ nước dừa và thảo dược."
+  },
+  {
+    "id": "ca-chep-017",
+    "name": "Cá chép muối chiên",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g muối hạt"
+      ],
+      "optional": [
+        "Tiêu",
+        "chanh",
+        "ớt",
+        "dầu ăn",
+        "rau răm",
+        "hành tím"
+      ]
+    },
+    "steps": [
+      "Cá rửa sạch, để thật ráo, ướp muối hạt và tiêu 15 phút.",
+      "Chiên cá ngập dầu lửa vừa đến khi da giòn, thịt chín đều.",
+      "Vớt ra, cắt miếng, ăn kèm muối tiêu chanh và rau răm."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "salt-fried",
+      "crispy",
+      "simple",
+      "aromatic",
+      "quick"
+    ],
+    "region": "toan-quoc",
+    "calories": 330,
+    "tips": "Phơi cá nơi thoáng gió 1 tiếng trước khi chiên để da khô, chiên sẽ giòn lâu hơn.",
+    "description": "Cá muối chiên da giòn rụm, thịt đậm vị mặn tự nhiên, chấm muối tiêu chanh cực kỳ đưa cơm."
+  },
+  {
+    "id": "ca-chep-018",
+    "name": "Cá chép nấu riêu",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "200g cua đồng giã"
+      ],
+      "optional": [
+        "Cà chua",
+        "đậu phụ",
+        "mắm tôm",
+        "hành lá",
+        "thì là",
+        "dầu ăn",
+        "muối"
+      ]
+    },
+    "steps": [
+      "Lọc nước cua, đun sôi để gạch nổi, vớt riêng. Cá cắt khúc ướp sơ.",
+      "Xào cà chua, cho nước cua vào đun, thả đậu phụ rán.",
+      "Cho cá vào nấu chín, nêm mắm tôm, rắc thì là, hành lá."
+    ],
+    "cookingTime": 50,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "crab-paste",
+      "rich",
+      "traditional",
+      "comfort-food",
+      "savory"
+    ],
+    "region": "mien-bac",
+    "calories": 380,
+    "tips": "Khuấy nhẹ khi đun nước cua để gạch không bị lắng. Cho mắm tôm vào sau cùng để giữ mùi thơm.",
+    "description": "Canh riêu cá chép đậm đà, gạch cua béo ngậy hòa quyện vị chua nhẹ từ cà, ăn kèm bún hoặc cơm."
+  },
+  {
+    "id": "ca-chep-019",
+    "name": "Cá chép hấp xì dầu",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "3 muỗng xì dầu"
+      ],
+      "optional": [
+        "Gừng",
+        "hành lá",
+        "dầu ăn nóng",
+        "tiêu trắng",
+        "đường",
+        "ớt sợi"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa chéo, ướp xì dầu, đường, gừng băm 15 phút.",
+      "Đặt cá lên đĩa, hấp cách thủy 20 phút đến khi chín.",
+      "Rắc hành lá, ớt sợi, rưới dầu ăn sôi lên mặt cá."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "soy-sauce",
+      "steamed",
+      "umami",
+      "light",
+      "chinese-inspired"
+    ],
+    "region": "toan-quoc",
+    "calories": 290,
+    "tips": "Dùng xì dầu loại ngon sẽ không bị mặn gắt. Rưới dầu sôi giúp hành lá chín thơm và dậy mùi.",
+    "description": "Cá hấp xì dầu thanh nhẹ, vị mặn ngọt hài hòa, thịt cá mềm mọng nước, thơm mùi gừng hành."
+  },
+  {
+    "id": "ca-chep-020",
+    "name": "Cá chép rang me",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "50g me chín"
+      ],
+      "optional": [
+        "Đường",
+        "nước mắm",
+        "tỏi băm",
+        "ớt",
+        "dầu ăn",
+        "tiêu",
+        "hành phi"
+      ]
+    },
+    "steps": [
+      "Cá chiên vàng, vớt ra. Me ngâm nước ấm, lọc bỏ hạt.",
+      "Đun me với đường, mắm, tỏi ớt đến khi sánh sệt.",
+      "Cho cá vào đảo nhanh tay, nước me bám đều thì tắt bếp."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "tamarind",
+      "sweet-sour",
+      "sticky",
+      "quick",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 340,
+    "tips": "Lọc kỹ me để không bị cặn. Đảo cá nhẹ tay để nước sốt không bị vỡ cá.",
+    "description": "Cá rang me chua ngọt hấp dẫn, lớp sốt me bóng bẩy bám đều từng miếng cá, kích thích vị giác."
+  },
+  {
+    "id": "ca-chep-021",
+    "name": "Cá chép bọc mỡ chài nướng",
+    "category": "com",
+    "subCategory": "nuong",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "200g mỡ chài"
+      ],
+      "optional": [
+        "Sả",
+        "ớt",
+        "ngũ vị hương",
+        "nước mắm",
+        "đường",
+        "lá lốt",
+        "than hoa"
+      ]
+    },
+    "steps": [
+      "Cá ướp sả ớt, ngũ vị hương, mắm đường 20 phút.",
+      "Trải mỡ chài, đặt cá lên, gói kín, buộc lạt cố định.",
+      "Nướng trên than hoa 25 phút, lật đều đến khi mỡ chài vàng giòn."
+    ],
+    "cookingTime": 45,
+    "difficulty": "kho",
+    "servings": 4,
+    "tags": [
+      "grilled",
+      "pork-lace",
+      "crispy",
+      "aromatic",
+      "traditional"
+    ],
+    "region": "mien-trung",
+    "calories": 420,
+    "tips": "Mỡ chài cần ngâm nước lạnh cho mềm trước khi gói. Nướng lửa đều để mỡ không chảy hết.",
+    "description": "Cá bọc mỡ chài nướng giữ độ ẩm tuyệt đối, lớp mỡ ngoài giòn tan, thịt trong mềm ngọt."
+  },
+  {
+    "id": "ca-chep-022",
+    "name": "Cá chép kho nghệ",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "2 củ nghệ tươi"
+      ],
+      "optional": [
+        "Nước mắm",
+        "đường",
+        "tiêu",
+        "hành tím",
+        "ớt",
+        "nước dừa",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Nghệ giã nhuyễn, lọc lấy nước cốt. Cá ướp nghệ, mắm, đường 15 phút.",
+      "Phi hành tím, cho cá vào kho lửa nhỏ, thêm nước dừa.",
+      "Kho đến khi nước sệt, rắc tiêu, ớt, dùng nóng."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "turmeric",
+      "golden",
+      "anti-inflammatory",
+      "home-cooking",
+      "comfort-food"
+    ],
+    "region": "toan-quoc",
+    "calories": 310,
+    "tips": "Dùng nghệ tươi sẽ thơm và lên màu đẹp hơn bột nghệ. Kho nhỏ lửa để nghệ không bị đắng.",
+    "description": "Cá kho nghệ vàng ươm, thơm nồng nghệ tươi, vị đậm đà, tốt cho tiêu hóa và sức khỏe."
+  },
+  {
+    "id": "ca-chep-023",
+    "name": "Cá chép nấu canh măng",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "200g măng chua"
+      ],
+      "optional": [
+        "Hành khô",
+        "thì là",
+        "hành lá",
+        "nước mắm",
+        "muối",
+        "tiêu",
+        "ớt"
+      ]
+    },
+    "steps": [
+      "Măng rửa nhiều lần, luộc sơ, vắt ráo. Cá cắt khúc ướp muối.",
+      "Phi hành khô, xào măng săn, đổ nước đun sôi.",
+      "Thả cá vào nấu chín, nêm nếm, rắc thì là, hành lá."
+    ],
+    "cookingTime": 40,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "bamboo-shoot",
+      "sour-soup",
+      "northern",
+      "traditional",
+      "aromatic"
+    ],
+    "region": "mien-bac",
+    "calories": 280,
+    "tips": "Luộc măng kỹ để loại bỏ độc tố và vị chát. Nêm muối nhẹ vì măng đã chua sẵn.",
+    "description": "Canh măng chua nấu cá chép thanh mát, vị chua dịu của măng hòa quyện thịt cá ngọt lành."
+  },
+  {
+    "id": "ca-chep-024",
+    "name": "Cá chép chiên bột xù",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "100g bột chiên xù"
+      ],
+      "optional": [
+        "Trứng gà",
+        "muối",
+        "tiêu",
+        "chanh",
+        "tương ớt",
+        "dầu ăn",
+        "rau sống"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa chéo, ướp muối tiêu 10 phút.",
+      "Nhúng cá qua trứng đánh tan, lăn đều qua bột chiên xù.",
+      "Chiên ngập dầu lửa vừa đến khi vàng giòn, cắt miếng ăn kèm tương."
+    ],
+    "cookingTime": 30,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "breaded",
+      "deep-fried",
+      "crispy",
+      "quick",
+      "snack"
+    ],
+    "region": "mien-nam",
+    "calories": 370,
+    "tips": "Dùng chảo sâu lòng để chiên ngập dầu. Lăn bột kỹ để vỏ không bị bong tróc.",
+    "description": "Cá chiên bột xù giòn rụm bên ngoài, mềm ẩm bên trong, chấm tương ớt ăn kèm rau sống rất vui miệng."
+  },
+  {
+    "id": "ca-chep-025",
+    "name": "Cá chép hấp hành gừng",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g gừng",
+        "50g hành lá"
+      ],
+      "optional": [
+        "Nước tương",
+        "dầu ăn",
+        "tiêu",
+        "muối",
+        "đường",
+        "ớt lát"
+      ]
+    },
+    "steps": [
+      "Gừng thái sợi, hành lá cắt khúc. Cá ướp muối, gừng, hành 15 phút.",
+      "Đặt cá lên đĩa, hấp cách thủy 20 phút.",
+      "Pha nước tương, đường, dầu nóng rưới lên cá, rắc tiêu ớt."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed",
+      "ginger",
+      "light",
+      "simple",
+      "healthy"
+    ],
+    "region": "toan-quoc",
+    "calories": 270,
+    "tips": "Hành gừng nên ngâm nước đá 5 phút trước khi hấp để giữ độ giòn và màu đẹp.",
+    "description": "Cá hấp hành gừng thanh nhẹ, vị gừng ấm nóng giúp khử tanh, thích hợp ăn vào mùa lạnh."
+  },
+  {
+    "id": "ca-chep-026",
+    "name": "Cá chép om chuối đậu",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "3 quả chuối xanh",
+        "2 bìa đậu phụ"
+      ],
+      "optional": [
+        "Mẻ",
+        "mắm tôm",
+        "nghệ",
+        "hành lá",
+        "thì là",
+        "tía tô",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Chuối gọt vỏ, cắt khúc ngâm nước muối. Đậu rán vàng. Cá ướp nghệ, mẻ.",
+      "Phi hành, xào chuối săn, đổ nước, nêm mắm tôm, thả cá và đậu.",
+      "Om lửa nhỏ 20 phút, rắc tía tô, thì là, hành lá."
+    ],
+    "cookingTime": 45,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "banana-stem",
+      "fermented",
+      "rich",
+      "northern",
+      "comfort-food"
+    ],
+    "region": "mien-bac",
+    "calories": 360,
+    "tips": "Dùng chuối xanh vừa tới để không bị nát khi om. Mẻ nên lọc kỹ trước khi nêm.",
+    "description": "Cá om chuối đậu đậm đà vị mẻ và mắm tôm, chuối chín mềm bở, đậu phụ thấm nước dùng."
+  },
+  {
+    "id": "ca-chep-027",
+    "name": "Cá chép sốt me cay",
+    "category": "com",
+    "subCategory": "sot",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g me chín",
+        "10g ớt bột"
+      ],
+      "optional": [
+        "Đường",
+        "nước mắm",
+        "tỏi băm",
+        "hành phi",
+        "dầu ăn",
+        "tiêu",
+        "rau răm"
+      ]
+    },
+    "steps": [
+      "Cá chiên vàng, vớt ráo. Me ngâm nước ấm, lọc lấy cốt.",
+      "Đun me với đường, mắm, ớt bột, tỏi đến khi sánh.",
+      "Cho cá vào đảo nhanh, rắc hành phi, rau răm."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "spicy",
+      "tamarind",
+      "sticky",
+      "quick",
+      "flavorful"
+    ],
+    "region": "mien-nam",
+    "calories": 350,
+    "tips": "Điều chỉnh lượng ớt bột theo khẩu vị. Đảo nhanh tay để cá không vỡ nát and sốt không bị cháy.",
+    "description": "Cá sốt me cay nồng hấp dẫn, vị chua cay mặn ngọt cân bằng, kích thích vị giác mạnh mẽ."
+  },
+  {
+    "id": "ca-chep-028",
+    "name": "Cá chép nấu ngót",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "200g rau ngót"
+      ],
+      "optional": [
+        "Hành khô",
+        "nước mắm",
+        "muối",
+        "tiêu",
+        "dầu ăn",
+        "gừng",
+        "hành lá"
+      ]
+    },
+    "steps": [
+      "Rau ngót tuốt lá, vò nhẹ, rửa sạch. Cá cắt khúc ướp sơ.",
+      "Phi hành khô, xào cá săn, đổ nước đun sôi.",
+      "Thả rau ngót vào nấu chín, nêm nếm, rắc hành lá."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "vegetable-soup",
+      "light",
+      "quick",
+      "healthy",
+      "traditional"
+    ],
+    "region": "mien-trung",
+    "calories": 250,
+    "tips": "Không nấu rau ngót quá lâu để giữ màu xanh và vitamin. Cho gừng vào khử tanh hiệu quả.",
+    "description": "Canh cá nấu ngót thanh mát, vị ngọt tự nhiên từ rau và cá, dễ tiêu hóa và giải nhiệt."
+  },
+  {
+    "id": "ca-chep-029",
+    "name": "Cá chép kho tiêu",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "2 muỗng tiêu đen"
+      ],
+      "optional": [
+        "Nước mắm",
+        "đường",
+        "hành tím",
+        "ớt",
+        "nước dừa",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Cá ướp mắm, đường, tiêu trong 10 phút. Hành tím phi thơm.",
+      "Cho cá vào nồi, thêm nước dừa, kho lửa nhỏ.",
+      "Đến khi nước sệt, rắc thêm tiêu và ớt, tắt bếp."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "pepper",
+      "savory",
+      "home-cooking",
+      "caramelized",
+      "comfort-food"
+    ],
+    "region": "mien-nam",
+    "calories": 320,
+    "tips": "Dùng tiêu nguyên hạt giã rối sẽ thơm hơn tiêu xay sẵn. Kho lửa nhỏ để tiêu không bị đắng.",
+    "description": "Cá kho tiêu thơm nồng, vị mặn ngọt hài hòa, tiêu đen kích thích vị giác, ăn cơm rất ngon."
+  },
+  {
+    "id": "ca-chep-030",
+    "name": "Cá chép hấp sả",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "5 cây sả"
+      ],
+      "optional": [
+        "Gừng",
+        "hành lá",
+        "nước mắm",
+        "muối",
+        "ớt",
+        "chanh",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Sả đập dập, cắt khúc. Gừng thái sợi. Cá ướp sả, gừng, muối 15 phút.",
+      "Đặt cá lên đĩa, xếp sả gừng lên trên, hấp cách thủy 25 phút.",
+      "Rưới nước mắm chanh ớt, rắc hành lá, dùng nóng."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "lemongrass",
+      "steamed",
+      "aromatic",
+      "light",
+      "refreshing"
+    ],
+    "region": "toan-quoc",
+    "calories": 280,
+    "tips": "Đập dập sả để tinh dầu tiết ra nhiều hơn. Hấp vừa chín tới để thịt không bị khô.",
+    "description": "Cá hấp sả thơm mát, hương sả đặc trưng khử tanh hiệu quả, thịt cá ngọt mềm thanh nhẹ."
+  },
+  {
+    "id": "ca-chep-031",
+    "name": "Cá chép chiên tỏi",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g tỏi băm"
+      ],
+      "optional": [
+        "Nước mắm",
+        "đường",
+        "tiêu",
+        "chanh",
+        "dầu ăn",
+        "ớt",
+        "hành lá"
+      ]
+    },
+    "steps": [
+      "Cá ướp muối, chiên vàng giòn, vớt ra. Tỏi băm phi vàng thơm.",
+      "Pha nước mắm, đường, chanh, tỏi phi, ớt.",
+      "Rưới hỗn hợp lên cá, rắc hành lá, thưởng thức ngay."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "garlic",
+      "crispy",
+      "quick",
+      "aromatic",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 340,
+    "tips": "Phi tỏi lửa nhỏ để tỏi vàng đều mà không bị cháy đắng. Chiên cá thật khô để vỏ giòn lâu.",
+    "description": "Cá chiên tỏi giòn thơm, vị tỏi vàng béo hòa quyện nước mắm chua ngọt, ăn cực kỳ đưa cơm."
+  },
+  {
+    "id": "ca-chep-032",
+    "name": "Cá chép nấu cháo hạt sen",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 400g",
+        "50g hạt sen khô",
+        "100g gạo tẻ"
+      ],
+      "optional": [
+        "Gừng",
+        "hành khô",
+        "ngò rí",
+        "nước mắm",
+        "muối",
+        "tiêu",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Nấu gạo và hạt sen thành cháo mềm. Luộc cá, gỡ thịt, xương hầm lấy nước trong.",
+      "Xào hành, gừng, phi thơm, cho thịt cá vào đảo nhẹ.",
+      "Đổ cá và nước dùng vào cháo, nêm nếm, rắc hành ngò."
+    ],
+    "cookingTime": 55,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "porridge",
+      "lotus-seed",
+      "nourishing",
+      "calming",
+      "breakfast"
+    ],
+    "region": "toan-quoc",
+    "calories": 270,
+    "tips": "Tâm sen nên bỏ để cháo không bị đắng. Nấu hạt sen mềm kỹ trước khi cho gạo vào.",
+    "description": "Cháo cá hạt sen thanh mát, vị ngọt dịu, giúp an thần và bồi bổ cơ thể hiệu quả."
+  },
+  {
+    "id": "ca-chep-033",
+    "name": "Cá chép gói lá sen hấp",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "2 lá sen tươi"
+      ],
+      "optional": [
+        "Gừng",
+        "hành tím",
+        "nước tương",
+        "đường",
+        "tiêu",
+        "dầu mè",
+        "lá lốt"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, ướp gừng, hành tím, nước tương, đường 15 phút.",
+      "Gói cá kín trong lá sen, đặt vào xửng.",
+      "Hấp cách thủy 25 phút, rắc tiêu, rưới dầu mè."
+    ],
+    "cookingTime": 35,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "lotus-leaf",
+      "steamed",
+      "aromatic",
+      "traditional",
+      "light"
+    ],
+    "region": "mien-bac",
+    "calories": 260,
+    "tips": "Dùng lá sen tươi không bị rách sẽ giữ hương tốt hơn. Lá sen nên rửa sạch và lau khô trước khi gói.",
+    "description": "Cá gói lá sen hấp giữ trọn hương thơm thanh khiết của sen, thịt cá mềm ngọt, vị nhẹ nhàng."
+  },
+  {
+    "id": "ca-chep-034",
+    "name": "Cá chép rim gừng",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "30g gừng tươi"
+      ],
+      "optional": [
+        "Nước mắm",
+        "đường",
+        "nước màu",
+        "tiêu",
+        "ớt",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Gừng thái sợi mỏng. Cá ướp mắm, đường, nước màu, gừng 10 phút.",
+      "Cho cá vào nồi, rim lửa nhỏ, trở nhẹ tay.",
+      "Khi nước sệt, thêm gừng tươi và ớt, rim thêm 2 phút."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "ginger",
+      "simmered",
+      "sweet-savory",
+      "warming",
+      "home-cooking"
+    ],
+    "region": "mien-trung",
+    "calories": 310,
+    "tips": "Cho gừng vào hai lần: ướp để ngấm và rim cuối để dậy mùi. Rim lửa nhỏ để không cháy đáy nồi.",
+    "description": "Cá rim gừng thơm nồng, vị gừng ấm áp cân bằng vị mặn ngọt, thích hợp ăn vào ngày lạnh."
+  },
+  {
+    "id": "ca-chep-035",
+    "name": "Cá chép nướng than hoa",
+    "category": "com",
+    "subCategory": "nuong",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 700g",
+        "than hoa"
+      ],
+      "optional": [
+        "Muối",
+        "tiêu",
+        "sả",
+        "ớt",
+        "chanh",
+        "dầu ăn",
+        "rau sống",
+        "bánh tráng"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa chéo, ướp muối tiêu, sả ớt 20 phút.",
+      "Gá cá lên vỉ, nướng trên than hoa lửa đều.",
+      "Nướng 25 phút, lật trở, đến khi da vàng giòn, chấm muối ớt chanh."
+    ],
+    "cookingTime": 40,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "charcoal",
+      "grilled",
+      "smoky",
+      "street-food",
+      "crispy"
+    ],
+    "region": "mien-trung",
+    "calories": 330,
+    "tips": "Quét dầu lên vỉ nướng để cá không dính. Than hồng đều giúp cá chín vàng không bị cháy xém.",
+    "description": "Cá nướng than hoa thơm khói đặc trưng, da giòn thịt ngọt, chấm muối ớt chanh ăn kèm rau sống rất ngon."
+  },
+  {
+    "id": "ca-chep-036",
+    "name": "Cá chép nấu canh khổ qua",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "1 quả khổ qua"
+      ],
+      "optional": [
+        "Thịt băm",
+        "hành khô",
+        "nước mắm",
+        "muối",
+        "tiêu",
+        "hạt nêm",
+        "hành lá"
+      ]
+    },
+    "steps": [
+      "Khổ qua bổ đôi, bỏ ruột, cắt khúc. Cá cắt khúc ướp sơ.",
+      "Phi hành, xào thịt băm, đổ nước đun sôi, thả khổ qua.",
+      "Cho cá vào nấu chín, nêm nếm, rắc hành lá."
+    ],
+    "cookingTime": 35,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "bitter-melon",
+      "clear-soup",
+      "healthy",
+      "traditional",
+      "refreshing"
+    ],
+    "region": "mien-trung",
+    "calories": 260,
+    "tips": "Luộc khổ qua qua nước sôi có pha muối để giảm đắng. Nấu lửa vừa để khổ qua không nát.",
+    "description": "Canh khổ qua cá chép thanh mát, vị đắng nhẹ giúp thanh nhiệt, thịt cá ngọt lành cân bằng vị."
+  },
+  {
+    "id": "ca-chep-037",
+    "name": "Cá chép sốt bơ tỏi",
+    "category": "com",
+    "subCategory": "sot",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g bơ lạt"
+      ],
+      "optional": [
+        "Tỏi băm",
+        "hành lá",
+        "nước mắm",
+        "đường",
+        "tiêu",
+        "chanh",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Cá chiên vàng, vớt ráo. Bơ đun chảy, phi tỏi thơm.",
+      "Cho nước mắm, đường, chanh vào bơ, đun nhẹ đến khi sánh.",
+      "Rưới hỗn hợp lên cá, rắc hành lá, tiêu."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "butter",
+      "garlic",
+      "rich",
+      "quick",
+      "western-fusion"
+    ],
+    "region": "mien-nam",
+    "calories": 380,
+    "tips": "Dùng bơ lạt nguyên chất sẽ thơm hơn bơ thực vật. Không đun bơ quá lửa để không bị cháy khét.",
+    "description": "Cá sốt bơ tỏi béo ngậy, thơm nồng tỏi, vị mặn ngọt hài hòa, lạ miệng và dễ ăn."
+  },
+  {
+    "id": "ca-chep-038",
+    "name": "Cá chép kho quẹt",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 400g",
+        "3 muỗng nước mắm"
+      ],
+      "optional": [
+        "Đường",
+        "tiêu",
+        "ớt",
+        "hành tím",
+        "nước dừa",
+        "dầu ăn",
+        "bánh tráng nóng"
+      ]
+    },
+    "steps": [
+      "Cá cắt khúc nhỏ, ướp mắm, đường, tiêu 10 phút.",
+      "Phi hành, cho cá vào kho, thêm nước dừa, đun lửa nhỏ.",
+      "Kho đến khi nước gần cạn, sệt lại, tắt bếp."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "dipping-sauce",
+      "sweet-savory",
+      "communal",
+      "street-food",
+      "traditional"
+    ],
+    "region": "mien-nam",
+    "calories": 300,
+    "tips": "Kho cạn nước để cá không bị ướt bánh tráng. Dùng bánh tráng nướng sẽ giòn hơn tráng nước.",
+    "description": "Cá kho quẹt mặn ngọt đậm đà, chấm bánh tráng nóng giòn rụm, món ăn vặt dân dã cực kỳ cuốn."
+  },
+  {
+    "id": "ca-chep-039",
+    "name": "Cá chép hấp tương hột",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "3 muỗng tương hột"
+      ],
+      "optional": [
+        "Gừng",
+        "hành tím",
+        "ớt",
+        "đường",
+        "dầu ăn",
+        "hành lá",
+        "tiêu"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa nhẹ, ướp tương hột, đường, gừng 15 phút.",
+      "Đặt cá lên đĩa, hấp cách thủy 20 phút.",
+      "Phi hành tím, ớt rưới lên mặt cá, rắc hành lá, tiêu."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "soybean-paste",
+      "steamed",
+      "savory",
+      "traditional",
+      "light"
+    ],
+    "region": "mien-trung",
+    "calories": 290,
+    "tips": "Tương hột có sẵn vị mặn nên hạn chế thêm gia vị. Hấp kín lửa để hơi nóng giữ ẩm cho cá.",
+    "description": "Cá hấp tương hột thơm bùi, vị mặn nhẹ đặc trưng miền Trung, thịt cá mềm ngọt thanh."
+  },
+  {
+    "id": "ca-chep-040",
+    "name": "Cá chép chiên giòn sốt chua ngọt",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "50g bột chiên giòn"
+      ],
+      "optional": [
+        "Dứa",
+        "cà chua",
+        "ớt chuông",
+        "đường",
+        "giấm",
+        "nước mắm",
+        "tỏi",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Cá ướp muối, lăn bột chiên vàng giòn. Rau củ cắt miếng vừa ăn.",
+      "Xào rau củ săn, pha đường, giấm, mắm, tỏi, đun sôi sánh.",
+      "Đổ sốt lên cá chiên, dùng nóng."
+    ],
+    "cookingTime": 35,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "sweet-sour",
+      "crispy",
+      "colorful",
+      "quick",
+      "family-meal"
+    ],
+    "region": "toan-quoc",
+    "calories": 390,
+    "tips": "Chiên cá thật khô để sốt không làm ỉu vỏ. Nêm sốt chua ngọt cân bằng trước khi đổ lên cá.",
+    "description": "Cá chiên giòn rụm phủ sốt chua ngọt rau củ tươi mát, màu sắc bắt mắt, dễ ăn cho cả nhà."
+  },
+  {
+    "id": "ca-chep-041",
+    "name": "Cá chép nấu canh cải chua",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "200g cải bẹ xanh muối chua"
+      ],
+      "optional": [
+        "Cà chua",
+        "hành khô",
+        "nước mắm",
+        "muối",
+        "tiêu",
+        "hành lá",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Cải chua rửa sạch, cắt khúc. Cá cắt khúc ướp muối.",
+      "Phi hành, xào cải và cà chua, đổ nước đun sôi.",
+      "Thả cá vào nấu chín, nêm nếm, rắc hành lá."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "pickled-vegetable",
+      "sour-soup",
+      "northern",
+      "quick",
+      "refreshing"
+    ],
+    "region": "mien-bac",
+    "calories": 260,
+    "tips": "Không nấu cải quá lâu để giữ độ giòn và vitamin. Nêm muối nhẹ vì cải đã mặn sẵn.",
+    "description": "Canh cải chua cá chép thanh mát, vị chua dịu của cải hòa quyện thịt cá ngọt, giải nhiệt ngày hè."
+  },
+  {
+    "id": "ca-chep-042",
+    "name": "Cá chép om dừa",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "200ml nước cốt dừa"
+      ],
+      "optional": [
+        "Sả",
+        "gừng",
+        "hành tím",
+        "nước mắm",
+        "đường",
+        "tiêu",
+        "ớt",
+        "rau răm"
+      ]
+    },
+    "steps": [
+      "Cá ướp sả gừng, mắm đường 15 phút. Phi hành tím thơm.",
+      "Cho cá vào nồi, đổ nước cốt dừa ngập nửa cá, om lửa nhỏ.",
+      "Om 20 phút đến khi nước sệt, rắc rau răm, tiêu."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "coconut",
+      "creamy",
+      "rich",
+      "southern",
+      "comfort-food"
+    ],
+    "region": "mien-nam",
+    "calories": 350,
+    "tips": "Dùng nước cốt dừa tươi sẽ thơm hơn đóng hộp. Om lửa nhỏ để nước cốt không bị tách dầu.",
+    "description": "Cá om dừa béo ngậy, nước dừa ngọt thanh thấm vào thịt cá, vị đậm đà khó quên."
+  },
+  {
+    "id": "ca-chep-043",
+    "name": "Cá chép chưng trứng",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 400g",
+        "2 quả trứng gà"
+      ],
+      "optional": [
+        "Hành lá",
+        "gừng",
+        "nước mắm",
+        "tiêu",
+        "dầu ăn",
+        "muối",
+        "hành tím"
+      ]
+    },
+    "steps": [
+      "Cá hấp chín, gỡ thịt thành miếng nhỏ. Trứng đánh tan with hành, gừng, mắm.",
+      "Trộn cá vào trứng, đổ vào đĩa chưng cách thủy 15 phút.",
+      "Rắc tiêu, hành phi, dùng nóng with cơm."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed-egg",
+      "soft",
+      "nutritious",
+      "quick",
+      "family-meal"
+    ],
+    "region": "toan-quoc",
+    "calories": 290,
+    "tips": "Đánh trứng nhẹ tay để không bị nhiều bọt. Chưng lửa vừa để trứng mịn không bị rỗ.",
+    "description": "Cá chưng trứng mềm mịn, vị ngọt từ cá và trứng hòa quyện, dễ tiêu hóa và giàu dinh dưỡng."
+  },
+  {
+    "id": "ca-chep-044",
+    "name": "Cá chép rang muối ớt",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g muối hạt",
+        "10g ớt bột"
+      ],
+      "optional": [
+        "Tỏi băm",
+        "chanh",
+        "dầu ăn",
+        "rau răm",
+        "hành tím",
+        "tiêu"
+      ]
+    },
+    "steps": [
+      "Cá ướp muối, ớt bột, tỏi 15 phút. Rang cá trong chảo không dầu lửa nhỏ.",
+      "Đến khi cá khô săn, muối bám đều, vớt ra.",
+      "Cắt miếng, chấm muối ớt chanh, ăn kèm rau răm."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "salt-roasted",
+      "spicy",
+      "dry",
+      "quick",
+      "snack"
+    ],
+    "region": "mien-nam",
+    "calories": 320,
+    "tips": "Dùng chảo dày để nhiệt phân bố đều. Rang lửa nhỏ để cá không cháy mà vẫn khô giòn.",
+    "description": "Cá rang muối ớt khô ráo, vị mặn cay thấm đều, chấm chanh tươi rất kích thích vị giác."
+  },
+  {
+    "id": "ca-chep-045",
+    "name": "Cá chép hấp rượu nếp",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "50ml rượu nếp cái hoa vàng"
+      ],
+      "optional": [
+        "Gừng",
+        "hành tím",
+        "nước mắm",
+        "đường",
+        "tiêu",
+        "lá chuối",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, ướp gừng, hành, rượu nếp 20 phút.",
+      "Gói cá trong lá chuối, đặt vào xửng hấp.",
+      "Hấp 25 phút, pha nước mắm đường tiêu rưới lên cá."
+    ],
+    "cookingTime": 35,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "rice-wine",
+      "steamed",
+      "aromatic",
+      "northern",
+      "traditional"
+    ],
+    "region": "mien-bac",
+    "calories": 300,
+    "tips": "Rượu nếp cái hoa vàng sẽ thơm và không gắt. Gói kín lá chuối để hương rượu không bay hơi.",
+    "description": "Cá hấp rượu nếp thơm nồng hương lên men, vị ngọt dịu, khử tanh triệt để, rất đặc sắc."
+  },
+  {
+    "id": "ca-chep-046",
+    "name": "Cá chép kho sả ớt",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "5 cây sả",
+        "5 quả ớt"
+      ],
+      "optional": [
+        "Nước mắm",
+        "đường",
+        "nước dừa",
+        "hành tím",
+        "tiêu",
+        "dầu ăn"
+      ]
+    },
+    "steps": [
+      "Sả ớt băm nhuyễn. Cá ướp sả ớt, mắm, đường 15 phút.",
+      "Phi hành tím, cho cá vào kho, thêm nước dừa.",
+      "Kho lửa nhỏ đến khi nước sệt, rắc tiêu."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "lemongrass",
+      "spicy",
+      "simmered",
+      "central",
+      "flavorful"
+    ],
+    "region": "mien-trung",
+    "calories": 310,
+    "tips": "Dùng sả già sẽ thơm hơn sả non. Kho lửa nhỏ để sả ớt không bị đắng cháy.",
+    "description": "Cá kho sả ớt thơm nồng, vị cay nồng sả ớt kích thích vị giác, đậm đà bản sắc miền Trung."
+  },
+  {
+    "id": "ca-chep-047",
+    "name": "Cá chép nấu canh rau răm",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g rau răm"
+      ],
+      "optional": [
+        "Gừng",
+        "hành khô",
+        "nước mắm",
+        "muối",
+        "tiêu",
+        "dầu ăn",
+        "hành lá"
+      ]
+    },
+    "steps": [
+      "Cá cắt khúc, ướp muối gừng. Rau răm nhặt rửa sạch.",
+      "Phi hành khô, xào cá săn, đổ nước đun sôi.",
+      "Thả rau răm vào nấu chín, nêm nếm, rắc hành lá."
+    ],
+    "cookingTime": 20,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "vietnamese-coriander",
+      "clear-soup",
+      "warming",
+      "quick",
+      "light"
+    ],
+    "region": "toan-quoc",
+    "calories": 250,
+    "tips": "Cho rau răm vào cuối cùng để giữ hương và màu xanh. Nêm nhạt để vị rau không bị lấn át.",
+    "description": "Canh cá rau răm thanh nhẹ, hương rau răm đặc trưng giúp ấm bụng và khử tanh hiệu quả."
+  },
+  {
+    "id": "ca-chep-048",
+    "name": "Cá chép chiên giòn chấm tương",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 600g",
+        "50g bột năng"
+      ],
+      "optional": [
+        "Tương cà",
+        "tương ớt",
+        "đường",
+        "giấm",
+        "tỏi băm",
+        "dầu ăn",
+        "hành lá"
+      ]
+    },
+    "steps": [
+      "Cá ướp muối, lăn bột năng chiên vàng giòn. Pha tương cà, ớt, đường, giấm, tỏi.",
+      "Đun hỗn hợp tương sôi nhẹ, tắt bếp. Cắt cá ra đĩa.",
+      "Chấm tương ăn kèm, rắc hành lá lên trên."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "crispy",
+      "sweet-sauce",
+      "quick",
+      "street-food",
+      "simple"
+    ],
+    "region": "mien-nam",
+    "calories": 360,
+    "tips": "Lăn bột đều và chiên ngập dầu để cá giòn lâu. Pha tương trước khi chiên cá để tiết kiệm thời gian.",
+    "description": "Cá chiên giòn rụm chấm tương chua ngọt tỏi ớt, món ăn vặt dân dã dễ làm và ngon miệng."
+  },
+  {
+    "id": "ca-chep-049",
+    "name": "Cá chép hấp nấm đông cô",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "50g nấm đông cô khô"
+      ],
+      "optional": [
+        "Gừng",
+        "hành lá",
+        "nước tương",
+        "dầu mè",
+        "tiêu",
+        "muối",
+        "đường"
+      ]
+    },
+    "steps": [
+      "Nấm ngâm mềm, cắt sợi. Cá ướp gừng, muối, nước tương 15 phút.",
+      "Xếp nấm lên cá, hấp cách thủy 20 phút.",
+      "Rắc hành lá, tiêu, rưới dầu mè nóng lên mặt cá."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "shiitake",
+      "steamed",
+      "umami",
+      "light",
+      "healthy"
+    ],
+    "region": "toan-quoc",
+    "calories": 280,
+    "tips": "Ngâm nấm trong nước ấm có chút đường để nấm nở nhanh và giữ hương. Hấp kín lửa để cá không bị khô.",
+    "description": "Cá hấp nấm đông cô thơm ngon, vị ngọt từ nấm and cá hòa quyện, thanh đạm và bổ dưỡng."
+  },
+  {
+    "id": "ca-chep-050",
+    "name": "Cá chép kho tộ tiêu xanh",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá chép 500g",
+        "20g tiêu xanh"
+      ],
+      "optional": [
+        "Nước mắm",
+        "đường",
+        "nước dừa",
+        "hành tím",
+        "ớt",
+        "dầu ăn",
+        "tía tô"
+      ]
+    },
+    "steps": [
+      "Cá ướp mắm, đường, tiêu xanh giã dập 15 phút.",
+      "Phi hành, cho cá vào kho, thêm nước dừa, đun lửa nhỏ.",
+      "Kho đến khi nước sệt, rắc tía tô, tiêu xanh nguyên hạt."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "green-pepper",
+      "caramelized",
+      "aromatic",
+      "southern",
+      "comfort-food"
+    ],
+    "region": "mien-nam",
+    "calories": 310,
+    "tips": "Dùng tiêu xanh tươi sẽ thơm và không gắt như tiêu khô. Kho lửa nhỏ để tiêu không bị đắng cháy.",
+    "description": "Cá kho tiêu xanh thơm nồng hương tiêu tươi, vị cay nhẹ thanh mát, thịt cá chắc ngọt thấm gia vị."
+  },
+  {
+    "id": "ca-qua-001",
+    "name": "Cá quả kho tộ",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá quả khoảng 700g",
+        "1 thìa canh nước mắm ngon",
+        "1 thìa canh đường",
+        "1 thìa nhỏ hạt tiêu",
+        "1 củ hành khô",
+        "1 quả ớt hiểm"
+      ],
+      "optional": [
+        "Mỡ nước",
+        "Hành lá",
+        "Dưa leo ăn kèm"
+      ]
+    },
+    "steps": [
+      "Sơ sạch cá quả, cắt khúc vừa ăn, ướp với nước mắm, đường, tiêu, hành tím băm trong 15 phút.",
+      "Đun nóng tộ đất, tráng ít mỡ nước rồi xếp cá vào, đổ thêm nước ướp.",
+      "Kho lửa nhỏ liu riu khoảng 20 phút đến khi nước sốt keo lại.",
+      "Thêm ớt hiểm, hành lá rồi tắt bếp, dùng nóng với cơm trắng."
+    ],
+    "cookingTime": 40,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "savory",
+      "traditional",
+      "comfort-food",
+      "home-cooking"
+    ],
+    "region": "toan-quoc",
+    "calories": 280,
+    "tips": "Nên kho bằng tộ đất và dùng mỡ nước thay dầu ăn để món ăn béo ngậy và thơm hơn.",
+    "description": "Món cá kho đậm đà, thịt chắc ngọt thấm đẫm gia vị trong chiếc tộ đất giữ nhiệt tuyệt vời."
+  },
+  {
+    "id": "ca-qua-002",
+    "name": "Cá quả nướng riềng mẻ",
+    "category": "com",
+    "subCategory": "nuong",
+    "ingredients": {
+      "main": [
+        "1 con cá quả 800g",
+        "3 củ riềng nhỏ",
+        "2 thìa mẻ lọc",
+        "1 thìa mắm tôm",
+        "1 thìa đường",
+        "1 thìa nghệ băm"
+      ],
+      "optional": [
+        "Mẻ lọc thêm",
+        "Bánh tráng",
+        "Rau sống, bún"
+      ]
+    },
+    "steps": [
+      "Làm sạch cá, khứa đều hai mặt để gia vị ngấm sâu.",
+      "Giã nhuyễn riềng, mẻ, mắm tôm, nghệ, đường thành hỗn hợp sệt, ướp cá ít nhất 30 phút.",
+      "Nướng cá trên than hoa hoặc vỉ nướng điện, lật đều tay đến khi vàng giòn hai mặt.",
+      "Dọn kèm bún tươi, bánh tráng nướng giòn và rau sống cuốn chấm mẻ pha."
+    ],
+    "cookingTime": 50,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "grilled",
+      "aromatic",
+      "northern",
+      "street-food",
+      "fermented"
+    ],
+    "region": "mien-bac",
+    "calories": 220,
+    "tips": "Cá nướng cần lửa vừa, tránh lật nhiều làm nát cá, phết thêm chút mỡ hành khi nướng để da giòn.",
+    "description": "Vị chua mẻ quyện riềng thơm nồng thấm vào từng thớ cá nướng than hoa thơm lừng."
+  },
+  {
+    "id": "ca-qua-003",
+    "name": "Canh chua cá quả",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "500g cá quả phi lê hoặc cắt khoanh",
+        "1 quả cà chua",
+        "50g me tươi",
+        "100g bạc hà",
+        "50g đậu bắp",
+        "10g giá đỗ",
+        "2 trái ớt",
+        "2 thìa canh đường",
+        "1 thìa canh nước mắm"
+      ],
+      "optional": [
+        "Ngò gai",
+        "Hành phi",
+        "Rau nhút"
+      ]
+    },
+    "steps": [
+      "Sơ chế cá sạch, ướp nhẹ với chút muối và tiêu.",
+      "Nấu me với nước sôi dằm nát lọc lấy nước cốt chua.",
+      "Đun sôi nước dùng, cho cá vào nấu chín nhẹ nhàng vớt ra để riêng.",
+      "Thả cà chua, bạc hà, đậu bắp vào nồi, nêm đường, nước mắm cho vừa miệng.",
+      "Cho cá và giá đỗ vào lại, tắt bếp, rắc ngò gai, ớt và hành phi."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "sour-soup",
+      "refreshing",
+      "southern",
+      "healthy",
+      "quick-meal"
+    ],
+    "region": "mien-nam",
+    "calories": 180,
+    "tips": "Không nấu cá quá lâu để tránh nát, cho cá vào lại nồi ở bước cuối để thịt săn chắc.",
+    "description": "Canh chua thanh mát với vị chua tự nhiên từ me, cá ngọt mềm hòa quyện rau củ giòn tươi."
+  },
+  {
+    "id": "ca-qua-004",
+    "name": "Chả cá Lã Vọng",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "500g phi lê cá quả",
+        "2 thìa nước mắm",
+        "1 thìa nghệ tươi giã nhuyễn",
+        "1 thìa mẻ",
+        "1 bó thì là",
+        "1 củ hành lá",
+        "100g bún tươi"
+      ],
+      "optional": [
+        "Hành khô phi thơm",
+        "Lạc rang",
+        "Tôm chua"
+      ]
+    },
+    "steps": [
+      "Phi lê cá thái miếng dày, ướp nước mắm, nghệ, mẻ trong 2 tiếng.",
+      "Xếp cá vào chảo gang, rắc thì là và hành lá cắt khúc lên trên.",
+      "Đun nóng dầu ăn, áp chảo cá chín vàng hai mặt, đảo nhẹ để thì là vừa chín tới.",
+      "Dọn ra bàn ăn kèm bún, hành phi, lạc rang và chấm mắm nêm hoặc mắm tôm."
+    ],
+    "cookingTime": 45,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "pan-fried",
+      "classic",
+      "hanoi",
+      "herbal",
+      "umami"
+    ],
+    "region": "mien-bac",
+    "calories": 260,
+    "tips": "Nên dùng chảo gang dày để giữ nhiệt, cho cá vào chảo nóng già để bề mặt cá se lại nhanh, không bị nát.",
+    "description": "Chả cá nghệ vàng óng, thơm nồng mùi thì là và hành lá, ăn kèm bún tươi và mắm tôm đặc trưng."
+  },
+  {
+    "id": "ca-qua-005",
+    "name": "Cá quả hấp bia",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá quả 600g",
+        "1 lon bia",
+        "2 nhánh sả đập dập",
+        "1 củ gừng thái sợi",
+        "1 thìa nước mắm",
+        "Hành lá, thì là"
+      ],
+      "optional": [
+        "Ớt hiểm",
+        "Dấm gạo",
+        "Nước tương"
+      ]
+    },
+    "steps": [
+      "Rửa sạch cá, khứa vài đường trên thân cá.",
+      "Xếp sả, gừng lót dưới đĩa hấp, đặt cá lên trên, rưới bia và nước mắm đều khắp thân cá.",
+      "Hấp cách thủy lửa lớn khoảng 15-20 phút đến khi cá chín mềm.",
+      "Lấy ra rắc hành lá, thì là, gừng sợi, ăn nóng kèm nước mắm gừng pha loãng."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed",
+      "light",
+      "aromatic",
+      "low-fat",
+      "easy"
+    ],
+    "region": "toan-quoc",
+    "calories": 190,
+    "tips": "Dùng bia không đường hoặc bia tươi sẽ giúp cá thơm hơn, không nên hấp quá lâu làm khô thịt cá.",
+    "description": "Cá hấp bia giữ nguyên độ ngọt tự nhiên, thấm đẫm hương sả gừng thanh nhẹ, tốt cho sức khỏe."
+  },
+  {
+    "id": "ca-qua-006",
+    "name": "Cá quả rán sốt cà chua",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "400g cá quả cắt khúc",
+        "3 quả cà chua chín",
+        "2 thìa nước mắm",
+        "1 thìa đường",
+        "1 thìa cà phê bột ngọt",
+        "Hành khô, tỏi",
+        "Dầu ăn"
+      ],
+      "optional": [
+        "Hành lá",
+        "Rau mùi",
+        "Ớt tươi"
+      ]
+    },
+    "steps": [
+      "Cá rửa sạch, ướp chút muối và tiêu trong 10 phút.",
+      "Chiên cá vàng giòn hai mặt, vớt ra để ráo dầu.",
+      "Phi thơm hành tỏi, xào cà chua chín nhừ, nêm nước mắm, đường, mì chính.",
+      "Cho cá vào rim nhẹ 5 phút cho thấm sốt, rắc hành lá và ớt rồi tắt bếp."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "fried",
+      "tomato-sauce",
+      "family-meal",
+      "tangy",
+      "crispy"
+    ],
+    "region": "toan-quoc",
+    "calories": 240,
+    "tips": "Nên chọn cà chua chín đỏ để sốt lên màu đẹp và vị chua ngọt tự nhiên, rim nhỏ lửa để cá không bị nát.",
+    "description": "Cá giòn rụm hòa quyện sốt cà chua chua ngọt đậm đà, đưa cơm cực kỳ hiệu quả."
+  },
+  {
+    "id": "ca-qua-007",
+    "name": "Lẩu cá quả măng chua",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "1kg cá quả cắt lát dày",
+        "200g măng chua ngâm",
+        "1 quả cà chua",
+        "1 thìa mẻ lọc",
+        "2 thìa nước mắm",
+        "500ml nước dùng",
+        "Nấm hương, nấm rơm"
+      ],
+      "optional": [
+        "Bún tươi",
+        "Rau muống, cải cúc",
+        "Hành khô phi thơm"
+      ]
+    },
+    "steps": [
+      "Sơ chế măng chua luộc sơ 2 nước, rửa sạch, thái miếng vừa ăn.",
+      "Phi hành khô, xào măng và cà chua, đổ nước dùng vào đun sôi.",
+      "Nêm nước mắm, mẻ, đường cho vừa vị, thả nấm vào.",
+      "Khi nước lẩu sôi, nhúng từng lát cá chín tái, ăn kèm bún và rau sống."
+    ],
+    "cookingTime": 45,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "hotpot",
+      "fermented-bamboo",
+      "sour",
+      "communal",
+      "warming"
+    ],
+    "region": "mien-bac",
+    "calories": 210,
+    "tips": "Măng cần luộc kỹ để loại bỏ độc tố và vị hăng, nước lẩu nên nêm hơi đậm vì nhúng cá và rau sẽ làm loãng vị.",
+    "description": "Nước lẩu chua thanh từ măng lên men, cá ngọt mềm tan ngay trong miệng, thích hợp cho bữa ăn gia đình sum họp."
+  },
+  {
+    "id": "ca-qua-008",
+    "name": "Cá quả om dưa",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "500g cá quả cắt khúc",
+        "200g dưa cải muối chua",
+        "2 quả cà chua",
+        "1 thìa mẻ",
+        "1 thìa nước mắm",
+        "Hành khô, tỏi"
+      ],
+      "optional": [
+        "Thì là",
+        "Hành lá",
+        "Ớt"
+      ]
+    },
+    "steps": [
+      "Dưa cải rửa sạch, vắt ráo, xào thơm với hành tỏi.",
+      "Cho cà chua thái múi cau vào xào cùng, thêm nước và mẻ đun sôi.",
+      "Xếp cá vào nồi, om lửa nhỏ 15 phút cho cá thấm vị chua ngọt.",
+      "Rắc thì là, hành lá, ớt rồi bắc ra, dùng nóng với cơm."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "pickled-vegetable",
+      "traditional",
+      "sour-savory",
+      "rustic"
+    ],
+    "region": "mien-bac",
+    "calories": 200,
+    "tips": "Chọn dưa cải muối vừa chua, không quá mặn, om cá lửa nhỏ để thịt không bị bở.",
+    "description": "Vị chua dịu của dưa cải muối hòa quyện thịt cá ngọt mềm, món ăn dân dã nhưng vô cùng cuốn hút."
+  },
+  {
+    "id": "ca-qua-009",
+    "name": "Cá quả kho tiêu",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "600g cá quả cắt khoanh",
+        "2 thìa nước cốt dừa",
+        "2 thìa nước mắm",
+        "1 thìa đường",
+        "2 thìa tiêu đen xay",
+        "1 củ hành tím"
+      ],
+      "optional": [
+        "Ớt sừng",
+        "Mỡ heo",
+        "Dưa món"
+      ]
+    },
+    "steps": [
+      "Cá ướp nước mắm, đường, hành tím băm, tiêu trong 20 phút.",
+      "Đun nóng nồi, thắng ít đường làm màu caramen rồi xếp cá vào.",
+      "Rưới nước cốt dừa, kho lửa nhỏ đến khi nước sánh đặc.",
+      "Rắc thêm tiêu và ớt, tắt bếp, dùng kèm cơm trắng và dưa món."
+    ],
+    "cookingTime": 40,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "peppery",
+      "coconut-milk",
+      "rich",
+      "classic"
+    ],
+    "region": "toan-quoc",
+    "calories": 290,
+    "tips": "Thêm 1 thìa mỡ heo hoặc nước cốt dừa cuối cùng sẽ giúp món ăn bóng đẹp và béo thơm hơn.",
+    "description": "Món kho đậm vị với tiêu đen thơm nồng, nước sốt dừa béo ngậy quyện chặt từng miếng cá."
+  },
+  {
+    "id": "ca-qua-010",
+    "name": "Cháo cá quả",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "300g gạo tẻ",
+        "400g cá quả",
+        "50g gừng thái sợi",
+        "1 lít nước hầm xương",
+        "Hành khô phi thơm",
+        "Rau thì là"
+      ],
+      "optional": [
+        "Hành lá",
+        "Tiêu xay",
+        "Quẩy"
+      ]
+    },
+    "steps": [
+      "Vo gạo, nấu cháo nhừ với nước hầm xương.",
+      "Cá luộc chín, gỡ lấy thịt, xương cá để lọc nước dùng trong.",
+      "Phi hành khô, xào thịt cá săn lại, cho vào nồi cháo đun sôi nhẹ.",
+      "Nêm gia vị vừa ăn, rắc gừng, thì là, hành lá và tiêu, múc ra tô dùng với quẩy."
+    ],
+    "cookingTime": 50,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "porridge",
+      "nutritious",
+      "comforting",
+      "easy-digest",
+      "breakfast"
+    ],
+    "region": "toan-quoc",
+    "calories": 320,
+    "tips": "Nên xào thịt cá với hành phi trước khi cho vào cháo để khử mùi tanh và tăng độ thơm.",
+    "description": "Cháo trắng dẻo mịn quyện thịt cá ngọt lành, ấm bụng và dễ tiêu hóa cho mọi lứa tuổi."
+  },
+  {
+    "id": "ca-qua-011",
+    "name": "Cá quả chiên giòn sốt me",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá quả 700g",
+        "50g me chín",
+        "2 thìa đường",
+        "1 thìa nước mắm",
+        "1 thìa tương ớt",
+        "Tỏi băm",
+        "Dầu ăn"
+      ],
+      "optional": [
+        "Mè rang",
+        "Ớt sừng",
+        "Xà lách"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa chéo, chiên ngập dầu đến khi da giòn vàng, vớt ráo.",
+      "Me hòa nước ấm, lọc lấy nước cốt chua, đun sôi với đường, nước mắm, tương ớt.",
+      "Phi thơm tỏi, đổ sốt me vào cô đặc nhẹ, nhúng cá chiên vào đảo nhanh tay.",
+      "Bày cá ra đĩa, rưới sốt me còn lại, rắc mè và ớt, ăn kèm xà lách."
+    ],
+    "cookingTime": 40,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "deep-fried",
+      "sweet-sour",
+      "tamarind-sauce",
+      "crispy",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 310,
+    "tips": "Chiên cá lần đầu ở lửa vừa cho chín, lần hai lửa lớn để da giòn, sốt me cần cô vừa phải không quá đặc.",
+    "description": "Cá chiên vàng giòn rụm phủ lớp sốt me chua ngọt dẻo sánh, kích thích vị giác ngay từ miếng đầu tiên."
+  },
+  {
+    "id": "ca-qua-012",
+    "name": "Bún cá quả",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "500g cá quả phi lê",
+        "500g bún tươi",
+        "1 lít nước dùng xương heo",
+        "1 quả cà chua",
+        "2 thìa mắm nêm",
+        "Rau sống các loại"
+      ],
+      "optional": [
+        "Hành phi",
+        "Ớt băm",
+        "Mắm ruốc",
+        "Hành tây"
+      ]
+    },
+    "steps": [
+      "Xương heo hầm lấy nước dùng trong, nêm muối nhẹ.",
+      "Phi lê cá ướp gia vị, chiên hoặc hấp chín, để nguyên miếng hoặc xé nhỏ.",
+      "Phi hành tây, xào cà chua, đổ vào nồi nước dùng, nêm mắm nêm cho dậy mùi.",
+      "Trụng bún, xếp cá vào tô, chan nước dùng, thêm rau sống và hành phi."
+    ],
+    "cookingTime": 60,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "noodle-soup",
+      "savory",
+      "umami",
+      "street-food",
+      "filling"
+    ],
+    "region": "mien-nam",
+    "calories": 380,
+    "tips": "Nước dùng bún cá cần trong và ngọt tự nhiên, mắm nêm pha loãng vừa phải để không lấn át vị cá.",
+    "description": "Nước dùng ngọt thanh từ xương và mắm nêm đặc trưng, cá dai ngọt hòa quyện sợi bún mềm mại."
+  },
+  {
+    "id": "ca-qua-013",
+    "name": "Cá quả hấp gừng",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá quả 600g",
+        "50g gừng tươi",
+        "2 thìa rượu trắng",
+        "1 thìa nước tương",
+        "Hành lá",
+        "Dầu mè"
+      ],
+      "optional": [
+        "Ớt chỉ thiên",
+        "Xì dầu",
+        "Giấm"
+      ]
+    },
+    "steps": [
+      "Cá rửa sạch, ướp rượu trắng và gừng đập dập trong 10 phút khử tanh.",
+      "Xếp cá vào đĩa, rải gừng thái sợi mỏng lên trên.",
+      "Hấp cách thủy 15 phút đến khi thịt cá trắng đục, chín mềm.",
+      "Rưới nước tương, dầu mè, rắc hành lá thái nhỏ, dùng nóng."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed",
+      "ginger",
+      "light",
+      "healthy",
+      "detox"
+    ],
+    "region": "toan-quoc",
+    "calories": 170,
+    "tips": "Rượu trắng và gừng tươi là bộ đôi hoàn hảo để ướp cá hấp, giúp thịt săn và thơm hơn hẳn.",
+    "description": "Hương gừng ấm áp khử hoàn toàn vị tanh, giữ trọn độ tươi ngọt và mềm mại của thịt cá."
+  },
+  {
+    "id": "ca-qua-014",
+    "name": "Cá quả nấu giấm",
+    "category": "com",
+    "subCategory": "khac",
+    "ingredients": {
+      "main": [
+        "500g cá quả cắt khúc",
+        "50ml giấm gạo",
+        "1 củ hành khô",
+        "1 thìa đường",
+        "1 thìa nước mắm",
+        "Dưa chuột, cà chua"
+      ],
+      "optional": [
+        "Thì là",
+        "Hành lá",
+        "Ớt"
+      ]
+    },
+    "steps": [
+      "Cá ướp chút muối và giấm gạo trong 15 phút.",
+      "Phi hành khô thơm, xào cà chua, đổ nước đun sôi, nêm đường, nước mắm.",
+      "Thả cá vào nấu nhỏ lửa 10 phút, cho dưa chuột thái lát vào nấu chín tới.",
+      "Rắc thì là, hành lá, ớt, tắt bếp, ăn ngay khi còn nóng."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "vinegar-stew",
+      "sour",
+      "refreshing",
+      "summer-dish",
+      "simple"
+    ],
+    "region": "mien-bac",
+    "calories": 190,
+    "tips": "Không cho giấm vào quá sớm để tránh làm thịt cá bị khô, nêm giấm cuối cùng để giữ độ chua tươi.",
+    "description": "Vị giấm thanh chua nhẹ làm nền cho thịt cá ngọt mềm, món ăn giải nhiệt tuyệt vời cho ngày hè."
+  },
+  {
+    "id": "ca-qua-015",
+    "name": "Gỏi cá quả",
+    "category": "an-vat",
+    "subCategory": "tron",
+    "ingredients": {
+      "main": [
+        "300g phi lê cá quả tươi sống",
+        "50g thính gạo rang",
+        "50g dừa nạo sợi",
+        "30g mè rang",
+        "Rau thơm các loại",
+        "Chanh, ớt, tỏi"
+      ],
+      "optional": [
+        "Bánh tráng nướng",
+        "Dưa leo",
+        "Xoài xanh"
+      ]
+    },
+    "steps": [
+      "Phi lê cá thái lát mỏng, trộn nhanh với nước chanh và ớt để tái chanh cá.",
+      "Thêm dừa nạo, mè, thính rang, rau thơm thái nhỏ vào trộn đều.",
+      "Nêm đường, nước mắm, chanh cho vị chua ngọt hài hòa.",
+      "Ăn kèm bánh tráng nướng giòn và rau sống, chấm nước mắm pha đặc."
+    ],
+    "cookingTime": 35,
+    "difficulty": "kho",
+    "servings": 4,
+    "tags": [
+      "salad",
+      "raw",
+      "citrus",
+      "crunchy",
+      "central"
+    ],
+    "region": "mien-trung",
+    "calories": 210,
+    "tips": "Cá phải thật tươi, dao thật sắc để thái lát mỏng, trộn đều tay và ăn ngay để đảm bảo độ giòn tươi.",
+    "description": "Món gỏi tươi mát với thịt cá tái chanh dai ngọt, hòa quyện vị béo dừa và giòn thính đặc trưng."
+  },
+  {
+    "id": "ca-qua-016",
+    "name": "Cá quả kho dứa",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "500g cá quả cắt khoanh",
+        "1/2 quả dứa chín",
+        "2 thìa nước mắm",
+        "1 thìa đường",
+        "1 thìa tiêu",
+        "Hành khô, tỏi"
+      ],
+      "optional": [
+        "Ớt",
+        "Mỡ nước",
+        "Hành lá"
+      ]
+    },
+    "steps": [
+      "Cá ướp nước mắm, đường, tiêu trong 15 phút.",
+      "Dứa gọt sạch, cắt miếng vừa, xào thơm với hành tỏi.",
+      "Xếp cá lên trên dứa, rưới thêm ít nước, kho lửa nhỏ 20 phút.",
+      "Nước sánh lại, cá thấm vị chua ngọt dứa, rắc tiêu và hành lá rồi tắt bếp."
+    ],
+    "cookingTime": 40,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "pineapple",
+      "sweet-tangy",
+      "tropical",
+      "family-style"
+    ],
+    "region": "toan-quoc",
+    "calories": 250,
+    "tips": "Chọn dứa vừa chín tới, không quá chua để nước kho có độ sánh ngọt vừa phải, kho bằng nồi đất giữ nhiệt tốt hơn.",
+    "description": "Dứa chua ngọt tự nhiên làm mềm thịt cá, tạo nên hương vị nhiệt đới đặc trưng khó cưỡng."
+  },
+  {
+    "id": "ca-qua-017",
+    "name": "Cá quả xào lăn",
+    "category": "com",
+    "subCategory": "xao",
+    "ingredients": {
+      "main": [
+        "400g phi lê cá quả",
+        "1 hộp nước cốt dừa",
+        "2 thìa bột cà ri",
+        "1 củ sả đập dập",
+        "Hành khô, tỏi",
+        "Rau ngổ"
+      ],
+      "optional": [
+        "Ớt sừng",
+        "Bánh mì",
+        "Cà chua"
+      ]
+    },
+    "steps": [
+      "Phi lê cá cắt miếng vuông, ướp bột cà ri, sả băm, hành tỏi 20 phút.",
+      "Phi thơm sả cây, xào cá săn lại, đổ nước cốt dừa vào đun nhỏ lửa.",
+      "Nêm muối, đường cho vừa miệng, đun đến khi nước sánh đặc lại.",
+      "Rắc rau ngổ, ớt sừng, tắt bếp, ăn kèm bánh mì hoặc cơm."
+    ],
+    "cookingTime": 35,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "stir-fried",
+      "curry",
+      "coconut",
+      "aromatic",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 330,
+    "tips": "Đảo cá nhẹ tay để không nát, nước cốt dừa nên cho vào sau khi cá se mặt để giữ độ trắng mềm.",
+    "description": "Nước cốt dừa béo ngậy quyện hương cà ri và sả, cá mềm ngọt thấm đẫm gia vị đậm chất Nam Bộ."
+  },
+  {
+    "id": "ca-qua-018",
+    "name": "Canh cá quả nấu rau thì là",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "300g cá quả phi lê",
+        "1 bó rau thì là",
+        "500ml nước dùng",
+        "2 thìa nước mắm",
+        "1 củ hành khô",
+        "Tiêu xay"
+      ],
+      "optional": [
+        "Hành lá",
+        "Ớt",
+        "Gừng"
+      ]
+    },
+    "steps": [
+      "Phi lê cá thái miếng, ướp chút nước mắm và tiêu.",
+      "Phi hành khô thơm, đổ nước dùng đun sôi, thả cá vào nấu chín.",
+      "Nêm nước mắm, đường cho vừa miệng, cho rau thì là thái nhỏ vào đảo nhanh.",
+      "Tắt bếp ngay, múc ra tô rắc hành lá và ớt, dùng nóng."
+    ],
+    "cookingTime": 20,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "soup",
+      "dill",
+      "light",
+      "quick",
+      "traditional"
+    ],
+    "region": "mien-bac",
+    "calories": 160,
+    "tips": "Thì là cho vào cuối cùng, đảo nhẹ và tắt bếp ngay để giữ màu xanh và hương thơm đặc trưng.",
+    "description": "Hương thì là đặc trưng quyện với nước dùng trong vắt và thịt cá ngọt lành, thanh mát dễ chịu."
+  },
+  {
+    "id": "ca-qua-019",
+    "name": "Cá quả đút lò nấm",
+    "category": "com",
+    "subCategory": "nuong",
+    "ingredients": {
+      "main": [
+        "400g phi lê cá quả",
+        "100g nấm mỡ",
+        "50g bơ lạt",
+        "1 thìa tỏi băm",
+        "Nước cốt chanh",
+        "Rau mùi tây"
+      ],
+      "optional": [
+        "Phô mai bào",
+        "Muối biển",
+        "Tiêu đen"
+      ]
+    },
+    "steps": [
+      "Cá ướp muối, tiêu, nước cốt chanh trong 10 phút.",
+      "Xào nấm với bơ và tỏi cho thơm, xếp vào khay nướng.",
+      "Đặt cá lên trên nấm, phết lớp bơ mỏng, nướng lò 180 độ C trong 15 phút.",
+      "Lấy ra rắc mùi tây và phô mai bào, dùng nóng."
+    ],
+    "cookingTime": 30,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "baked",
+      "mushroom",
+      "butter",
+      "modern",
+      "elegant"
+    ],
+    "region": "quoc-te",
+    "calories": 270,
+    "tips": "Bọc kín khay bằng giấy bạc trong 10 phút đầu để cá chín đều, mở ra 5 phút cuối để bề mặt vàng thơm.",
+    "description": "Cá đút lò giữ độ ẩm tự nhiên, kết hợp nấm bơ béo ngậy mang hương vị hiện đại nhưng vẫn quen thuộc."
+  },
+  {
+    "id": "ca-qua-020",
+    "name": "Cá quả rang muối",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "500g cá quả cắt khoanh",
+        "3 thìa muối hạt",
+        "1 thìa tiêu",
+        "1 củ hành khô",
+        "Ớt sừng",
+        "Dầu ăn"
+      ],
+      "optional": [
+        "Lá chanh",
+        "Hành tím phi",
+        "Tương ớt"
+      ]
+    },
+    "steps": [
+      "Cá rửa sạch, để ráo, ướp chút tiêu trong 5 phút.",
+      "Đun nóng dầu, chiên sơ cá vàng nhẹ, vớt ra.",
+      "Phi hành khô, cho muối hạt vào rang nóng, thả cá vào xóc đều tay.",
+      "Rang đến khi muối bám đều, cá giòn thơm, rắc ớt sừng và lá chanh rồi tắt bếp."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "salt-roasted",
+      "crispy",
+      "salty",
+      "appetizer",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 260,
+    "tips": "Rang muối trên lửa nhỏ để muối không cháy, xóc cá đều tay để muối bám mỏng, không nên ướp mặn trước.",
+    "description": "Lớp muối rang nóng làm se mặt cá, tạo độ giòn bên ngoài và giữ ngọt mềm bên trong cực kỳ bắt vị."
+  },
+  {
+    "id": "ca-ro-phi-001",
+    "name": "Cá rô phi kho tộ",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "1 con cá rô phi 600g",
+        "2 thìa canh nước mắm",
+        "1 thìa canh đường",
+        "1 thìa cà phê tiêu",
+        "1 củ hành khô"
+      ],
+      "optional": [
+        "Mỡ nước",
+        "Hành lá",
+        "Ớt hiểm"
+      ]
+    },
+    "steps": [
+      "Sơ chế cá sạch, khứa nhẹ hai bên mình và ướp with nước mắm, đường, tiêu trong 15 phút.",
+      "Đun nóng tộ đất, tráng lớp mỡ nước mỏng rồi xếp cá vào, đổ nước ướp còn lại lên trên.",
+      "Kho lửa nhỏ liu riu khoảng 25 phút đến khi nước sốt sệt lại và cá thấm đều gia vị.",
+      "Rắc hành lá và ớt hiểm, tắt bếp, dùng nóng with cơm trắng."
+    ],
+    "cookingTime": 40,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "traditional",
+      "savory",
+      "comfort-food",
+      "family-meal"
+    ],
+    "region": "toan-quoc",
+    "calories": 260,
+    "tips": "Dùng tộ đất và mỡ nước giúp món ăn giữ nhiệt lâu hơn và béo ngậy đặc trưng.",
+    "description": "Cá kho tộ đậm đà, thịt chắc ngọt thấm đẫm nước sốt keo sánh thơm nồng tiêu."
+  },
+  {
+    "id": "ca-ro-phi-002",
+    "name": "Cá rô phi chiên giòn",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "1 con cá rô phi 700g",
+        "1 thìa cà phê muối",
+        "1 thìa cà phê bột ngọt",
+        "Dầu ăn để chiên"
+      ],
+      "optional": [
+        "Tương ớt",
+        "Tương cà",
+        "Xà lách",
+        "Dưa chuột"
+      ]
+    },
+    "steps": [
+      "Làm sạch cá, khứa chéo đều hai mặt, ướp muối và bột ngọt trong 10 phút.",
+      "Làm nóng dầu ăn, chiên cá ngập lửa vừa đến khi da vàng giòn, vớt ra giấy thấm dầu.",
+      "Cắt cá thành miếng vừa ăn, bày ra đĩa kèm xà lách và dưa chuột.",
+      "Dùng nóng kèm tương ớt hoặc tương cà tùy thích."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "deep-fried",
+      "crispy",
+      "quick",
+      "classic",
+      "appetizing"
+    ],
+    "region": "toan-quoc",
+    "calories": 320,
+    "tips": "Chiên ở lửa vừa và lật nhẹ nhàng để cá không bị vỡ, dầu thật nóng trước khi thả cá.",
+    "description": "Cá chiên vàng ruộm, da giòn rụm bên ngoài, thịt trắng mềm ngọt bên trong."
+  },
+  {
+    "id": "ca-ro-phi-003",
+    "name": "Cá rô phi hấp xì dầu",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá rô phi 500g",
+        "3 thìa canh xì dầu",
+        "1 thìa canh đường",
+        "Gừng tươi thái sợi",
+        "Hành lá"
+      ],
+      "optional": [
+        "Ớt chỉ thiên",
+        "Dầu hào",
+        "Rau mùi"
+      ]
+    },
+    "steps": [
+      "Vệ sinh cá sạch sẽ, đặt vào đĩa hấp có lót vài lát gừng.",
+      "Trộn đều xì dầu, đường và dầu hào, rưới đều lên thân cá.",
+      "Hấp cách thủy lửa lớn khoảng 12-15 phút đến khi thịt cá chín mềm.",
+      "Lấy ra rắc gừng sợi, hành lá, ớt và dầu ăn nóng lên trên, thưởng thức ngay."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed",
+      "light",
+      "healthy",
+      "soy-sauce",
+      "umami"
+    ],
+    "region": "toan-quoc",
+    "calories": 180,
+    "tips": "Không hấp quá lâu để thịt cá không bị khô, rót dầu sôi lên hành gừng sẽ dậy mùi thơm.",
+    "description": "Cá hấp giữ trọn vị ngọt tự nhiên, thấm đẫm xì dầu mặn ngọt hài hòa, thanh mát dễ ăn."
+  },
+  {
+    "id": "ca-ro-phi-004",
+    "name": "Canh chua cá rô phi",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "400g cá rô phi cắt khúc",
+        "50g me tươi",
+        "1 quả cà chua",
+        "50g đậu bắp",
+        "50g giá đỗ",
+        "2 thìa canh đường",
+        "1 thìa canh nước mắm"
+      ],
+      "optional": [
+        "Ngò gai",
+        "Hành phi",
+        "Rau nhút"
+      ]
+    },
+    "steps": [
+      "Nấu me with nước sôi, dằm nát và lọc lấy nước cốt chua.",
+      "Đun sôi nước dùng, thả cá vào nấu chín nhẹ rồi vớt ra để riêng.",
+      "Cho cà chua, đậu bắp vào nồi, nêm đường và nước mắm vừa miệng.",
+      "Thả cá và giá đỗ vào lại, tắt bếp, rắc ngò gai và hành phi lên trên."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "sour-soup",
+      "refreshing",
+      "southern",
+      "healthy",
+      "quick-meal"
+    ],
+    "region": "mien-nam",
+    "calories": 190,
+    "tips": "Cho cá vào nồi ở bước cuối để thịt không bị nát và giữ được độ săn chắc.",
+    "description": "Nước canh chua thanh mát, vị me chua dịu hòa quyện thịt cá ngọt mềm cùng rau củ giòn tươi."
+  },
+  {
+    "id": "ca-ro-phi-005",
+    "name": "Cá rô phi rim mặn",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "500g cá rô phi nhỏ",
+        "3 thìa canh nước mắm",
+        "1 thìa canh đường",
+        "1 thìa cà phê tiêu",
+        "Hành tím băm"
+      ],
+      "optional": [
+        "Ớt tươi",
+        "Mỡ heo",
+        "Dưa món"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, ướp nước mắm, đường, hành tím và tiêu trong 20 phút.",
+      "Đun nóng nồi, xếp cá vào rim lửa nhỏ đến khi nước bắt đầu sánh.",
+      "Rim thêm 10 phút, đảo nhẹ cho cá thấm đều vị mặn ngọt.",
+      "Rắc tiêu và ớt, tắt bếp, dùng kèm cơm nóng và dưa món."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "simmered",
+      "salty-sweet",
+      "central",
+      "rustic",
+      "rice-companion"
+    ],
+    "region": "mien-trung",
+    "calories": 210,
+    "tips": "Rim lửa nhỏ và không đảo nhiều để cá giữ nguyên hình dáng và không bị nát.",
+    "description": "Món rim mặn đưa cơm, thịt cá thấm đẫm gia vị đậm đà, thơm nồng tiêu hành."
+  },
+  {
+    "id": "ca-ro-phi-006",
+    "name": "Lẩu cá rô phi măng chua",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "1kg cá rô phi cắt lát",
+        "200g măng chua ngâm",
+        "1 quả cà chua",
+        "2 thìa mẻ lọc",
+        "500ml nước dùng xương",
+        "Nấm hương"
+      ],
+      "optional": [
+        "Bún tươi",
+        "Rau muống",
+        "Hành phi"
+      ]
+    },
+    "steps": [
+      "Luộc sơ măng chua, rửa sạch, thái miếng vừa ăn để giảm vị hăng.",
+      "Phi hành khô, xào măng và cà chua, đổ nước dùng vào đun sôi.",
+      "Nêm nước mắm, mẻ, đường cho vừa vị, thả nấm hương vào.",
+      "Khi nước lẩu sôi, nhúng từng lát cá chín tái, ăn kèm bún và rau."
+    ],
+    "cookingTime": 50,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "hotpot",
+      "fermented-bamboo",
+      "sour",
+      "communal",
+      "warming"
+    ],
+    "region": "mien-bac",
+    "calories": 220,
+    "tips": "Măng cần luộc kỹ 2 lần nước để đảm bảo an toàn, nước lẩu nêm hơi đậm để nhúng rau không bị nhạt.",
+    "description": "Nước lẩu chua thanh từ măng và mẻ, cá ngọt mềm tan trong miệng, thích hợp cho bữa tiệc gia đình."
+  },
+  {
+    "id": "ca-ro-phi-007",
+    "name": "Cá rô phi nướng muối ớt",
+    "category": "com",
+    "subCategory": "nuong",
+    "ingredients": {
+      "main": [
+        "1 con cá rô phi 800g",
+        "3 thìa canh muối hạt",
+        "2 quả ớt sừng",
+        "1 thìa canh dầu ăn",
+        "Hành khô"
+      ],
+      "optional": [
+        "Rau sống",
+        "Bánh tráng",
+        "Muối tiêu chanh"
+      ]
+    },
+    "steps": [
+      "Làm sạch cá, khứa sâu hai bên mình cá.",
+      "Giã nhuyễn muối, ớt và dầu ăn thành hỗn hợp sệt, ướp đều vào trong và ngoài cá trong 30 phút.",
+      "Nướng cá trên than hoa hoặc lò nướng ở 200 độ C trong 25 phút, lật đều tay.",
+      "Dọn cá ra đĩa, ăn kèm rau sống, bánh tráng nướng và muối tiêu chanh."
+    ],
+    "cookingTime": 45,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "grilled",
+      "spicy",
+      "southern",
+      "smoky",
+      "street-food"
+    ],
+    "region": "mien-nam",
+    "calories": 240,
+    "tips": "Phết thêm lớp dầu mỏng khi nướng để da cá không bị khô, than hoa giúp cá thơm hơn lò điện.",
+    "description": "Da cá nướng giòn rụm, thịt bên trong ngọt ẩm, vị muối ớt cay nồng kích thích vị giác."
+  },
+  {
+    "id": "ca-ro-phi-008",
+    "name": "Cá rô phi sốt cà chua",
+    "category": "com",
+    "subCategory": "sot",
+    "ingredients": {
+      "main": [
+        "400g cá rô phi cắt khúc",
+        "3 quả cà chua chín",
+        "2 thìa nước mắm",
+        "1 thìa đường",
+        "1 củ hành khô",
+        "Tỏi băm"
+      ],
+      "optional": [
+        "Hành lá",
+        "Ớt tươi",
+        "Rau mùi"
+      ]
+    },
+    "steps": [
+      "Cá ướp chút muối và tiêu, chiên vàng hai mặt rồi vớt ra.",
+      "Phi thơm hành tỏi, xào cà chua chín nhừ, nêm nước mắm và đường.",
+      "Thả cá vào nồi sốt, rim nhỏ lửa 5 phút cho thấm vị.",
+      "Rắc hành lá và ớt, tắt bếp, dùng nóng with cơm trắng."
+    ],
+    "cookingTime": 30,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "pan-fried",
+      "tomato-sauce",
+      "tangy",
+      "family-meal",
+      "classic"
+    ],
+    "region": "toan-quoc",
+    "calories": 230,
+    "tips": "Chọn cà chua chín đỏ mềm để sốt sánh mịn, rim nhỏ lửa để sốt không bị cháy đáy.",
+    "description": "Cá giòn nhẹ hòa quyện sốt cà chua chua ngọt đậm đà, màu sắc bắt mắt và hương vị quen thuộc."
+  },
+  {
+    "id": "ca-ro-phi-009",
+    "name": "Cháo cá rô phi",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "300g gạo tẻ",
+        "400g cá rô phi",
+        "50g gừng thái sợi",
+        "1 lít nước dùng",
+        "Hành khô phi thơm",
+        "Thì là"
+      ],
+      "optional": [
+        "Hành lá",
+        "Tiêu xay",
+        "Quẩy giòn"
+      ]
+    },
+    "steps": [
+      "Vo sạch gạo, nấu cháo nhừ with nước dùng trong.",
+      "Luộc chín cá, gỡ lấy thịt nạc, xương lọc bỏ.",
+      "Phi hành khô, xào săn thịt cá, cho vào nồi cháo đun sôi nhẹ.",
+      "Nêm gia vị vừa ăn, rắc gừng, thì là, hành lá và tiêu, múc ra tô dùng with quẩy."
+    ],
+    "cookingTime": 45,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "porridge",
+      "nutritious",
+      "comforting",
+      "easy-digest",
+      "breakfast"
+    ],
+    "region": "toan-quoc",
+    "calories": 290,
+    "tips": "Xào thịt cá with hành phi trước khi cho vào cháo giúp khử tanh và tăng hương vị đáng kể.",
+    "description": "Cháo trắng dẻo mịn quyện thịt cá ngọt lành, ấm bụng và giàu dinh dưỡng cho cả gia đình."
+  },
+  {
+    "id": "ca-ro-phi-010",
+    "name": "Cá rô phi kho tiêu",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "500g cá rô phi cắt khoanh",
+        "2 thìa nước mắm",
+        "1 thìa đường",
+        "2 thìa tiêu đen xay",
+        "1 củ hành tím",
+        "Nước dừa tươi"
+      ],
+      "optional": [
+        "Ớt sừng",
+        "Mỡ nước",
+        "Dưa món"
+      ]
+    },
+    "steps": [
+      "Cá ướp nước mắm, đường, hành tím băm và tiêu trong 20 phút.",
+      "Thắng đường làm màu caramen nhẹ, xếp cá vào nồi, đổ nước dừa ngập 1/3 cá.",
+      "Kho lửa nhỏ đến khi nước sánh đặc, cá thấm đều vị mặn ngọt.",
+      "Rắc thêm tiêu và ớt, tắt bếp, dùng kèm cơm và dưa món."
+    ],
+    "cookingTime": 40,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "peppery",
+      "coconut-milk",
+      "rich",
+      "savory"
+    ],
+    "region": "toan-quoc",
+    "calories": 280,
+    "tips": "Thêm chút mỡ nước hoặc nước cốt dừa cuối cùng giúp món ăn bóng đẹp và thơm hơn.",
+    "description": "Tiêu đen thơm nồng kết hợp nước dừa béo ngậy tạo nên món kho đậm vị, ăn là ghiền."
+  },
+  {
+    "id": "ca-ro-phi-011",
+    "name": "Gỏi cá rô phi thính",
+    "category": "an-vat",
+    "subCategory": "tron",
+    "ingredients": {
+      "main": [
+        "300g phi lê cá rô phi tươi",
+        "50g thính gạo rang",
+        "30g dừa nạo sợi",
+        "Rau thơm các loại",
+        "Chanh, ớt, tỏi"
+      ],
+      "optional": [
+        "Bánh đa nướng",
+        "Dưa leo",
+        "Xoài xanh"
+      ]
+    },
+    "steps": [
+      "Phi lê cá thái lát mỏng, trộn nhanh with nước cốt chanh và ớt để tái chanh.",
+      "Thêm dừa nạo, thính rang, rau thơm thái nhỏ vào tô lớn.",
+      "Nêm đường, nước mắm, chanh cho vị chua ngọt hài hòa, trộn đều tay.",
+      "Ăn kèm bánh đa nướng giòn và rau sống, chấm nước mắm pha đặc."
+    ],
+    "cookingTime": 30,
+    "difficulty": "kho",
+    "servings": 4,
+    "tags": [
+      "salad",
+      "raw",
+      "citrus",
+      "crunchy",
+      "northern"
+    ],
+    "region": "mien-bac",
+    "calories": 200,
+    "tips": "Cá phải thật tươi và được xử lý vệ sinh kỹ, dao sắc thái lát mỏng đều để trộn nhanh.",
+    "description": "Món gỏi tươi mát with thịt cá tái chanh dai giòn, hòa quyện vị béo dừa và thơm ngậy thính rang."
+  },
+  {
+    "id": "ca-ro-phi-012",
+    "name": "Cá rô phi kho dưa",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "500g cá rô phi cắt khúc",
+        "200g dưa cải muối chua",
+        "2 quả cà chua",
+        "1 thìa mẻ",
+        "1 thìa nước mắm",
+        "Hành khô"
+      ],
+      "optional": [
+        "Thì là",
+        "Hành lá",
+        "Ớt"
+      ]
+    },
+    "steps": [
+      "Dưa cải rửa sạch, vắt ráo nước, xào thơm with hành khô.",
+      "Cho cà chua thái múi cau vào xào cùng, thêm nước và mẻ đun sôi.",
+      "Xếp cá vào nồi, om lửa nhỏ 15 phút cho cá thấm vị chua ngọt.",
+      "Rắc thì là, hành lá, ớt rồi bắc ra, dùng nóng with cơm."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "pickled-vegetable",
+      "traditional",
+      "sour-savory",
+      "rustic"
+    ],
+    "region": "mien-bac",
+    "calories": 210,
+    "tips": "Chọn dưa cải muối vừa chua không quá mặn, om lửa nhỏ để thịt cá không bị bở nát.",
+    "description": "Vị chua dịu của dưa cải muối hòa quyện thịt cá ngọt mềm, món ăn dân dã vô cùng đưa cơm."
+  },
+  {
+    "id": "ca-ro-phi-013",
+    "name": "Cá rô phi chiên mắm",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "400g cá rô phi nhỏ",
+        "3 thìa nước mắm",
+        "2 thìa đường",
+        "Tỏi băm",
+        "Ớt băm"
+      ],
+      "optional": [
+        "Hành phi",
+        "Rau sống",
+        "Cơm trắng"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, chiên vàng giòn hai mặt, vớt ra để ráo dầu.",
+      "Phi thơm tỏi và ớt, đổ nước mắm và đường vào đun sôi đến khi sánh sệt.",
+      "Thả cá vào nồi mắm, đảo nhanh tay cho mắm bám đều khắp thân cá.",
+      "Tắt bếp, rắc hành phi, ăn ngay khi còn nóng giòn."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "fried",
+      "fish-sauce",
+      "caramelized",
+      "savory",
+      "central"
+    ],
+    "region": "mien-trung",
+    "calories": 270,
+    "tips": "Đun mắm đến khi sệt vừa phải, cho cá vào đảo nhanh để cá không bị mềm nhũn.",
+    "description": "Cá giòn rụm phủ lớp mắm tỏi ớt caramel bóng đẹp, vị mặn ngọt đậm đà khó cưỡng."
+  },
+  {
+    "id": "ca-ro-phi-014",
+    "name": "Canh cá rô phi nấu thì là",
+    "category": "com",
+    "subCategory": "canh",
+    "ingredients": {
+      "main": [
+        "300g phi lê cá rô phi",
+        "1 bó rau thì là",
+        "500ml nước dùng",
+        "2 thìa nước mắm",
+        "1 củ hành khô"
+      ],
+      "optional": [
+        "Hành lá",
+        "Ớt",
+        "Gừng"
+      ]
+    },
+    "steps": [
+      "Phi lê cá thái miếng, ướp chút nước mắm và tiêu.",
+      "Phi hành khô thơm, đổ nước dùng đun sôi, thả cá vào nấu chín.",
+      "Nêm nước mắm, đường cho vừa miệng, cho rau thì là thái nhỏ vào đảo nhanh.",
+      "Tắt bếp ngay, múc ra tô rắc hành lá và ớt, dùng nóng."
+    ],
+    "cookingTime": 20,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "soup",
+      "dill",
+      "light",
+      "quick",
+      "traditional"
+    ],
+    "region": "mien-bac",
+    "calories": 160,
+    "tips": "Thì là cho vào cuối cùng, đảo nhẹ và tắt bếp ngay để giữ màu xanh và hương thơm đặc trưng.",
+    "description": "Hương thì là đặc trưng quyện with nước dùng trong vắt và thịt cá ngọt lành, thanh mát dễ chịu."
+  },
+  {
+    "id": "ca-ro-phi-015",
+    "name": "Cá rô phi om chuối đậu",
+    "category": "com",
+    "subCategory": "kho",
+    "ingredients": {
+      "main": [
+        "400g cá rô phi cắt khúc",
+        "2 quả chuối xanh",
+        "1 bìa đậu phụ",
+        "1 thìa mẻ",
+        "1 thìa nước mắm",
+        "Mắm tôm"
+      ],
+      "optional": [
+        "Tía tô",
+        "Hành lá",
+        "Ớt"
+      ]
+    },
+    "steps": [
+      "Chuối xanh gọt vỏ, ngâm nước muối loãng, đậu phụ chiên vàng cắt miếng.",
+      "Phi thơm hành, cho mắm tôm và mẻ vào xào, đổ nước dùng đun sôi.",
+      "Thả cá, chuối, đậu vào om lửa nhỏ 20 phút đến khi chuối mềm.",
+      "Rắc tía tô, hành lá, tắt bếp, ăn kèm cơm nóng."
+    ],
+    "cookingTime": 40,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "braised",
+      "banana",
+      "tofu",
+      "fermented",
+      "hearty"
+    ],
+    "region": "mien-bac",
+    "calories": 250,
+    "tips": "Chuối phải ngâm nước chua nhẹ để không bị thâm, om nhỏ lửa giúp đậu không bị vỡ.",
+    "description": "Vị béo bùi của đậu và chuối quyện with cá ngọt mềm, nước om sánh đặc đậm chất miền Bắc."
+  },
+  {
+    "id": "ca-ro-phi-016",
+    "name": "Cá rô phi hấp sả",
+    "category": "com",
+    "subCategory": "hap",
+    "ingredients": {
+      "main": [
+        "1 con cá rô phi 600g",
+        "5 cây sả đập dập",
+        "1 thìa nước tương",
+        "1 thìa đường",
+        "Gừng tươi",
+        "Hành lá"
+      ],
+      "optional": [
+        "Ớt hiểm",
+        "Dầu ăn",
+        "Rau sống"
+      ]
+    },
+    "steps": [
+      "Cá rửa sạch, khứa nhẹ, ướp nước tương, đường và gừng đập dập.",
+      "Xếp sả lót dưới đĩa hấp, đặt cá lên trên, rưới đều phần ướp.",
+      "Hấp cách thủy lửa lớn 15 phút đến khi thịt cá chín mềm.",
+      "Lấy ra rắc hành lá, gừng sợi, rưới dầu nóng lên, thưởng thức with rau sống."
+    ],
+    "cookingTime": 25,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "steamed",
+      "lemongrass",
+      "aromatic",
+      "light",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 190,
+    "tips": "Sả lót đáy đĩa giúp cá không dính và thấm hương thơm từ dưới lên trong quá trình hấp.",
+    "description": "Hương sả thơm nồng quyện vào từng thớ cá hấp mềm ngọt, món ăn thanh đạm tốt cho sức khỏe."
+  },
+  {
+    "id": "ca-ro-phi-017",
+    "name": "Bún cá rô phi",
+    "category": "pho-bun",
+    "subCategory": "nuoc",
+    "ingredients": {
+      "main": [
+        "500g cá rô phi phi lê",
+        "500g bún tươi",
+        "1 lít nước dùng xương",
+        "1 quả cà chua",
+        "2 thìa mắm nêm",
+        "Hành tây"
+      ],
+      "optional": [
+        "Rau sống",
+        "Hành phi",
+        "Ớt băm",
+        "Mắm tôm"
+      ]
+    },
+    "steps": [
+      "Hầm xương lấy nước dùng trong, nêm muối nhạt.",
+      "Phi lê cá ướp gia vị, chiên vàng hoặc hấp chín, xé nhỏ hoặc để nguyên miếng.",
+      "Phi hành tây, xào cà chua, đổ vào nồi nước dùng, nêm mắm nêm cho dậy mùi.",
+      "Trụng bún, xếp cá vào tô, chan nước dùng, thêm rau sống và hành phi."
+    ],
+    "cookingTime": 50,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "noodle-soup",
+      "savory",
+      "umami",
+      "street-food",
+      "filling"
+    ],
+    "region": "mien-bac",
+    "calories": 350,
+    "tips": "Nước dùng cần trong và ngọt tự nhiên, mắm nêm pha vừa phải để không lấn át vị tươi của cá.",
+    "description": "Nước dùng ngọt thanh hòa quyện mắm nêm đặc trưng, cá dai ngọt cùng sợi bún mềm mại hấp dẫn."
+  },
+  {
+    "id": "ca-ro-phi-018",
+    "name": "Cá rô phi xào lăn",
+    "category": "com",
+    "subCategory": "xao",
+    "ingredients": {
+      "main": [
+        "400g phi lê cá rô phi",
+        "1 hộp nước cốt dừa nhỏ",
+        "2 thìa bột cà ri",
+        "1 củ sả đập dập",
+        "Hành khô, tỏi",
+        "Rau ngổ"
+      ],
+      "optional": [
+        "Ớt sừng",
+        "Bánh mì",
+        "Cà chua"
+      ]
+    },
+    "steps": [
+      "Phi lê cá cắt miếng vuông, ướp bột cà ri, sả băm, hành tỏi 20 phút.",
+      "Phi thơm sả cây, xào cá săn lại, đổ nước cốt dừa vào đun nhỏ lửa.",
+      "Nêm muối, đường cho vừa miệng, đun đến khi nước sánh đặc lại.",
+      "Rắc rau ngổ, ớt sừng, tắt bếp, ăn kèm bánh mì hoặc cơm."
+    ],
+    "cookingTime": 35,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "stir-fried",
+      "curry",
+      "coconut",
+      "aromatic",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 310,
+    "tips": "Đảo cá nhẹ tay để không nát, nước cốt dừa nên cho vào sau khi cá se mặt để giữ độ trắng mềm.",
+    "description": "Nước cốt dừa béo ngậy quyện hương cà ri và sả, cá mềm ngọt thấm đẫm gia vị đậm chất Nam Bộ."
+  },
+  {
+    "id": "ca-ro-phi-019",
+    "name": "Cá rô phi đút lò phô mai",
+    "category": "com",
+    "subCategory": "nuong",
+    "ingredients": {
+      "main": [
+        "400g phi lê cá rô phi",
+        "100g phô mai mozzarella",
+        "50g bơ lạt",
+        "1 thìa tỏi băm",
+        "Nước cốt chanh",
+        "Rau mùi tây"
+      ],
+      "optional": [
+        "Muối biển",
+        "Tiêu đen",
+        "Kem tươi"
+      ]
+    },
+    "steps": [
+      "Cá ướp muối, tiêu, nước cốt chanh trong 10 phút.",
+      "Trộn bơ mềm, tỏi băm và kem tươi thành sốt bơ tỏi, phết lên khay nướng.",
+      "Đặt cá lên khay, rắc phô mai bào đều mặt, nướng lò 180 độ C trong 15 phút.",
+      "Lấy ra rắc mùi tây, dùng nóng with salad hoặc bánh mì."
+    ],
+    "cookingTime": 25,
+    "difficulty": "trung-binh",
+    "servings": 4,
+    "tags": [
+      "baked",
+      "cheese",
+      "butter",
+      "modern",
+      "fusion"
+    ],
+    "region": "quoc-te",
+    "calories": 290,
+    "tips": "Bọc kín khay bằng giấy bạc 10 phút đầu để cá chín đều, mở ra 5 phút cuối để phô mai vàng giòn.",
+    "description": "Cá đút lò giữ độ ẩm tự nhiên, lớp phô mai tan chảy béo ngậy mang hương vị phương Tây lạ miệng."
+  },
+  {
+    "id": "ca-ro-phi-020",
+    "name": "Cá rô phi rang me",
+    "category": "com",
+    "subCategory": "chien",
+    "ingredients": {
+      "main": [
+        "500g cá rô phi cắt khúc",
+        "50g me chín",
+        "2 thìa đường",
+        "1 thìa nước mắm",
+        "Tỏi băm",
+        "Dầu ăn"
+      ],
+      "optional": [
+        "Mè rang",
+        "Ớt sừng",
+        "Xà lách"
+      ]
+    },
+    "steps": [
+      "Cá làm sạch, khứa chéo, chiên ngập dầu đến khi da giòn vàng, vớt ráo.",
+      "Me hòa nước ấm, lọc lấy nước cốt chua, đun sôi with đường và nước mắm.",
+      "Phi thơm tỏi, đổ sốt me vào cô đặc nhẹ, thả cá vào xóc đều tay.",
+      "Bày cá ra đĩa, rắc mè và ớt, ăn kèm xà lách tươi mát."
+    ],
+    "cookingTime": 35,
+    "difficulty": "de",
+    "servings": 4,
+    "tags": [
+      "fried",
+      "tamarind",
+      "sweet-sour",
+      "crispy",
+      "southern"
+    ],
+    "region": "mien-nam",
+    "calories": 300,
+    "tips": "Chiên cá lần hai ở lửa lớn giúp da giòn lâu hơn, sốt me cô vừa phải không quá đặc để dễ thấm.",
+    "description": "Cá chiên giòn phủ lớp sốt me chua ngọt dẻo sánh, hương vị kích thích vị giác ngay từ miếng đầu tiên."
   }
 ]
