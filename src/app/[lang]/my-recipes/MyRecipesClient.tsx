@@ -22,6 +22,7 @@ export default function MyRecipesClient({ initialRecipes, isLoggedIn }: MyRecipe
   const [loadingExtras, setLoadingExtras] = useState(false);
   const { lang, dict: t } = useLang();
   const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Load recipes for favorites tab
   useEffect(() => {
@@ -53,13 +54,22 @@ export default function MyRecipesClient({ initialRecipes, isLoggedIn }: MyRecipe
 
   let displayedRecipes: RecipeSearchResult[] = [];
 
+  // Filter by search query
+  const filteredBySearch = uniqueRecipes.filter(r => 
+    searchQuery.trim() === '' || 
+    r.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   if (activeTab === 'all') {
     // Show both personal and favorites
-    displayedRecipes = uniqueRecipes.filter(r => (isLoggedIn && r.is_personal) || favorites.includes(r.id));
+    displayedRecipes = filteredBySearch.filter(r => (isLoggedIn && r.is_personal) || favorites.includes(r.id));
   } else if (activeTab === 'favorites') {
-    displayedRecipes = uniqueRecipes.filter(r => favorites.includes(r.id));
+    displayedRecipes = filteredBySearch.filter(r => favorites.includes(r.id));
   } else if (activeTab === 'personal') {
-    displayedRecipes = initialRecipes;
+    displayedRecipes = initialRecipes.filter(r => 
+      searchQuery.trim() === '' || 
+      r.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
   }
 
 
@@ -98,6 +108,8 @@ export default function MyRecipesClient({ initialRecipes, isLoggedIn }: MyRecipe
                 className="w-full bg-surface-container-highest border-none rounded-[1.5rem] py-4 pl-14 pr-8 focus:ring-4 focus:ring-primary/20 text-on-surface placeholder:text-outline/50 font-medium shadow-sm transition-all text-sm" 
                 placeholder={t.myRecipes.searchPlaceholder} 
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
             <div className="flex gap-2 overflow-x-auto pb-2 no-scrollbar -mx-1 px-1 items-center">
