@@ -26,7 +26,7 @@ export interface RecipeSearchResult {
   score?: number;
   created_at?: string;
   user_id?: string;
-  ingredients?: any[];
+  ingredients?: any;
   tags?: string[];
   steps?: string[];
 }
@@ -100,9 +100,11 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
 
     if (r.ingredients) {
       // Xử lý cả dạng mảng (cũ) và dạng object {main, optional} (mới)
+      // Ép kiểu sang any để bypass check chặt chẽ của TS khi không phải là mảng
+      const ingObj = r.ingredients as any;
       const ingredientsList = Array.isArray(r.ingredients) 
         ? r.ingredients 
-        : [...(r.ingredients.main || []), ...(r.ingredients.optional || [])];
+        : [...(ingObj.main || []), ...(ingObj.optional || [])];
 
       ingredientsList.forEach((ing: any) => {
         const isMain = typeof ing === 'string' ? true : (ing.is_main !== false);
