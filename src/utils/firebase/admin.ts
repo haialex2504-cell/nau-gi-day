@@ -3,8 +3,10 @@ import * as admin from 'firebase-admin';
 const firebaseAdminConfig = {
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
   clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-  // Quan trọng: Kiểm tra xem private key có bị sai dấu \n không
-  privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+  // Xử lý cực kỳ cẩn thận Private Key: loại bỏ ngoặc kép và fix newline
+  privateKey: process.env.FIREBASE_PRIVATE_KEY 
+    ? process.env.FIREBASE_PRIVATE_KEY.replace(/^"(.*)"$/, '$1').replace(/\\n/g, '\n')
+    : undefined,
 };
 
 export function createAdminApp() {
