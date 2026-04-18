@@ -41,12 +41,26 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
     return cachedRecipes;
   }
   
-  // Nạp từ Firestore
-  const snap = await adminDb().collection('recipes').get();
-  cachedRecipes = snap.docs.map(doc => doc.data() as RecipeSearchResult);
-  cacheTimestamp = Date.now();
-  
-  return cachedRecipes;
+  try {
+    // Nạp từ Firestore
+    const snap = await adminDb().collection('recipes').get();
+    cachedRecipes = snap.docs.map(doc => {
+      const data = doc.data();
+      // Đảm bảo map đúng các field quan trọng nếu có sự lệch lạc giữa camelCase và snake_case
+      return {
+        ...data,
+        id: data.id || doc.id,
+        cooking_time: data.cooking_time || data.cookingTime || 0,
+        image_url: data.image_url || data.imageUrl || '',
+        sub_category: data.sub_category || data.subCategory || '',
+      } as RecipeSearchResult;
+    });
+    cacheTimestamp = Date.now();
+    return cachedRecipes;
+  } catch (err) {
+    console.error('[getAllRecipesCached] Error fetching from Firestore:', err);
+    return [];
+  }
 }
 
 import { revalidatePath } from 'next/cache';
@@ -85,11 +99,17 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
     let totalMain = 0;
 
     if (r.ingredients) {
-      r.ingredients.forEach(ing => {
-        if (ing.is_main) totalMain++;
-        const ingName = (ing.name || '').toLowerCase();
+      // Xử lý cả dạng mảng (cũ) và dạng object {main, optional} (mới)
+      const ingredientsList = Array.isArray(r.ingredients) 
+        ? r.ingredients 
+        : [...(r.ingredients.main || []), ...(r.ingredients.optional || [])];
+
+      ingredientsList.forEach((ing: any) => {
+        const isMain = typeof ing === 'string' ? true : (ing.is_main !== false);
+        if (isMain) totalMain++;
         
-        // Match string trực diện (Nhanh và hiệu quả bằng NoSQL)
+        const ingName = (typeof ing === 'string' ? ing : (ing.name || '')).toLowerCase();
+        
         if (resolvedTerms.some(term => ingName.includes(term))) {
           matched++;
         }
@@ -165,27 +185,29 @@ export async function getInspiredRecipes(inspirationType: string): Promise<Recip
   let pool = [];
   switch (inspirationType) {
     case 'quick':
-      pool = validRecipes.filter(r => r.cooking_time <= 15);
+      pool = validRecipes.filter(r => r.cooking_time > 0 && r.cooking_time <= 15);
       break;
     case 'party':
       pool = validRecipes.filter(r => 
-        ['an-vat','khai-vi'].includes(r.category) || ['nuong','chien'].includes(r.sub_category)
+        ['an-vat','khai-vi','party'].includes(r.category?.toLowerCase()) || 
+        ['nuong','chien','quay','nhau'].includes(r.sub_category?.toLowerCase())
       );
       break;
     case 'healthy':
       pool = validRecipes.filter(r => 
-        ['salad-goi','an-chay','healthy'].includes(r.category) || r.calories < 400
+        ['salad-goi','an-chay','healthy','diet'].includes(r.category?.toLowerCase()) || 
+        (r.calories > 0 && r.calories < 400)
       );
       break;
     case 'breakfast':
       pool = validRecipes.filter(r => 
-        ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien', 'breakfast'].includes(r.category)
+        ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien', 'breakfast'].includes(r.category?.toLowerCase())
       );
       break;
     case 'snack':
       pool = validRecipes.filter(r => 
-        ['an-vat','trang-mieng-che','trang-mieng','snack'].includes(r.category) || 
-        ['trang-mieng','an-vat'].includes(r.sub_category)
+        ['an-vat','trang-mieng-che','trang-mieng','snack'].includes(r.category?.toLowerCase()) || 
+        ['trang-mieng','an-vat','snack'].includes(r.sub_category?.toLowerCase())
       );
       break;
     default:
