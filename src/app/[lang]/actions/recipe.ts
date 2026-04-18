@@ -69,6 +69,9 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
   const SCORE_THRESHOLD = 0.4;
 
   // Bước 2: Lọc công thức cá nhân (Chỉ xem của mình, hoặc của public)
+  const user = await getSessionUser();
+  const allRecipes = await getAllRecipesCached();
+
   const validRecipes = allRecipes.filter(r => {
     if (r.is_personal) {
       return user && r.user_id === user.uid;
