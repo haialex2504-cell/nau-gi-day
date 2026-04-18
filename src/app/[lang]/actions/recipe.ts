@@ -48,14 +48,44 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
     
     cachedRecipes = snap.docs.map(doc => {
       const data = doc.data();
-      // Đảm bảo map đúng các field quan trọng
+      
+      // Chuẩn hóa ingredients -> recipe_ingredients
+      const ingredients = data.ingredients || {};
+      const recipeIngredients: any[] = [];
+      
+      const processIng = (val: any) => {
+        if (!val) return;
+        if (Array.isArray(val)) {
+          val.forEach(item => {
+            if (typeof item === 'string') {
+              recipeIngredients.push({ ingredients: { name: item }, amount: '' });
+            } else {
+              recipeIngredients.push({ ingredients: { name: item.name || '' }, amount: item.amount || '' });
+            }
+          });
+        } else if (typeof val === 'string') {
+          val.split(',').forEach(item => {
+            recipeIngredients.push({ ingredients: { name: item.trim() }, amount: '' });
+          });
+        }
+      };
+
+      processIng(ingredients.main);
+      processIng(ingredients.optional);
+
+      // Chuẩn hóa tags -> recipe_tags
+      const tags = data.tags || [];
+      const recipeTags = tags.map((t: string) => ({ tag: t }));
+
       return {
         ...data,
         id: data.id || doc.id,
         cooking_time: data.cooking_time || data.cookingTime || 0,
         image_url: data.image_url || data.imageUrl || '',
         sub_category: data.sub_category || data.subCategory || '',
-      } as RecipeSearchResult;
+        recipe_ingredients: recipeIngredients,
+        recipe_tags: recipeTags,
+      } as any;
     });
     
     if (cachedRecipes.length === 0) {
@@ -110,12 +140,24 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
     let totalMain = 0;
 
     if (r.ingredients) {
-      // Xử lý cả dạng mảng (cũ) và dạng object {main, optional} (mới)
-      // Ép kiểu sang any để bypass check chặt chẽ của TS khi không phải là mảng
       const ingObj = r.ingredients as any;
-      const ingredientsList = Array.isArray(r.ingredients) 
-        ? r.ingredients 
-        : [...(ingObj.main || []), ...(ingObj.optional || [])];
+      const ingredientsList: any[] = [];
+
+      const extract = (val: any) => {
+        if (!val) return;
+        if (Array.isArray(val)) {
+          val.forEach(v => ingredientsList.push(v));
+        } else if (typeof val === 'string') {
+          val.split(',').forEach(v => ingredientsList.push(v.trim()));
+        }
+      };
+
+      if (Array.isArray(r.ingredients)) {
+        r.ingredients.forEach(v => ingredientsList.push(v));
+      } else {
+        extract(ingObj.main);
+        extract(ingObj.optional);
+      }
 
       ingredientsList.forEach((ing: any) => {
         const isMain = typeof ing === 'string' ? true : (ing.is_main !== false);
@@ -148,7 +190,46 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
 export async function getRecipeDetail(id: string) {
   const doc = await adminDb().collection('recipes').doc(id).get();
   if (!doc.exists) return null;
-  return doc.data();
+  const data = doc.data() as any;
+
+  // Chuẩn hóa ingredients -> recipe_ingredients
+  const ingredients = data.ingredients || {};
+  const recipeIngredients: any[] = [];
+  
+  const processIng = (val: any) => {
+    if (!val) return;
+    if (Array.isArray(val)) {
+      val.forEach(item => {
+        if (typeof item === 'string') {
+          recipeIngredients.push({ ingredients: { name: item }, amount: '' });
+        } else {
+          recipeIngredients.push({ ingredients: { name: item.name || '' }, amount: item.amount || '' });
+        }
+      });
+    } else if (typeof val === 'string') {
+      val.split(',').forEach(item => {
+        recipeIngredients.push({ ingredients: { name: item.trim() }, amount: '' });
+      });
+    }
+  };
+
+  processIng(ingredients.main);
+  processIng(ingredients.optional);
+
+  // Chuẩn hóa tags -> recipe_tags
+  const tags = data.tags || [];
+  const recipeTags = tags.map((t: string) => ({ tag: t }));
+
+  return {
+    ...data,
+    id: data.id || doc.id,
+    cooking_time: data.cooking_time || data.cookingTime || 0,
+    image_url: data.image_url || data.imageUrl || '',
+    sub_category: data.sub_category || data.subCategory || '',
+    recipe_ingredients: recipeIngredients,
+    recipe_tags: recipeTags,
+    steps: data.steps || [],
+  };
 }
 
 

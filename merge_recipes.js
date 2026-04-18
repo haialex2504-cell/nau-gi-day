@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const mainFile = path.join(__dirname, 'src/lib/recipes_data.json');
-const newFile = path.join(__dirname, 'new_recipes.json');
+const targetFile = process.argv[2] || 'new_recipes.json';
+const newFile = path.join(__dirname, targetFile);
 
 const mainData = JSON.parse(fs.readFileSync(mainFile, 'utf8'));
 const newData = JSON.parse(fs.readFileSync(newFile, 'utf8'));
