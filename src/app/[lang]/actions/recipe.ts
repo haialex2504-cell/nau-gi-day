@@ -6,8 +6,8 @@ import { resolveIngredients } from '@/lib/synonyms';
 import { createClient } from '@supabase/supabase-js';
 
 // Cấu hình Supabase Admin (Bỏ qua RLS để upload ảnh vì lúc này ta dùng Firebase Auth)
-const supabaseAdmin = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY 
-  ? createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY) 
+const supabaseAdmin = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
+  ? createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY)
   : null;
 
 export interface RecipeSearchResult {
@@ -40,19 +40,19 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
   if (cachedRecipes && (Date.now() - cacheTimestamp < CACHE_TTL)) {
     return cachedRecipes;
   }
-  
+
   try {
     console.log('--- [Firestore fetch start] ---');
     const snap = await adminDb().collection('recipes').get();
     console.log(`--- [Firestore fetch success] Found: ${snap.docs.length} recipes ---`);
-    
+
     cachedRecipes = snap.docs.map(doc => {
       const data = doc.data();
-      
+
       // Chuẩn hóa ingredients -> recipe_ingredients
       const ingredients = data.ingredients || {};
       const recipeIngredients: any[] = [];
-      
+
       const processIng = (val: any) => {
         if (!val) return;
         if (Array.isArray(val)) {
@@ -91,11 +91,11 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
         recipe_tags: recipeTags,
       } as any;
     });
-    
+
     if (cachedRecipes.length === 0) {
       console.warn('!!! WARNING: Firestore returned 0 recipes. Check collection name or project ID !!!');
     }
-    
+
     cacheTimestamp = Date.now();
     return cachedRecipes;
   } catch (err: any) {
@@ -119,7 +119,7 @@ export async function invalidateCache() {
 export async function searchRecipes(queryIngredients: string[]): Promise<RecipeSearchResult[]> {
   console.log('--- [searchRecipes] START with:', queryIngredients);
   if (!queryIngredients || queryIngredients.length === 0) return [];
-  
+
   // Bước 1: Resolve đồng nghĩa 
   const resolvedTerms = resolveIngredients(queryIngredients).map(t => t.toLowerCase().trim());
   const userTotal = queryIngredients.length;
@@ -166,9 +166,9 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
       ingredientsList.forEach((ing: any) => {
         const isMain = typeof ing === 'string' ? true : (ing.is_main !== false);
         if (isMain) totalMain++;
-        
+
         const ingName = (typeof ing === 'string' ? ing : (ing.name || '')).toLowerCase();
-        
+
         if (resolvedTerms.some(term => ingName.includes(term))) {
           matched++;
         }
@@ -182,8 +182,8 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
 
     return { ...r, match_count: matched, score };
   })
-  .filter(r => r.score >= SCORE_THRESHOLD)
-  .sort((a, b) => b.score - a.score);
+    .filter(r => r.score >= SCORE_THRESHOLD)
+    .sort((a, b) => b.score - a.score);
 
   // Trả về top 20
   return scored.slice(0, 20);
@@ -199,7 +199,7 @@ export async function getRecipeDetail(id: string) {
   // Chuẩn hóa ingredients -> recipe_ingredients
   const ingredients = data.ingredients || {};
   const recipeIngredients: any[] = [];
-  
+
   const processIng = (val: any) => {
     if (!val) return;
     if (Array.isArray(val)) {
@@ -248,13 +248,13 @@ export async function getPersonalRecipes(): Promise<RecipeSearchResult[]> {
   if (!user) return [];
 
   const allRecipes = await getAllRecipesCached();
-  
+
   return allRecipes
     .filter(r => r.user_id === user.uid)
     .sort((a, b) => {
-       const timeA = new Date(a.created_at || 0).getTime();
-       const timeB = new Date(b.created_at || 0).getTime();
-       return timeB - timeA;
+      const timeA = new Date(a.created_at || 0).getTime();
+      const timeB = new Date(b.created_at || 0).getTime();
+      return timeB - timeA;
     });
 }
 
@@ -262,12 +262,12 @@ export async function getPersonalRecipes(): Promise<RecipeSearchResult[]> {
 export async function getRecipesByIds(ids: string[]): Promise<RecipeSearchResult[]> {
   if (!ids || ids.length === 0) return [];
   const user = await getSessionUser();
-  
+
   // Dùng cache lấy cho nhanh, tránh limit 'in' của Firestore (Tối đa 30)
   const allRecipes = await getAllRecipesCached();
-  
+
   const matches = allRecipes.filter(r => ids.includes(r.id));
-  
+
   // Privacy Filter
   return matches.filter(r => {
     if (r.is_personal) return user && r.user_id === user.uid;
@@ -293,32 +293,32 @@ export async function getInspiredRecipes(inspirationType: string): Promise<Recip
       pool = validRecipes.filter(r => r.cooking_time > 0 && r.cooking_time <= 15);
       break;
     case 'party':
-      pool = validRecipes.filter(r => 
-        ['an-vat','khai-vi','party'].includes(r.category?.toLowerCase()) || 
-        ['nuong','chien','quay','nhau'].includes(r.sub_category?.toLowerCase())
+      pool = validRecipes.filter(r =>
+        ['an-vat', 'khai-vi', 'party'].includes(r.category?.toLowerCase()) ||
+        ['nuong', 'chien', 'quay', 'nhau'].includes(r.sub_category?.toLowerCase())
       );
       break;
     case 'healthy':
-      pool = validRecipes.filter(r => 
-        ['salad-goi','an-chay','healthy','diet'].includes(r.category?.toLowerCase()) || 
+      pool = validRecipes.filter(r =>
+        ['salad-goi', 'an-chay', 'healthy', 'diet'].includes(r.category?.toLowerCase()) ||
         (r.calories > 0 && r.calories < 400)
       );
       break;
     case 'breakfast':
-      pool = validRecipes.filter(r => 
+      pool = validRecipes.filter(r =>
         ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien', 'breakfast'].includes(r.category?.toLowerCase())
       );
       break;
     case 'snack':
-      pool = validRecipes.filter(r => 
-        ['an-vat','trang-mieng-che','trang-mieng','snack'].includes(r.category?.toLowerCase()) || 
-        ['trang-mieng','an-vat','snack'].includes(r.sub_category?.toLowerCase())
+      pool = validRecipes.filter(r =>
+        ['an-vat', 'trang-mieng-che', 'trang-mieng', 'snack'].includes(r.category?.toLowerCase()) ||
+        ['trang-mieng', 'an-vat', 'snack'].includes(r.sub_category?.toLowerCase())
       );
       break;
     default:
       return [];
   }
-  
+
   // Xáo trộn và lấy ngẫu nhiên 30
   return pool.sort(() => 0.5 - Math.random()).slice(0, 30);
 }
@@ -345,12 +345,12 @@ export async function createRecipe(formData: FormData) {
     }));
     const steps = JSON.parse(stepsJson);
 
-    let imageUrl = ''; 
+    let imageUrl = '';
     // Dùng Supabase Admin Storage để upload ảnh
     if (imageFile && imageFile.size > 0 && supabaseAdmin) {
       const fileExt = imageFile.name.split('.').pop();
       const fileName = `${user.uid}/${Date.now()}.${fileExt}`;
-      
+
       const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
         .from('recipe-images')
         .upload(fileName, imageFile, { upsert: true });
@@ -360,10 +360,10 @@ export async function createRecipe(formData: FormData) {
       const { data: { publicUrl } } = supabaseAdmin.storage
         .from('recipe-images')
         .getPublicUrl(uploadData.path);
-        
+
       imageUrl = publicUrl;
     }
-    
+
     // Logic lưu vào Firestore
     const newRecipeId = `usr-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
     const newRecipe = {
@@ -398,7 +398,7 @@ export async function updateRecipe(id: string, formData: FormData) {
   try {
     const doc = await adminDb().collection('recipes').doc(id).get();
     if (!doc.exists) return { success: false, error: 'Not found' };
-    
+
     const existing = doc.data();
     if (existing?.user_id !== user.uid) {
       return { success: false, error: 'Permission denied' };
@@ -421,12 +421,12 @@ export async function updateRecipe(id: string, formData: FormData) {
     const steps = JSON.parse(stepsJson);
 
     let imageUrl = formData.get('existingImageUrl') as string;
-    
+
     // Upload ảnh mới lên Supabase nếu có
     if (imageFile && imageFile.size > 0 && supabaseAdmin) {
       const fileExt = imageFile.name.split('.').pop();
       const fileName = `${user.uid}/${Date.now()}.${fileExt}`;
-      
+
       const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
         .from('recipe-images')
         .upload(fileName, imageFile, { upsert: true });
@@ -436,7 +436,7 @@ export async function updateRecipe(id: string, formData: FormData) {
       const { data: { publicUrl } } = supabaseAdmin.storage
         .from('recipe-images')
         .getPublicUrl(uploadData.path);
-        
+
       imageUrl = publicUrl;
     }
 
