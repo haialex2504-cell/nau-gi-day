@@ -60,7 +60,7 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
             if (typeof item === 'string') {
               recipeIngredients.push({ ingredients: { name: item }, amount: '' });
             } else {
-              recipeIngredients.push({ ingredients: { name: item.name || '' }, amount: item.amount || '' });
+              recipeIngredients.push({ ingredients: { name: item.name || item.ingredients?.name || '' }, amount: item.amount || '' });
             }
           });
         } else if (typeof val === 'string') {
@@ -70,8 +70,12 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
         }
       };
 
-      processIng(ingredients.main);
-      processIng(ingredients.optional);
+      if (Array.isArray(ingredients)) {
+        processIng(ingredients);
+      } else {
+        processIng(ingredients.main);
+        processIng(ingredients.optional);
+      }
 
       // Chuẩn hóa tags -> recipe_tags
       const tags = data.tags || [];
@@ -203,7 +207,8 @@ export async function getRecipeDetail(id: string) {
         if (typeof item === 'string') {
           recipeIngredients.push({ ingredients: { name: item }, amount: '' });
         } else {
-          recipeIngredients.push({ ingredients: { name: item.name || '' }, amount: item.amount || '' });
+          // Xử lý cả item.name (Firestore mới) và item.ingredients.name (Supabase cũ)
+          recipeIngredients.push({ ingredients: { name: item.name || item.ingredients?.name || '' }, amount: item.amount || '' });
         }
       });
     } else if (typeof val === 'string') {
@@ -213,8 +218,12 @@ export async function getRecipeDetail(id: string) {
     }
   };
 
-  processIng(ingredients.main);
-  processIng(ingredients.optional);
+  if (Array.isArray(ingredients)) {
+    processIng(ingredients);
+  } else {
+    processIng(ingredients.main);
+    processIng(ingredients.optional);
+  }
 
   // Chuẩn hóa tags -> recipe_tags
   const tags = data.tags || [];
