@@ -4,6 +4,7 @@ import { adminDb } from '@/utils/firebase/admin';
 import { getSessionUser } from './firebase-auth';
 import { resolveIngredients } from '@/lib/synonyms';
 import { createClient } from '@supabase/supabase-js';
+import { removeVietnameseTones } from '@/lib/utils';
 
 // Cấu hình Supabase Admin (Bỏ qua RLS để upload ảnh vì lúc này ta dùng Firebase Auth)
 const supabaseAdmin = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY
@@ -29,6 +30,7 @@ export interface RecipeSearchResult {
   ingredients?: any;
   tags?: string[];
   steps?: string[];
+  search_terms?: string[]; // Danh sách nguyên liệu không dấu phục vụ tìm kiếm
 }
 
 let cachedRecipes: RecipeSearchResult[] | null = null;
@@ -89,6 +91,11 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
         sub_category: data.sub_category || data.subCategory || '',
         recipe_ingredients: recipeIngredients,
         recipe_tags: recipeTags,
+        // Tiền xử lý phục vụ tìm kiếm: gộp tên và nguyên liệu vào mảng không dấu
+        search_terms: [
+          removeVietnameseTones(data.name || ''),
+          ...recipeIngredients.map(ri => removeVietnameseTones(ri.ingredients.name))
+        ]
       } as any;
     });
 
@@ -142,8 +149,16 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
   const scored = validRecipes.map(r => {
     let matched = 0;
     let totalMain = 0;
+    let nameMatch = false;
+
+    // Kiểm tra khớp tên món ăn (không dấu)
+    const unsignedName = removeVietnameseTones(r.name || '');
+    if (resolvedTerms.some(term => unsignedName.includes(removeVietnameseTones(term)))) {
+      nameMatch = true;
+    }
 
     if (r.ingredients) {
+      // (Giữ nguyên logic extract để đếm số lượng nguyên liệu khớp)
       const ingObj = r.ingredients as any;
       const ingredientsList: any[] = [];
 
@@ -167,9 +182,13 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
         const isMain = typeof ing === 'string' ? true : (ing.is_main !== false);
         if (isMain) totalMain++;
 
-        const ingName = (typeof ing === 'string' ? ing : (ing.name || '')).toLowerCase();
+        const ingNameRaw = (typeof ing === 'string' ? ing : (ing.name || '')).toLowerCase();
+        const ingNameUnsigned = removeVietnameseTones(ingNameRaw);
 
-        if (resolvedTerms.some(term => ingName.includes(term))) {
+        if (resolvedTerms.some(term => {
+          const unsignedTerm = removeVietnameseTones(term);
+          return ingNameUnsigned.includes(unsignedTerm);
+        })) {
           matched++;
         }
       });
@@ -178,7 +197,10 @@ export async function searchRecipes(queryIngredients: string[]): Promise<RecipeS
     const total = totalMain || matched || 1;
     const matchRatio = matched / total;
     const coverage = matched / Math.max(userTotal, 1);
-    const score = matchRatio * 0.5 + coverage * 0.5;
+    
+    // Cộng điểm thưởng nếu khớp tên món ăn
+    let score = matchRatio * 0.5 + coverage * 0.5;
+    if (nameMatch) score += 0.3; 
 
     return { ...r, match_count: matched, score };
   })

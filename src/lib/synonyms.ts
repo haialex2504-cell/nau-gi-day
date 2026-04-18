@@ -63,10 +63,25 @@ const CANONICAL_MAP: Record<string, string[]> = {
     'cà mực', 'mực ống', 'mực lá', 'mực nang',
   ],
   'cá lóc': [
-    'cá quả', 'cá tràu',
+    'cá quả', 'cá tràu', 'ca loc', 'ca qua', 'ca trau',
   ],
   'cá hồi': [
-    'salmon',
+    'salmon', 'ca hoi',
+  ],
+  'cá thu': [
+    'ca thu', 'mackerel',
+  ],
+  'cá chép': [
+    'ca chep', 'carp',
+  ],
+  'cá chẽm': [
+    'ca chem', 'seabass',
+  ],
+  'cá diêu hồng': [
+    'ca dieu hong', 'red tilapia',
+  ],
+  'cá rô phi': [
+    'ca ro phi', 'tilapia',
   ],
   'cá': [
     'phi lê cá', 'cá tươi', 'ca',
