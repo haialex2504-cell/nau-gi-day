@@ -53,5 +53,7 @@ setup.sql
 sync-key.mjs
 test-firebase-admin.mjs
 resize.js
+audit-recipes.mjs
+sync-recipes-to-firebase.mjs
 temp_images/
 scratch/
