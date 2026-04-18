@@ -42,11 +42,13 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
   }
   
   try {
-    // Nạp từ Firestore
+    console.log('--- [Firestore fetch start] ---');
     const snap = await adminDb().collection('recipes').get();
+    console.log(`--- [Firestore fetch success] Found: ${snap.docs.length} recipes ---`);
+    
     cachedRecipes = snap.docs.map(doc => {
       const data = doc.data();
-      // Đảm bảo map đúng các field quan trọng nếu có sự lệch lạc giữa camelCase và snake_case
+      // Đảm bảo map đúng các field quan trọng
       return {
         ...data,
         id: data.id || doc.id,
@@ -55,10 +57,16 @@ export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
         sub_category: data.sub_category || data.subCategory || '',
       } as RecipeSearchResult;
     });
+    
+    if (cachedRecipes.length === 0) {
+      console.warn('!!! WARNING: Firestore returned 0 recipes. Check collection name or project ID !!!');
+    }
+    
     cacheTimestamp = Date.now();
     return cachedRecipes;
-  } catch (err) {
-    console.error('[getAllRecipesCached] Error fetching from Firestore:', err);
+  } catch (err: any) {
+    console.error('[getAllRecipesCached] FATAL ERROR:', err.message);
+    console.error('Stack:', err.stack);
     return [];
   }
 }
@@ -75,16 +83,19 @@ export async function invalidateCache() {
 
 // 1. Tìm kiếm (Bằng RAM cache)
 export async function searchRecipes(queryIngredients: string[]): Promise<RecipeSearchResult[]> {
+  console.log('--- [searchRecipes] START with:', queryIngredients);
   if (!queryIngredients || queryIngredients.length === 0) return [];
   
   // Bước 1: Resolve đồng nghĩa 
   const resolvedTerms = resolveIngredients(queryIngredients).map(t => t.toLowerCase().trim());
   const userTotal = queryIngredients.length;
-  const SCORE_THRESHOLD = 0.4;
+  // Giảm ngưỡng: Nếu tìm ít từ khóa (1-2), chỉ cần khớp 1 món là đủ.
+  const SCORE_THRESHOLD = userTotal <= 2 ? 0.1 : 0.4;
 
   // Bước 2: Lọc công thức cá nhân (Chỉ xem của mình, hoặc của public)
   const user = await getSessionUser();
   const allRecipes = await getAllRecipesCached();
+  console.log(`--- [searchRecipes] Found ${allRecipes.length} recipes in DB ---`);
 
   const validRecipes = allRecipes.filter(r => {
     if (r.is_personal) {
@@ -176,8 +187,10 @@ export async function getRecipesByIds(ids: string[]): Promise<RecipeSearchResult
 
 // 5. Tìm cảm hứng
 export async function getInspiredRecipes(inspirationType: string): Promise<RecipeSearchResult[]> {
+  console.log('--- [getInspiredRecipes] START type:', inspirationType);
   const user = await getSessionUser();
   const allRecipes = await getAllRecipesCached();
+  console.log(`--- [getInspiredRecipes] DB Loaded: ${allRecipes.length} recipes ---`);
 
   const validRecipes = allRecipes.filter(r => {
     if (r.is_personal) return user && r.user_id === user.uid;
