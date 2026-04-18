@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useFavorites } from '@/hooks/useFavorites';
+import { useFirebaseFavorites as useFavorites } from '@/hooks/useFirebaseFavorites';
 
 interface FavoriteButtonProps {
   recipeId: string;

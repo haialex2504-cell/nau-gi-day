@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getDictionary, hasLocale, type Locale } from "@/app/[lang]/dictionaries";
 import BackButton from "@/app/[lang]/components/BackButton";
 import RecipeActions from "./RecipeActions";
-import { createClient } from '@/utils/supabase/server';
+import { getSessionUser } from "@/app/[lang]/actions/firebase-auth";
 
 export async function generateMetadata({ params }: { params: Promise<{ id: string; lang: string }> }): Promise<Metadata> {
   const { id, lang } = await params;
@@ -58,9 +58,8 @@ export default async function RecipeDetail({ params }: { params: Promise<{ id: s
     return notFound();
   }
 
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-  const isAuthor = !!user && user.id === recipe.user_id;
+  const user = await getSessionUser();
+  const isAuthor = !!user && user.uid === recipe.user_id;
 
   return (
     <main className="min-h-screen bg-background text-on-background pb-20 selection:bg-secondary-container">

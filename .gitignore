@@ -39,3 +39,19 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Local Test Scripts and Scratch Files
+check_db.js
+check_db.ts
+test_search.ts
+debug_search.ts
+transform_recipes.js
+merge_recipes.js
+find_chinese.js
+add_missing_ingredients.sql
+setup.sql
+sync-key.mjs
+test-firebase-admin.mjs
+resize.js
+temp_images/
+scratch/

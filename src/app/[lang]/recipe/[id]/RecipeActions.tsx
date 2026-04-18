@@ -6,7 +6,7 @@ import FavoriteButton from '@/app/[lang]/components/FavoriteButton';
 import ShareModal from '@/app/[lang]/components/ShareModal';
 import Toast from '@/app/[lang]/components/Toast';
 import { useLang } from '@/app/[lang]/components/LangContext';
-import { createClient } from '@/utils/supabase/client';
+import { useAuth } from '@/hooks/useAuth';
 
 interface RecipeActionsProps {
   recipeId: string;
@@ -18,16 +18,10 @@ interface RecipeActionsProps {
 export default function RecipeActions({ recipeId, recipeName, recipeImage, isAuthor }: RecipeActionsProps) {
   const [isShareOpen, setIsShareOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState('');
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { lang, dict: t } = useLang();
   const router = useRouter();
-  const supabase = createClient();
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setIsLoggedIn(!!session);
-    });
-  }, [supabase.auth]);
+  const { user, isLoaded } = useAuth();
+  const isLoggedIn = !!user;
 
   const handleShareClick = () => {
     setIsShareOpen(true);

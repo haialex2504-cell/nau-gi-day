@@ -2,23 +2,20 @@
 
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { checkEmailExists } from '@/app/[lang]/actions/firebase-auth';
 import { useFirebaseAuth } from '@/hooks/useFirebaseAuth';
 
-type LoginStep = 'email' | 'password_new' | 'password_existing';
+type LoginStep = 'email' | 'password' | 'login_existing';
 
-export default function LoginPage() {
+export default function FirebaseTestPage() {
   const [step, setStep] = useState<LoginStep>('email');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
-  
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
   const router = useRouter();
-  const { signIn, signUp, signInWithGoogle, sendEmailLink } = useFirebaseAuth();
+  const { signIn, signUp, signInWithGoogle, logOut } = useFirebaseAuth();
 
   const handleNextFromEmail = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -26,32 +23,14 @@ export default function LoginPage() {
       setErrorMsg('Vui lòng nhập email hợp lệ');
       return;
     }
-    
-    setLoading(true);
+    setStep('password');
     setErrorMsg('');
-    try {
-      const exists = await checkEmailExists(email);
-      if (exists) {
-        setStep('password_existing');
-      } else {
-        setStep('password_new');
-      }
-    } catch (err) {
-      console.error(err);
-      setErrorMsg('Có lỗi xảy ra, vui lòng thử lại');
-    } finally {
-      setLoading(false);
-    }
   };
 
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password.length < 6) {
       setErrorMsg('Mật khẩu tối thiểu 6 ký tự');
-      return;
-    }
-    if (password !== confirmPassword) {
-      setErrorMsg('Mật khẩu nhập lại không khớp');
       return;
     }
 
@@ -61,17 +40,24 @@ export default function LoginPage() {
     const result = await signUp(email, password);
 
     if (!result.success) {
+      // Nếu email đã tồn tại, tự động chuyển sang login
+      if (result.error?.includes('auth/email-already-in-use') || result.error?.includes('email-already-in-use')) {
+        setErrorMsg('Email đã được đăng ký! Vui lòng đăng nhập.');
+        setStep('login_existing');
+        setLoading(false);
+        return;
+      }
       setErrorMsg(result.error || 'Đăng ký thất bại');
       setLoading(false);
       return;
     }
 
-    // After success registration, redirect to home
-    window.dispatchEvent(new Event('nau_auth_changed'));
+    setSuccessMsg('Đăng ký thành công! Đang chuyển hướng...');
     router.push('/');
+    setLoading(false);
   };
 
-  const handleLoginWithPassword = async (e: React.FormEvent) => {
+  const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!password) {
       setErrorMsg('Vui lòng nhập mật khẩu');
@@ -80,44 +66,33 @@ export default function LoginPage() {
 
     setLoading(true);
     setErrorMsg('');
-    
+
     const result = await signIn(email, password);
 
     if (!result.success) {
-      setErrorMsg('Sai mật khẩu hoặc lỗi đăng nhập');
+      setErrorMsg(result.error || 'Sai mật khẩu hoặc lỗi đăng nhập');
       setLoading(false);
-    } else {
-      window.dispatchEvent(new Event('nau_auth_changed'));
-      router.push('/');
+      return;
     }
-  };
 
-  const handleMagicLink = async () => {
-    if (!email) return;
-    setLoading(true);
-    setErrorMsg('');
-    setSuccessMsg('');
-    
-    const result = await sendEmailLink(email);
-
-    if (!result.success) {
-      setErrorMsg(result.error || 'Lỗi gửi magic link');
-    } else {
-      setSuccessMsg('Đã gửi Magic Link vào email của bạn! Vui lòng kiểm tra hộp thư.');
-    }
+    router.push('/');
     setLoading(false);
   };
 
   const handleGoogleLogin = async () => {
     setLoading(true);
+    setErrorMsg('');
+
     const result = await signInWithGoogle();
+
     if (!result.success) {
-      setErrorMsg(result.error || 'Lỗi đăng nhập Google');
+      setErrorMsg(result.error || 'Đăng nhập Google thất bại');
       setLoading(false);
-    } else {
-      window.dispatchEvent(new Event('nau_auth_changed'));
-      router.push('/');
+      return;
     }
+
+    router.push('/');
+    setLoading(false);
   };
 
   const goBack = () => {
@@ -125,36 +100,29 @@ export default function LoginPage() {
     setErrorMsg('');
     setSuccessMsg('');
     setPassword('');
-    setConfirmPassword('');
   };
 
   return (
     <div className="min-h-screen bg-[#FDF9F3] text-on-background font-body px-6 py-12 flex flex-col relative overflow-hidden">
-      
-      {/* Background decorations matching the mockup */}
+      {/* Background decorations */}
       <div className="absolute top-10 right-[-20%] w-64 h-64 bg-orange-100 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
-      
-      {/* Header */}
-      <div className="flex justify-between items-center mb-12 relative z-10">
-        {step !== 'email' ? (
-          <button onClick={goBack} className="p-2 hover:bg-surface-variant/50 rounded-full transition-colors active:scale-95 text-primary">
-            <span className="material-symbols-outlined text-2xl">arrow_back</span>
-          </button>
-        ) : (
-          <h1 className="text-2xl font-black text-primary italic font-headline tracking-tight">Nấu Gì Đây?</h1>
-        )}
-        {step === 'email' && (
-          <button onClick={() => router.push('/')} className="text-on-surface-variant font-medium text-sm hover:text-primary transition-colors">
-            Tiếp tục với tư cách khách
-          </button>
-        )}
+
+      {/* Header - Test Banner */}
+      <div className="flex justify-between items-center mb-8 relative z-10">
+        <div className="flex items-center gap-2">
+          <span className="bg-green-600 text-white text-xs font-bold px-2 py-1 rounded">TEST</span>
+          <h1 className="text-xl font-black text-green-700 italic font-headline">Firebase Auth</h1>
+        </div>
+        <button onClick={() => router.push('/login')} className="text-on-surface-variant font-medium text-sm hover:text-primary">
+          ← Supabase Login
+        </button>
       </div>
 
       {/* Main Content */}
       <div className="flex-1 flex flex-col max-w-sm mx-auto w-full relative z-10 mt-4">
         
         {step === 'email' && (
-          <div className="animate-fade-in">
+          <div>
             <h2 className="font-headline font-extrabold text-5xl tracking-tight leading-[1.1] mb-4">
               Chào mừng bạn <br /> <span className="text-primary">đến với gian bếp.</span>
             </h2>
@@ -206,11 +174,11 @@ export default function LoginPage() {
           </div>
         )}
 
-        {step === 'password_new' && (
-          <div className="animate-fade-in">
-            <div className="inline-block px-3 py-1 bg-secondary/10 text-secondary rounded-full text-xs font-black uppercase tracking-widest mb-6">
-              Bước 2 của 2
-            </div>
+        {step === 'password' && (
+          <div>
+            <button onClick={goBack} className="p-2 hover:bg-surface-variant/50 rounded-full transition-colors active:scale-95 text-primary mb-4">
+              <span className="material-symbols-outlined text-2xl">arrow_back</span>
+            </button>
             
             <h2 className="font-headline font-extrabold text-4xl tracking-tight leading-tight mb-4">
               Tuyệt vời! Hãy đặt <br /> mật khẩu để lưu <br /> công thức của bạn
@@ -232,22 +200,8 @@ export default function LoginPage() {
                 </div>
               </div>
 
-              <div className="space-y-1">
-                <label className="text-[11px] font-black uppercase tracking-widest text-on-surface-variant ml-4">Nhập lại mật khẩu</label>
-                <div className="relative">
-                  <span className="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-outline/60 text-[20px]">verified_user</span>
-                  <input
-                    type="password"
-                    value={confirmPassword}
-                    onChange={(e) => setConfirmPassword(e.target.value)}
-                    required
-                    placeholder="Nhập lại mật khẩu"
-                    className="w-full bg-white/60 backdrop-blur-md border border-outline-variant/30 rounded-2xl py-4 pl-12 pr-5 focus:ring-2 focus:ring-primary focus:border-transparent text-on-surface placeholder:text-outline/40 font-medium transition-all shadow-sm outline-none"
-                  />
-                </div>
-              </div>
-
               {errorMsg && <p className="text-error text-sm px-4 pt-1">{errorMsg}</p>}
+              {successMsg && <p className="text-primary text-sm px-4 pt-1 bg-primary/10 py-3 rounded-xl">{successMsg}</p>}
 
               <button
                 type="submit"
@@ -256,12 +210,25 @@ export default function LoginPage() {
               >
                 {loading ? <span className="material-symbols-outlined animate-spin">refresh</span> : 'Tạo Tài Khoản'}
               </button>
+
+              <button
+                type="button"
+                onClick={() => setStep('login_existing')}
+                disabled={loading}
+                className="w-full py-3 mt-2 text-on-surface-variant text-sm hover:text-primary transition-colors"
+              >
+                Đã có tài khoản? <span className="font-bold underline">Đăng nhập</span>
+              </button>
             </form>
           </div>
         )}
 
-        {step === 'password_existing' && (
-          <div className="animate-fade-in">
+        {step === 'login_existing' && (
+          <div>
+            <button onClick={goBack} className="p-2 hover:bg-surface-variant/50 rounded-full transition-colors active:scale-95 text-primary mb-4">
+              <span className="material-symbols-outlined text-2xl">arrow_back</span>
+            </button>
+            
             <h2 className="font-headline font-extrabold text-4xl tracking-tight leading-tight mb-2">
               Mừng bạn trở lại!
             </h2>
@@ -269,7 +236,7 @@ export default function LoginPage() {
               Nhập mật khẩu cho {email}
             </p>
 
-            <form onSubmit={handleLoginWithPassword} className="space-y-5">
+            <form onSubmit={handleLogin} className="space-y-5">
               <div className="space-y-1">
                 <label className="text-[11px] font-black uppercase tracking-widest text-on-surface-variant ml-4">Mật khẩu</label>
                 <div className="relative">
@@ -286,7 +253,6 @@ export default function LoginPage() {
               </div>
 
               {errorMsg && <p className="text-error text-sm px-4 pt-1">{errorMsg}</p>}
-              {successMsg && <p className="text-primary text-sm px-4 pt-1 bg-primary/10 py-3 rounded-xl border border-primary/20">{successMsg}</p>}
 
               <button
                 type="submit"
@@ -296,16 +262,6 @@ export default function LoginPage() {
                 {loading ? <span className="material-symbols-outlined animate-spin">refresh</span> : 'Đăng Nhập'}
               </button>
             </form>
-
-            <div className="mt-6 text-center">
-              <button
-                onClick={handleMagicLink}
-                disabled={loading}
-                className="text-primary font-bold text-sm hover:underline active:opacity-70 transition-all"
-              >
-                Quên mật khẩu? Gửi Magic Link đăng nhập nhanh qua Email
-              </button>
-            </div>
           </div>
         )}
 

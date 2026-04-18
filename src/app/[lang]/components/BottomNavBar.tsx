@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import React, { useEffect, useState, useRef } from 'react';
 import { useLang } from './LangContext';
 import { useAuth } from '@/hooks/useAuth';
-import { signOut } from '@/app/[lang]/actions/auth';
 
 import LoginPrompt from './LoginPrompt';
 
@@ -15,7 +14,7 @@ export default function BottomNavBar() {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isLoginPromptOpen, setIsLoginPromptOpen] = useState(false);
   const { lang, dict: t } = useLang();
-  const { user, isLoaded } = useAuth();
+  const { user, isLoaded, logOut } = useAuth();
   const sheetRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -119,7 +118,11 @@ export default function BottomNavBar() {
                     </Link>
 
                     <button
-                      onClick={() => signOut(lang)}
+                      onClick={async () => {
+                        if (logOut) await logOut();
+                        setIsProfileOpen(false);
+                        window.location.reload();
+                      }}
                       className="group flex items-center gap-5 p-5 bg-error-container/10 hover:bg-error-container/20 transition-all rounded-3xl border border-error/10 text-error"
                     >
                       <div className="w-12 h-12 bg-error-container/20 rounded-2xl flex items-center justify-center text-error group-hover:scale-110 transition-transform">

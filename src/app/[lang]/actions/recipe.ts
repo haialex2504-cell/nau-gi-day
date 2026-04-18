@@ -1,188 +1,201 @@
 'use server';
 
-import { createClient } from '@/utils/supabase/server';
+import { adminDb } from '@/utils/firebase/admin';
+import { getSessionUser } from './firebase-auth';
 import { resolveIngredients } from '@/lib/synonyms';
+import { createClient } from '@supabase/supabase-js';
+
+// Cấu hình Supabase Admin (Bỏ qua RLS để upload ảnh vì lúc này ta dùng Firebase Auth)
+const supabaseAdmin = process.env.NEXT_PUBLIC_SUPABASE_URL && process.env.SUPABASE_SERVICE_ROLE_KEY 
+  ? createClient(process.env.NEXT_PUBLIC_SUPABASE_URL, process.env.SUPABASE_SERVICE_ROLE_KEY) 
+  : null;
 
 export interface RecipeSearchResult {
   id: string;
   name: string;
+  description?: string;
   category: string;
   sub_category: string;
   cooking_time: number;
   calories: number;
   image_url: string;
   difficulty?: string;
+  servings?: number;
   is_personal?: boolean;
   match_count?: number;
   score?: number;
   created_at?: string;
   user_id?: string;
+  ingredients?: any[];
+  tags?: string[];
+  steps?: string[];
 }
 
-export interface RecipeInput {
-  name: string;
-  description?: string;
-  category?: string;
-  sub_category?: string;
-  cooking_time: number;
-  difficulty: string;
-  servings: number;
-  ingredients: { name: string; amount: string }[];
-  steps: string[];
-  image_file?: string; // Base64 or reference
+let cachedRecipes: RecipeSearchResult[] | null = null;
+let cacheTimestamp = 0;
+const CACHE_TTL = 1000 * 60 * 30; // 30 mins
+
+// Helper: Tải toàn bộ Data vào RAM
+export async function getAllRecipesCached(): Promise<RecipeSearchResult[]> {
+  if (cachedRecipes && (Date.now() - cacheTimestamp < CACHE_TTL)) {
+    return cachedRecipes;
+  }
+  
+  // Nạp từ Firestore
+  const snap = await adminDb().collection('recipes').get();
+  cachedRecipes = snap.docs.map(doc => doc.data() as RecipeSearchResult);
+  cacheTimestamp = Date.now();
+  
+  return cachedRecipes;
 }
 
+import { revalidatePath } from 'next/cache';
+
+// Xóa cache (Dùng sau khi tạo/sửa món)
+export async function invalidateCache() {
+  cachedRecipes = null;
+  cacheTimestamp = 0;
+  // Xóa client-side Router Cache của Next.js
+  revalidatePath('/', 'layout');
+}
+
+// 1. Tìm kiếm (Bằng RAM cache)
 export async function searchRecipes(queryIngredients: string[]): Promise<RecipeSearchResult[]> {
   if (!queryIngredients || queryIngredients.length === 0) return [];
-
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  // ── BƯỚC 1: Resolve đồng nghĩa + bao hàm ─────────────────────────────
-  const resolvedTerms = resolveIngredients(queryIngredients);
-
-  // ── BƯỚC 2: Tìm ingredient IDs ────────────────────────────────────────
-  const allIngredientIds = new Set<string>();
-
-  for (const term of resolvedTerms) {
-    const q = term.toLowerCase().trim();
-
-    const { data: exactData } = await supabase
-      .from('ingredients')
-      .select('id, name')
-      .eq('name', q);
-
-    if (exactData && exactData.length > 0) {
-      exactData.forEach(i => allIngredientIds.add(i.id));
-    } else {
-      const { data: fuzzyData } = await supabase
-        .from('ingredients')
-        .select('id, name')
-        .ilike('name', `%${q}%`)
-        .limit(8);
-
-      if (fuzzyData && fuzzyData.length > 0) {
-        fuzzyData.forEach(i => allIngredientIds.add(i.id));
-      }
-    }
-  }
-
-  if (allIngredientIds.size === 0) return [];
-
-  const ingredientIds = Array.from(allIngredientIds);
-
-  // ── BƯỚC 3: Tìm các recipe có chứa ít nhất 1 nguyên liệu khớp ────────
-  const { data: matchingData } = await supabase
-    .from('recipe_ingredients')
-    .select('recipe_id')
-    .in('ingredient_id', ingredientIds);
-
-  if (!matchingData || matchingData.length === 0) return [];
-
-  // Đếm số nguyên liệu khớp cho mỗi recipe
-  const matchedCount: Record<string, number> = {};
-  matchingData.forEach(m => {
-    matchedCount[m.recipe_id] = (matchedCount[m.recipe_id] || 0) + 1;
-  });
-  const matchedRecipeIds = Object.keys(matchedCount);
-
-  // ── BƯỚC 4: Lấy tổng nguyên liệu CHÍNH (is_main=true) ────────────────
-  const { data: totalData } = await supabase
-    .from('recipe_ingredients')
-    .select('recipe_id')
-    .in('recipe_id', matchedRecipeIds)
-    .eq('is_main', true);
-
-  const totalMainCount: Record<string, number> = {};
-  totalData?.forEach(r => {
-    totalMainCount[r.recipe_id] = (totalMainCount[r.recipe_id] || 0) + 1;
-  });
-
+  
+  // Bước 1: Resolve đồng nghĩa 
+  const resolvedTerms = resolveIngredients(queryIngredients).map(t => t.toLowerCase().trim());
   const userTotal = queryIngredients.length;
   const SCORE_THRESHOLD = 0.4;
 
-  const scored = matchedRecipeIds
-    .map(id => {
-      const matched    = matchedCount[id] ?? 0;
-      const total      = totalMainCount[id] ?? matched;
-      const matchRatio = matched / Math.max(total, 1);
-      const coverage   = matched / Math.max(userTotal, 1);
-      const score      = matchRatio * 0.5 + coverage * 0.5;
-      return { id, matched, total, score };
-    })
-    .filter(r => r.score >= SCORE_THRESHOLD)
-    .sort((a, b) => b.score - a.score);
+  // Bước 2: Lọc công thức cá nhân (Chỉ xem của mình, hoặc của public)
+  const validRecipes = allRecipes.filter(r => {
+    if (r.is_personal) {
+      return user && r.user_id === user.uid;
+    }
+    return true;
+  });
 
-  // ── BƯỚC 6: Fetch chi tiết top 20 recipe (Kèm Privacy Filter) ───────
-  const topIds = scored.slice(0, 20).map(r => r.id);
-  if (topIds.length === 0) return [];
+  // Bước 3: Thuật toán dò nguyên liệu + Tính điểm
+  const scored = validRecipes.map(r => {
+    let matched = 0;
+    let totalMain = 0;
 
-  let query = supabase
-    .from('recipes')
-    .select('id, name, category, sub_category, cooking_time, calories, image_url, difficulty, is_personal, user_id')
-    .in('id', topIds);
+    if (r.ingredients) {
+      r.ingredients.forEach(ing => {
+        if (ing.is_main) totalMain++;
+        const ingName = (ing.name || '').toLowerCase();
+        
+        // Match string trực diện (Nhanh và hiệu quả bằng NoSQL)
+        if (resolvedTerms.some(term => ingName.includes(term))) {
+          matched++;
+        }
+      });
+    }
 
-  // Privacy Filter: is_personal=false OR user_id = current user
-  if (user) {
-    query = query.or(`is_personal.eq.false,user_id.eq.${user.id}`);
-  } else {
-    query = query.eq('is_personal', false);
-  }
+    const total = totalMain || matched || 1;
+    const matchRatio = matched / total;
+    const coverage = matched / Math.max(userTotal, 1);
+    const score = matchRatio * 0.5 + coverage * 0.5;
 
-  const { data: recipesData } = await query;
+    return { ...r, match_count: matched, score };
+  })
+  .filter(r => r.score >= SCORE_THRESHOLD)
+  .sort((a, b) => b.score - a.score);
 
-  if (!recipesData) return [];
-
-  const scoreMap = Object.fromEntries(scored.map(r => [r.id, r]));
-  return recipesData
-    .map(r => {
-      const s = scoreMap[r.id];
-      return {
-        ...r,
-        match_count: s?.matched ?? 0,
-      } as RecipeSearchResult;
-    })
-    .sort((a, b) => (scoreMap[b.id]?.score || 0) - (scoreMap[a.id]?.score || 0));
+  // Trả về top 20
+  return scored.slice(0, 20);
 }
 
+
+// 2. Chi tiết công thức
 export async function getRecipeDetail(id: string) {
-  const supabase = await createClient();
-  const { data, error } = await supabase
-    .from('recipes')
-    .select(`
-      *,
-      recipe_ingredients (
-        amount,
-        is_main,
-        ingredients ( name )
-      ),
-      recipe_tags ( tag )
-    `)
-    .eq('id', id)
-    .single();
-
-  if (error) return null;
-  return data;
+  const doc = await adminDb().collection('recipes').doc(id).get();
+  if (!doc.exists) return null;
+  return doc.data();
 }
 
+
+// 3. Công thức cá nhân (My Recipes)
 export async function getPersonalRecipes(): Promise<RecipeSearchResult[]> {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await getSessionUser();
   if (!user) return [];
 
-  const { data, error } = await supabase
-    .from('recipes')
-    .select('id, name, category, sub_category, cooking_time, calories, image_url, created_at, difficulty, is_personal, user_id')
-    .eq('user_id', user.id)
-    .order('created_at', { ascending: false });
-
-  if (error) return [];
-  return data as RecipeSearchResult[];
+  const allRecipes = await getAllRecipesCached();
+  
+  return allRecipes
+    .filter(r => r.user_id === user.uid)
+    .sort((a, b) => {
+       const timeA = new Date(a.created_at || 0).getTime();
+       const timeB = new Date(b.created_at || 0).getTime();
+       return timeB - timeA;
+    });
 }
 
+// 4. Tìm nhều id (Cho trang Favorites)
+export async function getRecipesByIds(ids: string[]): Promise<RecipeSearchResult[]> {
+  if (!ids || ids.length === 0) return [];
+  const user = await getSessionUser();
+  
+  // Dùng cache lấy cho nhanh, tránh limit 'in' của Firestore (Tối đa 30)
+  const allRecipes = await getAllRecipesCached();
+  
+  const matches = allRecipes.filter(r => ids.includes(r.id));
+  
+  // Privacy Filter
+  return matches.filter(r => {
+    if (r.is_personal) return user && r.user_id === user.uid;
+    return true;
+  });
+}
+
+// 5. Tìm cảm hứng
+export async function getInspiredRecipes(inspirationType: string): Promise<RecipeSearchResult[]> {
+  const user = await getSessionUser();
+  const allRecipes = await getAllRecipesCached();
+
+  const validRecipes = allRecipes.filter(r => {
+    if (r.is_personal) return user && r.user_id === user.uid;
+    return true;
+  });
+
+  let pool = [];
+  switch (inspirationType) {
+    case 'quick':
+      pool = validRecipes.filter(r => r.cooking_time <= 15);
+      break;
+    case 'party':
+      pool = validRecipes.filter(r => 
+        ['an-vat','khai-vi'].includes(r.category) || ['nuong','chien'].includes(r.sub_category)
+      );
+      break;
+    case 'healthy':
+      pool = validRecipes.filter(r => 
+        ['salad-goi','an-chay','healthy'].includes(r.category) || r.calories < 400
+      );
+      break;
+    case 'breakfast':
+      pool = validRecipes.filter(r => 
+        ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien', 'breakfast'].includes(r.category)
+      );
+      break;
+    case 'snack':
+      pool = validRecipes.filter(r => 
+        ['an-vat','trang-mieng-che','trang-mieng','snack'].includes(r.category) || 
+        ['trang-mieng','an-vat'].includes(r.sub_category)
+      );
+      break;
+    default:
+      return [];
+  }
+  
+  // Xáo trộn và lấy ngẫu nhiên 30
+  return pool.sort(() => 0.5 - Math.random()).slice(0, 30);
+}
+
+
 export async function createRecipe(formData: FormData) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await getSessionUser();
   if (!user) return { success: false, error: 'Unauthorized' };
 
   try {
@@ -195,149 +208,69 @@ export async function createRecipe(formData: FormData) {
     const stepsJson = formData.get('steps') as string;
     const imageFile = formData.get('image') as File;
 
-    const ingredients = JSON.parse(ingredientsJson);
+    const ingredients = JSON.parse(ingredientsJson).map((ing: any) => ({
+      name: ing.name.toLowerCase().trim(),
+      amount: ing.amount,
+      is_main: true
+    }));
     const steps = JSON.parse(stepsJson);
 
-    let imageUrl = '';
-    if (imageFile && imageFile.size > 0) {
+    let imageUrl = ''; 
+    // Dùng Supabase Admin Storage để upload ảnh
+    if (imageFile && imageFile.size > 0 && supabaseAdmin) {
       const fileExt = imageFile.name.split('.').pop();
-      const fileName = `${user.id}/${Date.now()}.${fileExt}`;
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const fileName = `${user.uid}/${Date.now()}.${fileExt}`;
+      
+      const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
         .from('recipe-images')
-        .upload(fileName, imageFile);
+        .upload(fileName, imageFile, { upsert: true });
 
       if (uploadError) throw uploadError;
 
-      const { data: { publicUrl } } = supabase.storage
+      const { data: { publicUrl } } = supabaseAdmin.storage
         .from('recipe-images')
         .getPublicUrl(uploadData.path);
-
+        
       imageUrl = publicUrl;
     }
-
+    
+    // Logic lưu vào Firestore
     const newRecipeId = `usr-${Date.now()}-${Math.floor(Math.random() * 1000)}`;
+    const newRecipe = {
+      id: newRecipeId,
+      name,
+      description,
+      cooking_time: cookingTime,
+      difficulty,
+      servings,
+      steps,
+      ingredients,
+      image_url: imageUrl,
+      is_personal: true,
+      category: 'user-contributed',
+      user_id: user.uid,
+      created_at: new Date().toISOString()
+    };
 
-    const { data: recipe, error: recipeError } = await supabase
-      .from('recipes')
-      .insert({
-        id: newRecipeId,
-        name,
-        description,
-        cooking_time: cookingTime,
-        difficulty,
-        servings,
-        steps,
-        image_url: imageUrl,
-        is_personal: true,
-        category: 'user-contributed',
-        user_id: user.id
-      })
-      .select()
-      .single();
+    await adminDb().collection('recipes').doc(newRecipeId).set(newRecipe);
+    await invalidateCache();
 
-    if (recipeError) throw recipeError;
-
-    for (const ing of ingredients) {
-      const { data: ingData, error: ingError } = await supabase
-        .from('ingredients')
-        .upsert({ name: ing.name.toLowerCase().trim() }, { onConflict: 'name' })
-        .select()
-        .single();
-
-      if (ingError) continue;
-
-      await supabase.from('recipe_ingredients').insert({
-        recipe_id: recipe.id,
-        ingredient_id: ingData.id,
-        amount: ing.amount,
-        is_main: true
-      });
-    }
-
-    return { success: true, id: recipe.id };
+    return { success: true, id: newRecipeId };
   } catch (error: any) {
     return { success: false, error: error.message || String(error) };
   }
 }
 
-export async function getRecipesByIds(ids: string[]): Promise<RecipeSearchResult[]> {
-  if (!ids || ids.length === 0) return [];
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  let query = supabase
-    .from('recipes')
-    .select('id, name, category, sub_category, cooking_time, calories, image_url, difficulty, is_personal, user_id')
-    .in('id', ids);
-
-  if (user) {
-    query = query.or(`is_personal.eq.false,user_id.eq.${user.id}`);
-  } else {
-    query = query.eq('is_personal', false);
-  }
-
-  const { data, error } = await query;
-  if (error || !data) return [];
-  return data as RecipeSearchResult[];
-}
-
-export async function getInspiredRecipes(inspirationType: string): Promise<RecipeSearchResult[]> {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
-
-  let query = supabase
-    .from('recipes')
-    .select('id, name, category, sub_category, cooking_time, calories, image_url, difficulty, is_personal, user_id');
-
-  // Privacy Filter
-  if (user) {
-    query = query.or(`is_personal.eq.false,user_id.eq.${user.id}`);
-  } else {
-    query = query.eq('is_personal', false);
-  }
-
-  switch (inspirationType) {
-    case 'quick':
-      query = query.lte('cooking_time', 15);
-      break;
-    case 'party':
-      query = query.or('category.in.(an-vat,khai-vi),sub_category.in.(nuong,chien)');
-      break;
-    case 'healthy':
-      // Include specific categories or low-calorie dishes
-      query = query.or('category.in.(salad-goi,an-chay,healthy),calories.lt.400');
-      break;
-    case 'breakfast':
-      // Include all common breakfast categories
-      query = query.in('category', ['an-sang', 'pho-bun', 'mi-bun', 'xoi-com-chien', 'banh-da-mien', 'breakfast']);
-      break;
-    case 'snack':
-      // Include snacks, desserts and treats
-      query = query.or('category.in.(an-vat,trang-mieng-che,trang-mieng,snack),sub_category.in.(trang-mieng,an-vat)');
-      break;
-    default:
-      return [];
-  }
-  
-  const { data, error } = await query.limit(30);
-  if (error || !data) return [];
-  return data.sort(() => 0.5 - Math.random()) as RecipeSearchResult[];
-}
-
 export async function updateRecipe(id: string, formData: FormData) {
-  const supabase = await createClient();
-  const { data: { user } } = await supabase.auth.getUser();
+  const user = await getSessionUser();
   if (!user) return { success: false, error: 'Unauthorized' };
 
   try {
-    // Check ownership first
-    const { data: existing } = await supabase
-      .from('recipes')
-      .select('user_id')
-      .eq('id', id)
-      .single();
-
-    if (!existing || existing.user_id !== user.id) {
+    const doc = await adminDb().collection('recipes').doc(id).get();
+    if (!doc.exists) return { success: false, error: 'Not found' };
+    
+    const existing = doc.data();
+    if (existing?.user_id !== user.uid) {
       return { success: false, error: 'Permission denied' };
     }
 
@@ -350,65 +283,47 @@ export async function updateRecipe(id: string, formData: FormData) {
     const stepsJson = formData.get('steps') as string;
     const imageFile = formData.get('image') as File;
 
-    const ingredients = JSON.parse(ingredientsJson);
+    const ingredients = JSON.parse(ingredientsJson).map((ing: any) => ({
+      name: ing.name.toLowerCase().trim(),
+      amount: ing.amount,
+      is_main: true
+    }));
     const steps = JSON.parse(stepsJson);
 
     let imageUrl = formData.get('existingImageUrl') as string;
-
-    if (imageFile && imageFile.size > 0) {
+    
+    // Upload ảnh mới lên Supabase nếu có
+    if (imageFile && imageFile.size > 0 && supabaseAdmin) {
       const fileExt = imageFile.name.split('.').pop();
-      const fileName = `${user.id}/${Date.now()}.${fileExt}`;
-      const { data: uploadData, error: uploadError } = await supabase.storage
+      const fileName = `${user.uid}/${Date.now()}.${fileExt}`;
+      
+      const { data: uploadData, error: uploadError } = await supabaseAdmin.storage
         .from('recipe-images')
-        .upload(fileName, imageFile);
+        .upload(fileName, imageFile, { upsert: true });
 
       if (uploadError) throw uploadError;
 
-      const { data: { publicUrl } } = supabase.storage
+      const { data: { publicUrl } } = supabaseAdmin.storage
         .from('recipe-images')
         .getPublicUrl(uploadData.path);
-
+        
       imageUrl = publicUrl;
     }
 
-    const { error: recipeError } = await supabase
-      .from('recipes')
-      .update({
-        name,
-        description,
-        cooking_time: cookingTime,
-        difficulty,
-        servings,
-        steps,
-        image_url: imageUrl,
-      })
-      .eq('id', id);
-
-    if (recipeError) throw recipeError;
-
-    // To simplify ingredients update, delete old and insert new
-    await supabase.from('recipe_ingredients').delete().eq('recipe_id', id);
-
-    for (const ing of ingredients) {
-      const { data: ingData, error: ingError } = await supabase
-        .from('ingredients')
-        .upsert({ name: ing.name.toLowerCase().trim() }, { onConflict: 'name' })
-        .select()
-        .single();
-
-      if (ingError) continue;
-
-      await supabase.from('recipe_ingredients').insert({
-        recipe_id: id,
-        ingredient_id: ingData.id,
-        amount: ing.amount,
-        is_main: true
-      });
-    }
+    await adminDb().collection('recipes').doc(id).update({
+      name,
+      description,
+      cooking_time: cookingTime,
+      difficulty,
+      servings,
+      steps,
+      ingredients,
+      image_url: imageUrl,
+    });
+    await invalidateCache();
 
     return { success: true, id };
   } catch (error: any) {
     return { success: false, error: error.message || String(error) };
   }
 }
-

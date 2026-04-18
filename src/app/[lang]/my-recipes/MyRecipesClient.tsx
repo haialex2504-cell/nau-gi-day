@@ -3,7 +3,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { RecipeSearchResult, getRecipesByIds } from '@/app/[lang]/actions/recipe';
-import { useFavorites } from '@/hooks/useFavorites';
+import { useFirebaseFavorites as useFavorites } from '@/hooks/useFirebaseFavorites';
 import FavoriteButton from '@/app/[lang]/components/FavoriteButton';
 import { useLang } from '@/app/[lang]/components/LangContext';
 import Image from 'next/image';

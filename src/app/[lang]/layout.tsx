@@ -26,6 +26,9 @@ export const viewport: Viewport = {
   maximumScale: 1,
 };
 
+import { AuthProvider } from "@/hooks/AuthContext";
+import { FavoritesProvider } from "@/hooks/FavoritesContext";
+
 export default async function LangLayout({
   children,
   params,
@@ -48,10 +51,14 @@ export default async function LangLayout({
         <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap" rel="stylesheet" />
       </head>
       <body className="antialiased selection:bg-secondary-container" suppressHydrationWarning>
-        <SWRegister />
-        <LangProvider lang={lang} dict={dict}>
-          {children}
-        </LangProvider>
+        <AuthProvider>
+          <FavoritesProvider>
+            <SWRegister />
+            <LangProvider lang={lang} dict={dict}>
+              {children}
+            </LangProvider>
+          </FavoritesProvider>
+        </AuthProvider>
       </body>
     </html>
   );
